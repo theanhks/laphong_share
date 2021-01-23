@@ -1,0 +1,398 @@
+{literal}
+<script>
+function myFunction1() {
+  //alert("You pressed a key inside the input field");
+  document.getElementById("first_name").style.display = "none";
+}
+function myFunction2() {
+  //alert("You pressed a key inside the input field");
+  document.getElementById("email").style.display = "none";
+}
+function myFunction3() {
+  //alert("You pressed a key inside the input field");
+  document.getElementById("address").style.display = "none";
+}
+function myFunction4() {
+  //alert("You pressed a key inside the input field");
+  document.getElementById("tel").style.display = "none";
+}
+function myFunction5() {
+  //alert("You pressed a key inside the input field");
+  document.getElementById("message").style.display = "none";
+}
+function myFunction6() {
+  //alert("You pressed a key inside the input field");
+  document.getElementById("title").style.display = "none";
+}
+</script>
+{/literal}
+
+ {if $lang eq 'vn'}
+ {literal} 	
+<script type="text/javascript">
+	messages=new Array();
+	messages['nhapten']	= 'Nhập tên!';
+	messages['tel']	= 'Số điện thoại chưa hợp lệ!';
+	messages['address']	= 'Địa chỉ chưa hợp lệ!';
+	messages['nhapemail']	= 'Nhập mail!';
+	messages['emailkhonghople']	= 'Email không hợp lệ';
+	messages['nhaptieude']	= 'Nhập tiêu đề';
+	messages['nhapnoidung']	= 'Nhập nội dung';
+	messages['nhapmaxacnhan']	= 'Nhập mã xác nhận';
+</script>
+<script language="javascript">
+
+
+
+	function CheckFormMail10() {
+	
+		with(document.FormName1) {
+
+			var first_name = FormName1.elements["first_name"].value;
+			var email = FormName1.elements["email"].value;
+			var tel = FormName1.elements["tel"].value;
+			var message = FormName1.elements["message"].value;
+			var title = FormName1.elements["title"].value;
+			
+			if (first_name.value == "" && email.value == "" && tel.value == "" && message.value == "" && title.value == "") {
+	
+				document.getElementById("first_name").style.display = "block";
+				document.getElementById("email").style.display = "block";
+				document.getElementById("tel").style.display = "block";
+				document.getElementById("message").style.display = "block";
+				document.getElementById("title").style.display = "block";
+				return false;
+			}
+			
+			if (title.value == "") {
+				//alert(messages['nhapten']);
+				document.getElementById("title").style.display = "block";
+				title.focus();
+				return false;
+			}
+			
+			if (first_name.value == "") {
+				//alert(messages['nhapten']);
+				document.getElementById("first_name").style.display = "block";
+				first_name.focus();
+				return false;
+			}
+
+			if (email.value == "") {
+				//alert(messages['nhapemail']);
+				document.getElementById("email").style.display = "block";
+				email.focus();
+				return false;
+			} else {
+				if (email.value.indexOf("@") < 0 || email.value.indexOf(".") < 0) {
+					//alert(messages['emailkhonghople']);
+					document.getElementById("email").style.display = "block";
+					email.focus();
+					return false;
+				}
+			}
+			
+			
+			if (address.value == "") {
+				//alert(messages['address']);
+				document.getElementById("address").style.display = "block";
+				address.focus();
+				return false;
+			}
+			
+			if (tel.value == "") {
+				//alert(messages['tel']);
+				document.getElementById("tel").style.display = "block";
+				tel.focus();
+				return false;
+			}
+			
+			if (message.value == "") {
+				//alert(messages['nhapnoidung']);
+				document.getElementById("message").style.display = "block";
+				message.focus();
+				return false;
+			}
+			
+
+		}
+		return true;
+	}
+	
+
+
+	
+	
+	
+	
+	
+</script> 
+{/literal}
+
+
+<section class="sub-bg">
+	  <div class="container">
+		{if $lang == 'vn'}
+			<div class="sub-head"> <a href="#"><i class="fa fa-home"></i> Trang chủ </a>
+
+					{foreach from=$pathParentItems key=i item=pathParentItem}
+								<h1><a title="{$pathParentItem->getName($lang)|strip_tags}" href="{$pathParentItem->getUrl($lang)}">{$pathParentItem->getName($lang)|strip_tags}</a></h1>
+							{/foreach} 
+			  
+			</div>
+		{else}
+			<div class="sub-head"> <a href="#"><i class="fa fa-home"></i> Home </a>
+				{foreach from=$pathParentItems key=i item=pathParentItem}
+								<h1><a title="{$pathParentItem->getName($lang)|strip_tags}" href="{$pathParentItem->getUrl($lang)}">{$pathParentItem->getName($lang)|strip_tags}</a></h1>
+							{/foreach} 
+		</div>
+		{/if}
+		
+	  </div>
+	</section>
+	
+	
+
+
+<section>
+  <div class="title" style="padding-top: 50px"><a href="#">liên hệ với chúng tôi</a></div>
+  <div class="container">
+    <div class="contact-form">
+      <p>Những mục có dấu * bắt buộc nhập. Tiêu đề *</p>
+	 
+        
+                {if $error}<p><span style="color:red; font-weight:bold">{$error}</span></p>
+					{else}
+					{if $error}<p><span style="color:red; font-weight:bold">{$error}</span></p>{/if}
+				{/if}
+	  
+	   <form action="" method="post" name="FormName1" target="_parent" onSubmit="return CheckFormMail10();">
+		  <ul>
+			<li>
+			  <input name="title" type="text" placeholder="Nhập tiêu đề thư!" onkeydown="myFunction6();">
+			  <label class="error" id ="title" style ="display:none; color: red;">Vui lòng nhập tiêu đề.</label>
+			</li>
+			<li>
+			  <input name="first_name" type="text" placeholder="Họ và tên" id="my_first_name" onkeydown="myFunction1();"  />
+				<label class="error" id ="first_name" style ="display:none; color: red;">Vui lòng nhập họ tên.</label>
+			</li>
+			<li>
+			  <input name="email" type="text" placeholder="Email" onkeydown="myFunction2();"  />	
+			<label class="error" id ="email" style ="display:none; color: red;">Vui lòng nhập email.</label>
+			</li>
+
+			<li>
+			  <input name="tel" type="text" placeholder="Điện Thoại" onkeydown="myFunction4();"  />
+				<label class="error" id ="tel" style ="display:none; color: red;">Vui lòng nhập số điện thoại.</label>
+			</li>
+			<li style="width:100%">
+			  <textarea name="message" placeholder="Nội dung*" onkeydown="myFunction5();"></textarea>
+			  <label class="error" id ="message" style ="display:none; color: red;">Vui lòng nhập Nội Dung Yêu Cầu.</label>
+			</li>
+			<li style="width:100%">
+			  <input type="submit" value="Gửi đi">
+			</li>
+		  </ul>
+		   <input name="lang" value="{$lang}" type="hidden">
+                                        <input name="slug" value="{$slug}" type="hidden">
+                                            <input name="id" value="{$id}" type="hidden">
+											<input name="op" value="contactform" type="hidden">
+		  
+		</form>
+    </div>
+    <div class="contact-map">
+	
+	{if $object_lienhe}
+						{$object_lienhe->getDetails($lang)}
+						{/if} 
+
+    </div>
+  </div>
+</section>
+
+
+	{else}
+	
+	 {literal} 	
+<script type="text/javascript">
+	messages=new Array();
+	messages['nhapten']	= 'Nhập tên!';
+	messages['tel']	= 'Số điện thoại chưa hợp lệ!';
+	messages['address']	= 'Địa chỉ chưa hợp lệ!';
+	messages['nhapemail']	= 'Nhập mail!';
+	messages['emailkhonghople']	= 'Email không hợp lệ';
+	messages['nhaptieude']	= 'Nhập tiêu đề';
+	messages['nhapnoidung']	= 'Nhập nội dung';
+	messages['nhapmaxacnhan']	= 'Nhập mã xác nhận';
+</script>
+<script language="javascript">
+
+
+function CheckFormMail10() {
+	
+		with(document.FormName1) {
+
+			var first_name = FormName1.elements["first_name"].value;
+			var email = FormName1.elements["email"].value;
+			var tel = FormName1.elements["tel"].value;
+			var message = FormName1.elements["message"].value;
+			var title = FormName1.elements["title"].value;
+			
+			if (first_name.value == "" && email.value == "" && tel.value == "" && message.value == "" && title.value == "") {
+	
+				document.getElementById("first_name").style.display = "block";
+				document.getElementById("email").style.display = "block";
+				document.getElementById("tel").style.display = "block";
+				document.getElementById("message").style.display = "block";
+				document.getElementById("title").style.display = "block";
+				return false;
+			}
+			
+			if (title.value == "") {
+				//alert(messages['nhapten']);
+				document.getElementById("title").style.display = "block";
+				title.focus();
+				return false;
+			}
+			
+			if (first_name.value == "") {
+				//alert(messages['nhapten']);
+				document.getElementById("first_name").style.display = "block";
+				first_name.focus();
+				return false;
+			}
+
+			if (email.value == "") {
+				//alert(messages['nhapemail']);
+				document.getElementById("email").style.display = "block";
+				email.focus();
+				return false;
+			} else {
+				if (email.value.indexOf("@") < 0 || email.value.indexOf(".") < 0) {
+					//alert(messages['emailkhonghople']);
+					document.getElementById("email").style.display = "block";
+					email.focus();
+					return false;
+				}
+			}
+			
+			
+			if (address.value == "") {
+				//alert(messages['address']);
+				document.getElementById("address").style.display = "block";
+				address.focus();
+				return false;
+			}
+			
+			if (tel.value == "") {
+				//alert(messages['tel']);
+				document.getElementById("tel").style.display = "block";
+				tel.focus();
+				return false;
+			}
+			
+			if (message.value == "") {
+				//alert(messages['nhapnoidung']);
+				document.getElementById("message").style.display = "block";
+				message.focus();
+				return false;
+			}
+			
+
+		}
+		return true;
+	}
+	
+</script> 
+{/literal}
+
+
+<section class="sub-bg">
+	  <div class="container">
+		{if $lang == 'vn'}
+			<div class="sub-head"> <a href="#"><i class="fa fa-home"></i> Trang chủ </a>
+
+					{foreach from=$pathParentItems key=i item=pathParentItem}
+								<h1><a title="{$pathParentItem->getName($lang)|strip_tags}" href="{$pathParentItem->getUrl($lang)}">{$pathParentItem->getName($lang)|strip_tags}</a></h1>
+							{/foreach} 
+			  
+			</div>
+		{else}
+			<div class="sub-head"> <a href="#"><i class="fa fa-home"></i> Home </a>
+				{foreach from=$pathParentItems key=i item=pathParentItem}
+								<h1><a title="{$pathParentItem->getName($lang)|strip_tags}" href="{$pathParentItem->getUrl($lang)}">{$pathParentItem->getName($lang)|strip_tags}</a></h1>
+							{/foreach} 
+		</div>
+		{/if}
+		
+	  </div>
+	</section>
+	
+	
+
+
+<section>
+  <div class="title" style="padding-top: 50px"><a href="#">Contact us</a></div>
+  <div class="container">
+    <div class="contact-form">
+      <p>Items with * are required. Title *</p>
+	 
+        
+                {if $error}<p><span style="color:red; font-weight:bold">{$error}</span></p>
+					{else}
+					{if $error}<p><span style="color:red; font-weight:bold">{$error}</span></p>{/if}
+				{/if}
+	  
+	  
+	   <form action="" method="post" name="FormName1" target="_parent" onSubmit="return CheckFormMail10();">
+		  <ul>
+			<li>
+			  <input name="title" type="text" placeholder="Enter the letter title!" onkeydown="myFunction6();">
+			  <label class="error" id ="title" style ="display:none; color: red;">Please enter a title.</label>
+			</li>
+			<li>
+			  <input name="first_name" type="text" placeholder="Fullname" id="my_first_name" onkeydown="myFunction1();"  />
+				<label class="error" id ="first_name" style ="display:none; color: red;">Please enter Fullname.</label>
+			</li>
+			<li>
+			  <input name="email" type="text" placeholder="Email" onkeydown="myFunction2();"  />	
+			<label class="error" id ="email" style ="display:none; color: red;">Please enter email.</label>
+			</li>
+
+			<li>
+			  <input name="tel" type="text" placeholder="Phone" onkeydown="myFunction4();"  />
+				<label class="error" id ="tel" style ="display:none; color: red;">Please enter the phone number.</label>
+			</li>
+			<li style="width:100%">
+			  <textarea name="message" placeholder="Content*" onkeydown="myFunction5();"></textarea>
+			  <label class="error" id ="message" style ="display:none; color: red;">Please enter Request Content.</label>
+			</li>
+			<li style="width:100%">
+			  <input type="submit" value="Gửi đi">
+			</li>
+		  </ul>
+		   <input name="lang" value="{$lang}" type="hidden">
+                                        <input name="slug" value="{$slug}" type="hidden">
+                                            <input name="id" value="{$id}" type="hidden">
+											<input name="op" value="contactform" type="hidden">
+		  
+		</form>
+		
+		
+	  
+    </div>
+    <div class="contact-map">
+	
+	{if $object_lienhe}
+						{$object_lienhe->getDetails($lang)}
+						{/if} 
+
+    </div>
+  </div>
+</section>
+
+	
+	
+	{/if}
+	
+	

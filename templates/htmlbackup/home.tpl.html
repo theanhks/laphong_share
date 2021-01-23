@@ -1,0 +1,121 @@
+   <div class="maincontent">
+    <div class="container-xxy">
+        <div class="row">
+           
+		   <!-- banner -->
+		   {include file="$usertemplate/banner.tpl.html"}
+		   <!-- banner -->
+            <div class="col-md-12 padi05">
+                <div class="titlistpro">
+                    <h5><span>Sản phẩm hot</span></h5>
+                </div>
+            </div>
+            <div class="col-md-12 padi05">
+                <ul id="flexiselDemo2">
+				
+				
+			{if $indexspmoiItems}
+					{foreach from=$indexspmoiItems item=proItem key=i}
+					
+					
+					<li>
+                        <div class="proslider">
+                            <div class="boxpro">
+                                <div class="abimg">
+                                    <a class="first" href="{$proItem->getViewUrl($lang)}" title ="{$proItem->getName($lang)}">
+                                        <img src="{$ROOTPATH}/gallery/avatar_upload/products/thumb/{$proItem->getAvatar()}" alt="{$proItem->getName($lang)}" />
+                                    </a>
+									
+									 {assign var=imagesItems value=$proItem->getFile(1)}
+									 {if $imagesItems}
+										{foreach from=$imagesItems item=imagesItem key=i}
+										
+											{if $i==1}
+												 <a class="last" href="{$proItem->getViewUrl($lang)}" title ="{$proItem->getName($lang)}">
+													<img src="{$ROOTPATH}/gallery/avatar_upload/products/thumb/{$imagesItem}" alt="{$proItem->getName($lang)}" />
+												</a>
+											{/if}
+										{/foreach}
+										
+										{else}
+										 <a class="last" href="{$proItem->getViewUrl($lang)}" title ="{$proItem->getName($lang)}">
+											<img src="{$ROOTPATH}/templates/{$usertemplate}/images/p1.jpg" alt="{$proItem->getName($lang)}" />
+										</a>
+										
+									{/if}	
+            
+                                </div>
+                                <div class="viewpro">
+                                    <a href="{$proItem->getViewUrl($lang)}" title ="{$proItem->getName($lang)}">{$proItem->getName($lang)}</a>
+                                    <p>{$proItem->getPrice()|number_format:0:",":"."} ₫</p>
+                                    <span>{$proItem->getSPrice()|number_format:0:",":"."} ₫</span>
+                                </div>
+                            </div>
+							
+							
+                        </div>
+					
+                    </li>
+				{/foreach}
+				{/if}
+              
+				
+            
+                </ul>
+            </div>
+            <div class="col-md-12 padi05">
+                <div class="titlistpro">
+                    <h5><span>Sản phẩm mới</span></h5>
+                </div>
+            </div>
+            <div class="col-md-12 padi05">
+			
+				{if $proItems}
+					{foreach from=$proItems item=proItem key=i}
+					
+					<div class="boxpropad">
+                    <div class="boxpro">
+                        <div class="abimg">
+                            <a class="first" href="{$proItem->getViewUrl($lang)}" title ="{$proItem->getName($lang)}">
+                                <img src="{$ROOTPATH}/gallery/avatar_upload/products/thumb/{$proItem->getAvatar()}" alt="{$proItem->getName($lang)}" />
+                            </a>
+                            {assign var=imagesItems value=$proItem->getFile(1)}
+									 {if $imagesItems}
+										{foreach from=$imagesItems item=imagesItem key=i}
+										
+											{if $i==1}
+												 <a class="last" href="{$proItem->getViewUrl($lang)}" title ="{$proItem->getName($lang)}">
+													<img src="{$ROOTPATH}/gallery/avatar_upload/products/thumb/{$imagesItem}" alt="{$proItem->getName($lang)}" />
+												</a>
+											{/if}
+										{/foreach}
+										
+										{else}
+										 <a class="last" href="{$proItem->getViewUrl($lang)}" title ="{$proItem->getName($lang)}">
+											<img src="{$ROOTPATH}/templates/{$usertemplate}/images/p1.jpg" alt="{$proItem->getName($lang)}" />
+										</a>
+										
+									{/if}	
+                        </div>
+                        <div class="viewpro">
+                            <a href="{$proItem->getViewUrl($lang)}" title ="{$proItem->getName($lang)}">{$proItem->getName($lang)}</a>
+                            <p>{$proItem->getPrice()|number_format:0:",":"."} ₫</p>
+                              <span>{$proItem->getSPrice()|number_format:0:",":"."} ₫</span>
+                        </div>
+                    </div>
+                </div>
+					
+				{/foreach}
+				{/if}
+				
+				{if $pages>1}
+					<div class="page">
+						<ul>
+						 {$pager}
+						</ul>
+					</div>
+				{/if}  
+
+					
+          </div>
+          

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" href="{$ROOTPATH}/favicon.ico">
+	<title>Lá Phong</title>
+
+	<!-- Load Roboto font -->
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	<!-- Load css styles -->
+
+	<!-- Bootstrap --------------------------------------------------------------------------->
+	<!--	<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />                  &lt;!&ndash;&ndash;&gt;-->
+	<link rel="stylesheet" href="{$ROOTPATH}/templates/{$usertemplate}/css/bootstrap.css">
+	<!--	<link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.css" />       &lt;!&ndash;&ndash;&gt;-->
+	<link rel="stylesheet" href="{$ROOTPATH}/templates/{$usertemplate}/css/bootstrap-responsive.css">
+	<!---------------------------------------------------------------------------------------->
+	<!--	<link rel="stylesheet" type="text/css" href="css/csshake.min.css">-->
+	<link rel="stylesheet" href="{$ROOTPATH}/templates/{$usertemplate}/css/csshake.min.css">
+
+	<!--	<link rel="stylesheet" type="text/css" href="css/style.css" />-->
+	<link rel="stylesheet" href="{$ROOTPATH}/templates/{$usertemplate}/css/style.css">
+
+	<link rel="shortcut icon" href="{$ROOTPATH}/templates/{$usertemplate}/img/ico/favicon.ico">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<!--	<link href="menu/sandbox.css" rel="stylesheet">-->
+	<link rel="stylesheet" href="{$ROOTPATH}/templates/{$usertemplate}/css/menu/sandbox.css">
+	<!--	<link href="menu/drawer.min.css" rel="stylesheet">-->
+	<link rel="stylesheet" href="{$ROOTPATH}/templates/{$usertemplate}/css/menu/drawer.min.css">
+	<!--	<link rel="stylesheet" href="css/swiper.min.css">-->
+	<link rel="stylesheet" href="{$ROOTPATH}/templates/{$usertemplate}/css/swiper.min.css">
+	<!--<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>-->
+	<script src='{$ROOTPATH}/templates/{$usertemplate}/js/jquery.min.js'></script>
+	<!--dev custom-->
+	<link rel="stylesheet" href="{$ROOTPATH}/templates/{$usertemplate}/css/main.css">
+	<script src="{$ROOTPATH}/templates/{$usertemplate}/js/custom.js" type="text/javascript"></script>
+
+</head>
+<body class="drawer drawer--right">
+{if !isset($typePage) || !in_array($typePage,$not_show_menu_mobile)}
+{assign var=displayMenu value='block'}
+{else}
+{assign var=displayMenu value='block'}
+{/if}
+<header role="banner">
+	<button type="button" class="drawer-toggle drawer-hamburger">
+		<span class="sr-only" style="display: {$displayMenu}">toggle navigation</span>
+		<span class="drawer-hamburger-icon" style="display: {$displayMenu}"></span>
+	</button>
+	<nav class="drawer-nav" role="navigation" style="display: {$displayMenu}">
+		<ul class="drawer-menu">
+			<li class="first"><a class="drawer-menu-item" href="/{$lang}/gioi-thieu.html"><span>{if $lang eq 'en'}Introductio{else}Giới thiệu{/if}</span></a>
+				{foreach from=$productcatItems item=productcatItem key=i}
+				{assign var=pidSub1 value=$productcatItem->getId()}
+				{if $pidSub1 != 1}
+				{assign var=Sub1procategoryItems value=$productcategories->getObjects(1,"status=1 AND pid=$pidSub1",$orderASC)}
+			<li class="drawer-dropdown">
+				<a class="drawer-menu-item" data-target="#" data-toggle="dropdown" role="button" aria-expanded="false" href="{$productcatItem->getUrl($lang)}">
+					<span>{$productcatItem->getName($lang)}<span class="drawer-caret"></span></span>
+				</a>
+				{if $Sub1procategoryItems}
+				<ul class="drawer-dropdown-menu">
+					{foreach from=$Sub1procategoryItems item=Sub1procategoryItem key=i}
+					{assign var=pidSub2 value=$Sub1procategoryItem->getId()}
+					{assign var=Sub2procategoryItems value=$productcategories->getObjects(1,"status=1 AND pid=$pidSub2",$orderASC)}
+					<li><a class="drawer-menu-item" href="{$Sub1procategoryItem->getUrl($lang)}">{$Sub1procategoryItem->getName($lang)}</a>
+						<!--{if $Sub2procategoryItems}
+						<ul>
+							{foreach from=$Sub2procategoryItems item=Sub2procategoryItem}
+							<li><a href="{$Sub2procategoryItem->getUrl($lang)}">{$Sub2procategoryItem->getName($lang)}</a>
+								{assign var=pidSub3 value=$Sub2procategoryItem->getId()}
+								{assign var=Sub3procategoryItems value=$productcategories->getObjects(1,"status=1 AND pid=$pidSub3",$orderASC)}
+								{if $Sub3procategoryItems}
+								<ul>
+									{foreach from=$Sub3procategoryItems item=Sub3procategoryItem}
+									<li><a href="{$Sub3procategoryItem->getUrl($lang)}">{$Sub3procategoryItem->getName('vn')}</a></li>
+									{/foreach}
+								</ul>
+								{/if}
+							</li>
+							{/foreach}
+						</ul>
+						{/if}-->
+					</li>
+					{/foreach}
+				</ul>
+				{/if}
+			</li>
+			{/if}
+			{/foreach}
+			<li class=""><a class="drawer-menu-item" href="/{$lang}/uu-dai/page-1.html"><span>{if $lang eq 'en'}Promotion{else}Ưu đãi{/if}</span></a>
+			<li class=""><a class="drawer-menu-item" href="/{$lang}/dat-ban.html"><span>{if $lang eq 'en'}Book{else}Đặt bàn{/if}</span></a>
+			<li class=""><a class="drawer-menu-item" href="/{$lang}/tuyen-dung/page-1.html"><span>{if $lang eq 'en'}Recruitment{else}Tuyển dụng{/if}</span></a>
+			<!--{if isset($sub_khachhang)}
+			{foreach from=$sub_khachhang item=menu_khachhang key=i}
+			{if $menu_khachhang->getId() ==40}
+			<li class=""><a class="drawer-menu-item" href="{$menu_khachhang->getUrl($lang)}">{$menu_khachhang->getName($lang)}</a></li>
+			{/if}
+			{/foreach}
+			{/if}-->
+			<li class=""><a class="drawer-menu-item" href="/{$lang}/lien-he.html"><span>{if $lang eq 'en'}Contact{else}Liên hệ{/if}</span></a>
+			{if empty($memberData)}
+			<li class="first"><a class="drawer-menu-item" href="/{$lang}/login.html"><span>{if $lang eq 'en'}Login{else}Đăng nhập{/if}</span></a>
+			{else}
+			<li> <a class="drawer-menu-item" href="javascript:voi(0)"><span>{if $lang eq 'en'}Logout{else}Đăng xuất{/if}</span></a></li>
+
+			{/if}
+			<li>
+                <div class="language-mobile">
+                    {if $lang eq 'vn'}
+                    <a href="javascrip:void(0)" class="change-lang" data-lang="vn"><img src="{$ROOTPATH}/templates/{$usertemplate}/img/flag-en.jpg" alt="" /></a>
+                    {else}
+                    <a href="javascrip:void(0)" class="change-lang" data-lang="en"><img src="{$ROOTPATH}/templates/{$usertemplate}/img/flag-vn.jpg" alt="" /></a>
+                    {/if}
+                </div>
+            </li>
+
+
+		</ul>
+	</nav>
+
+</header>
+

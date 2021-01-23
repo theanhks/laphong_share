@@ -1,0 +1,50 @@
+<?php
+/*************************************************************************
+ **************************************************************************/
+$slug = $request->element('slug', '');
+$template->assign("slug", $slug);
+include_once(ROOT_PATH . "classes/dao/categories.class.php");
+include_once(ROOT_PATH . "classes/dao/entries.class.php");
+include_once(ROOT_PATH . "includes/functions.php");
+$categories   = new Categories();
+$entries      = new Entries();
+$templateFile = "category.tpl.html";
+$id           = $request->element('id', '');
+$template->assign("id", $id);
+$page        = $request->element('page', 1);
+$template->assign("page", $page);
+$catslugItem = $categories->getCategoryFromId($id);
+$parentid    = $catslugItem->getPId();
+$template->assign("catslugItem", $catslugItem);
+$template->assign("parentid", $parentid);
+$item_news_per_row = $siteConfigs->getProperty('item_news_per_row');
+$template->assign("item_news_per_row", $item_news_per_row);
+if ($catslugItem) {
+    $cid    = $catslugItem->getId();
+    $subcat = $categories->getSubCategory1($cid);
+	$entriesItems = $entries->getObjects($page, "status=1 AND cid in($subcat)", array('date_created' => 'DESC'), $item_news_per_row); 
+    $pages = $entries->getNumItems('id', "`status` = 1 AND cid in($subcat)",$item_news_per_row);
+    $rows = $pages['rows'];
+    $pages = $pages['pages'];
+    if (!$pages)
+        $pages = 1;
+    if ($page > $pages)
+        $page = $pages;
+    $listPage = linkPager1_dimoda($catslugItem->getUrlTemplate($lang, 1), $pages, $page);
+    $template->assign("pager", $listPage);
+    $template->assign("pages", $pages);
+    #$countItem = count($entriesItems);
+    /*	if($countItem<=1&&$cid==5)
+    $templateFile = "news.tpl.html";*/
+    $pageName  = $catslugItem->getName($lang);
+    $template->assign('pageName', $pageName);
+    $template->assign('entriesItems', $entriesItems);
+}
+$parentslug = $categories->getParentSlug($parentid);
+$template->assign('parentslug', $parentslug);
+/************* dung chung ******/
+include_once(ROOT_PATH . "modules/framework.module.php");
+#end tin tuc left
+$active = 'tin-tuc';
+$template->assign('active', $active);
+?>

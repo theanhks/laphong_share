@@ -1,0 +1,209 @@
+{include file="$usertemplate/header.tpl.html"}
+{include file="$usertemplate/sub_head_menu.tpl.html"}
+{literal}
+<script>
+    function myFunction1() {
+        //alert("You pressed a key inside the input field");
+        document.getElementById("first_name").style.display = "none";
+    }
+    function myFunction2() {
+        //alert("You pressed a key inside the input field");
+        document.getElementById("email").style.display = "none";
+    }
+    function myFunction3() {
+        //alert("You pressed a key inside the input field");
+        document.getElementById("date").style.display = "none";
+    }
+    function myFunction4() {
+        //alert("You pressed a key inside the input field");
+        document.getElementById("tel").style.display = "none";
+    }
+    function myFunction5() {
+        //alert("You pressed a key inside the input field");
+        document.getElementById("quantity").style.display = "none";
+    }
+    function myFunction6() {
+        //alert("You pressed a key inside the input field");
+        document.getElementById("time").style.display = "none";
+    }
+</script>
+{/literal}
+
+
+{literal}
+<script type="text/javascript">
+    messages=new Array();
+    messages['nhapten']	= 'Nhập tên!';
+    messages['tel']	= 'Số điện thoại chưa hợp lệ!';
+    messages['address']	= 'Địa chỉ chưa hợp lệ!';
+    messages['nhapemail']	= 'Nhập mail!';
+    messages['emailkhonghople']	= 'Email không hợp lệ';
+    messages['nhaptieude']	= 'Nhập tiêu đề';
+    messages['nhapnoidung']	= 'Nhập nội dung';
+    messages['nhapmaxacnhan']	= 'Nhập mã xác nhận';
+</script>
+<script language="javascript">
+
+
+
+    function CheckFormMail10() {
+
+
+
+        var first_name = $('#my_first_name').val();
+        var email = $('#my_email').val();
+        var tel = $('#my_tel').val();
+        var date = $('#my_date').val();
+        var time = $('#my_time').val();
+        var quantity = $('#my_quantity').val();
+        //return  false;
+
+        if (first_name == "" && email == "" && tel == "" && date == "" && time == "" && quantity=="") {
+            document.getElementById("first_name").style.display = "block";
+            document.getElementById("email").style.display = "block";
+            document.getElementById("tel").style.display = "block";
+            document.getElementById("date").style.display = "block";
+            document.getElementById("time").style.display = "block";
+            document.getElementById("quantity").style.display = "block";
+            return false;
+        }
+
+        if (first_name == "") {
+            //alert(messages['nhapten']);
+            document.getElementById("first_name").style.display = "block";
+            return false;
+        }
+
+        if (email == "") {
+            //alert(messages['nhapemail']);
+            document.getElementById("email").style.display = "block";
+            return false;
+        } else {
+            if (email.indexOf("@") < 0 || email.indexOf(".") < 0) {
+                //alert(messages['emailkhonghople']);
+                document.getElementById("email").style.display = "block";
+                return false;
+            }
+        }
+
+
+        if (tel == "") {
+            //alert(messages['tel']);
+            document.getElementById("tel").style.display = "block";
+            return false;
+        }
+
+        if (date == "") {
+            //alert(messages['nhapnoidung']);
+            document.getElementById("date").style.display = "block";
+            return false;
+        }
+
+        if (time == "") {
+            //alert(messages['nhapnoidung']);
+            document.getElementById("time").style.display = "block";
+            return false;
+        }
+
+        if (quantity == "") {
+            //alert(messages['nhapnoidung']);
+            document.getElementById("quantity").style.display = "block";
+            return false;
+        }
+        return true;
+    }
+
+
+    function submitForm(){
+        if(CheckFormMail10){
+            $('#FormName1').submit();
+        }
+    }
+</script>
+{/literal}
+
+<div class="mainbanner3 wow fadeInDown" data-wow-delay="0.1s">
+    {assign var=HomeAds value=$ads->getAdsFront(14)}
+    {if $HomeAds}
+    {foreach from=$HomeAds item=HomeAdsItem}
+    <a href="javascript:void(0)" title=""><img src="{$ROOTPATH}/gallery/avatar_upload/ads/storage/{$HomeAdsItem->getLogoUrl()}" alt="" /></a>
+    {/foreach}
+    {/if}
+    <div class="title-05">
+        <div class="container-full">
+            <div class="row">
+                <div class="col-md-12 wow fadeInUp" data-wow-delay="0.4s">
+                    <h2>Book</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="index-content">
+    <div class="index-gt-2">
+        <div class="container-full">
+            <div class="row padi010">
+
+                <div class="col-md-7 col-sm-7 col-xs-12 padi05 fr">
+                    <form action="" method="post" class="form-contact" name="FormName1" id="FormName1" target="_parent" onSubmit="return CheckFormMail10();">
+                        <div class="datban-f wow fadeInRight" data-wow-delay="0.2s">
+                            <ul>
+                                <li>
+                                    <ul>
+                                        <li class="db-1">
+                                            <input class="btn-tttk" name="first_name" type="text" placeholder="Full name" id="my_first_name" onkeydown="myFunction1();"  />
+                                            <label class="error" id ="first_name" style ="display:none; color: red;">Name is required</label>
+                                        </li>
+                                        <li class="db-2">
+                                            <input class="btn-tttk" name="tel" type="text" placeholder="Phone" id="my_tel" onkeydown="myFunction4();"  />
+                                            <label class="error" id ="tel" style ="display:none; color: red;">Phone is required</label>
+                                        </li>
+                                        <li class="db-3">
+                                            <input class="btn-tttk" name="email" type="text" placeholder="Email" id="my_email" onkeydown="myFunction2();"  />
+                                            <label class="error" id ="email" style ="display:none; color: red;">Email is required</label>
+                                        </li>
+                                    </ul>
+                                    <ul>
+                                        <li class="db-4">
+                                            <p>Date</p>
+                                            <input type="text" id="my_date" name="date" value="" onchange="myFunction3();" onfocus="(this.type='date')" onblur="(this.type='text')">
+                                            <label class="error" id ="date" style ="display:none; color: red;">Date is required</label>
+                                        </li>
+                                        <li class="db-4">
+                                            <p>Time</p>
+                                            <input type="text" id="my_time" name="time" value="" onchange="myFunction6();" onfocus="(this.type='time')" onblur="(this.type='text')">
+                                            <label class="error" id ="time" style ="display:none; color: red;">Time is required</label>
+                                        </li>
+                                        <li class="db-5">
+                                            <input type="text" id="my_quantity" name="quantity" min="1" max="50" placeholder="Quantity" onkeydown="myFunction5();">
+                                            <label class="error" id ="quantity" style ="display:none; color: red;">Quantity is required</label>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="noidung">
+                                    <textarea name="message">Note</textarea>
+                                </li>
+                            </ul>
+                            <div class="nutdat">
+                                <a href="javascript:void(0)" onclick="submitForm()">Book</a>
+                            </div>
+                        </div>
+                        <input name="lang" value="{$lang}" type="hidden">
+                        <input name="slug" value="{$slug}" type="hidden">
+                        <input name="id" value="{$id}" type="hidden">
+                        <input name="op" value="contactform" type="hidden">
+                        <input name="type" value="datban" type="hidden">
+                    </form>
+                </div>
+                <div class="col-md-5 col-sm-5 col-xs-12 padi05 fl">
+                    <div class="tiles">
+                        {assign var=adsItem value=$ads->getObject(229)}
+                        <div class="tile tile3 wow fadeInLeft" data-wow-delay="0.2s" data-scale="1.2" data-image="{$ROOTPATH}/gallery/avatar_upload/ads/storage/{$adsItem->getLogoUrl()}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="$usertemplate/footer.tpl.html"}

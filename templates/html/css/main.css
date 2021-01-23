@@ -1,0 +1,143 @@
+p.warning-contact{
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #666;
+    font-size: 14px;
+    padding: 0 10px;
+}
+
+.datban-f > ul > li > ul > li.db-1 { background: url(../img/db-1.png) no-repeat left top white; }
+.datban-f > ul > li > ul > li.db-2 { background: url(../img/db-2.png) no-repeat left top white; }
+.datban-f > ul > li > ul > li.db-3 { background: url(../img/db-3.png) no-repeat left top white; }
+.datban-f > ul > li > ul > li.db-4 { background: url(../img/db-4.png) no-repeat left top white; }
+.datban-f > ul > li > ul > li.db-5 { background: url(../img/db-5.png) no-repeat left top white; }
+
+.datban-f > ul > li > ul > li > .error{
+    font-size: 14px;
+}
+
+.lienhe-f li.db-1 { background: url(../img/db-1.png) no-repeat left top white; }
+.lienhe-f li.db-2 { background: url(../img/db-2.png) no-repeat left top white; }
+.lienhe-f li.db-3 { background: url(../img/db-3.png) no-repeat left top white; }
+
+.lienhe-f li > .error{
+    font-size: 14px;
+}
+
+
+/*html giao hang, doi tra...vvv*/
+.mb-1-5-rem {
+    margin-bottom: 1.5rem;
+}
+.mt-5, .my-5 {
+    margin-top: 3rem!important;
+}
+.text-center {
+    text-align: center!important;
+}
+.line-title {
+    color: #5e0808;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    display: flex;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: baseline;
+    margin-top: 4em;
+}
+.line-title:before {
+    display: inline-block;
+    margin: 0 1rem 0px 0;
+    height: 2px;
+    content: " ";
+    text-shadow: none;
+    background-color: #cccccc;
+    width: 60px;
+}
+.line-title:after {
+    display: inline-block;
+    margin: 0 0 0px 1rem;
+    height: 2px;
+    content: " ";
+    text-shadow: none;
+    background-color: #cccccc;
+    width: 60px;
+}
+.content-text-highlight {
+    color: #5e0808;
+}
+.content-text-title {
+    margin: 10px 0;
+    color: #5e0808;
+    font-size: 1.3rem;
+}
+.mb-2, .my-2 {
+    margin-bottom: .5rem!important;
+}
+.content-text-sub-title {
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
+.lower-alpha {
+    list-style: lower-alpha;
+}
+.main-detail-content ul {
+    padding-left: 40px;
+}
+.pr-4, .px-4 {
+    padding-right: 1.5rem!important;
+}
+.font-weight-bold {
+    font-weight: 700!important;
+}
+.h3, h3 {
+    font-size: 1.5rem;
+    margin-bottom: .5rem;
+}
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+table thead tr {
+    background: #969696;
+}
+/*html end giao hang, dỏi tra*/
+
+
+/*phan trang*/
+.nav-page {
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+}
+
+.nav-page a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.nav-page a.active {
+    background-color: #f44336;
+    color: white;
+}
+
+.nav-page a:hover:not(.active) {background-color: #ddd;}
+
+.thanhtoan ul li input { width: 100%; float: left; padding: 8px 10px 6px 10px; border:1px solid #ddd; border-radius: 5px; }
+
+input[type="date"]:before {
+    content: attr(placeholder) !important;
+    color: #aaa;
+    margin-right: 0.5em;
+}
+input[type="date"]:focus:before,
+input[type="date"]:valid:before {
+    content: "";
+}
+::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+    color: transparent;}

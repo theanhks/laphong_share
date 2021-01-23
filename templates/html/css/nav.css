@@ -1,0 +1,100 @@
+#cssmenu-desktop,#cssmenu-desktop ul,#cssmenu-desktop ul li,#cssmenu-desktop ul li a,#cssmenu-desktop #menu-button{margin:0;padding:0;border:0;list-style:none;line-height:1;display:block;position:relative;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box; background:#CCC}
+#cssmenu-desktop:after,#cssmenu-desktop > ul:after{content:".";display:block;clear:both;visibility:hidden;line-height:0;height:0}
+#cssmenu-desktop #menu-button{display:none}
+#cssmenu-desktop{float:left}
+#cssmenu-desktop > ul > li{float:left; width:100%; border-bottom:1px solid #EEE}
+#cssmenu-desktop > ul > li > a{padding:15px 18px;font-size:18px;text-decoration:none;color:#333; }
+#cssmenu-desktop > ul > li:hover > a,#cssmenu-desktop ul li a.active{color:#c5161d}
+#cssmenu-desktop ul ul{position:absolute;left:-9999px; z-index:99; top:0}
+ 
+#cssmenu-desktop ul ul li{-webkit-transition:all .25s ease;-moz-transition:all .25s ease;-ms-transition:all .25s ease;-o-transition:all .25s ease;transition:all .25s ease}
+#cssmenu-desktop li:hover > ul{left:320px}
+#cssmenu-desktop ul ul li:hover ul {left:0}
+ 
+#cssmenu-desktop ul ul ul{margin-left:100%;top:0}
+ 
+#cssmenu-desktop ul ul li a{border-bottom:1px solid #DDD ;padding:17px 8px 16px 8px;width:250px;font-size:15px;text-decoration:none;color:#333;font-weight:400;background:#FFF;text-align:left}
+#cssmenu-desktop ul ul li:last-child > a,#cssmenu-desktop ul ul li.last-item > a{border-bottom:0}
+#cssmenu-desktop ul ul li:hover > a,#cssmenu-desktop ul ul li a:hover{background:#DDD;color:#c5161d} 
+#cssmenu-desktop > ul > li.has-sub > a:after { position: absolute; top: 17px; right: 5px; display: block; content: '\f105';font-family:'FontAwesome';} 
+#cssmenu-desktop ul ul li.has-sub > a:after{position:absolute;top:22px;right:13px;width:12px;height:2px;display:block;background:#dddddd;content:''}
+#cssmenu-desktop.align-right ul ul li.has-sub > a:after{right:auto;left:11px}
+#cssmenu-desktop ul ul li.has-sub > a:before{position:absolute;top:18px;right:18px;display:block;width:2px;height:12px;background:#dddddd;content:'';-webkit-transition:all .25s ease;-moz-transition:all .25s ease;-ms-transition:all .25s ease;-o-transition:all .25s ease;transition:all .25s ease}
+
+
+
+
+
+#cssmenu,#cssmenu ul,#cssmenu ul li,#cssmenu ul li a,#cssmenu #menu-button{margin:0;padding:0;border:0;list-style:none;line-height:1;display:block;position:relative;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box; }
+#cssmenu:after,#cssmenu > ul:after{content:".";display:block;clear:both;visibility:hidden;line-height:0;height:0}
+#cssmenu #menu-button{display:none}
+#cssmenu{float:left}
+#cssmenu > ul > li{float:left; width:100%; border-bottom:1px solid #EEE}
+#cssmenu.align-center > ul{font-size:0;text-align:center}
+#cssmenu.align-center > ul > li{display:inline-block;float:none}
+#cssmenu.align-center ul ul{text-align:left}
+#cssmenu.align-right > ul > li{float:right}
+#cssmenu ul li a i{font-size:24px;margin-top:-5px}
+#cssmenu > ul > li > a{padding:15px 18px;font-size:18px;text-decoration:none;color:#333; }
+#cssmenu > ul > li:hover > a,#cssmenu ul li a.active{color:#c5161d}
+#cssmenu > ul > li.has-sub > a{padding-right:20px}
+#cssmenu ul ul{position:absolute;left:-9999px; z-index:99; top:0}
+#cssmenu.align-right ul ul{text-align:right}
+#cssmenu ul ul li{-webkit-transition:all .25s ease;-moz-transition:all .25s ease;-ms-transition:all .25s ease;-o-transition:all .25s ease;transition:all .25s ease}
+#cssmenu li:hover > ul{left:320px}
+#cssmenu ul ul li:hover ul {left:0}
+ 
+#cssmenu.align-right li:hover > ul{left:auto;right:0}
+#cssmenu ul ul ul{margin-left:100%;top:0}
+#cssmenu.align-right ul ul ul{margin-left:0;margin-right:100%}
+#cssmenu ul ul li a{border-bottom:1px solid #DDD ;padding:17px 8px 16px 8px;width:250px;font-size:15px;text-decoration:none;color:#333;font-weight:400;background:#FFF;text-align:left}
+#cssmenu ul ul li:last-child > a,#cssmenu ul ul li.last-item > a{border-bottom:0}
+#cssmenu ul ul li:hover > a,#cssmenu ul ul li a:hover{background:#DDD;color:#c5161d} 
+#cssmenu > ul > li.has-sub > a:after { position: absolute; top: 17px; right: 5px; display: block; content: '\f105';font-family:'FontAwesome';} 
+#cssmenu ul ul li.has-sub > a:after{position:absolute;top:22px;right:13px;width:12px;height:2px;display:block;background:#dddddd;content:''}
+#cssmenu.align-right ul ul li.has-sub > a:after{right:auto;left:11px}
+#cssmenu ul ul li.has-sub > a:before{position:absolute;top:18px;right:18px;display:block;width:2px;height:12px;background:#dddddd;content:'';-webkit-transition:all .25s ease;-moz-transition:all .25s ease;-ms-transition:all .25s ease;-o-transition:all .25s ease;transition:all .25s ease}
+#cssmenu.align-right ul ul li.has-sub > a:before{right:auto;left:14px}
+/*#cssmenu ul ul > li.has-sub:hover > a:before{top:17px;height:0}*/
+#cssmenu.small-screen{width:100%}
+#cssmenu.small-screen ul{width:100%;display:none; position:absolute}
+#cssmenu.small-screen.align-center > ul{text-align:left}
+#cssmenu.small-screen ul li{width:100%;border-top:1px solid rgba(120,120,120,0.2)}
+#cssmenu.small-screen ul ul li,#cssmenu.small-screen li:hover > ul > li{height:auto}
+#cssmenu.small-screen ul li a,#cssmenu.small-screen ul ul li a{width:100%;border-bottom:0}
+#cssmenu.small-screen > ul > li{float:none}
+#cssmenu.small-screen ul ul li a{padding-left:25px}
+#cssmenu.small-screen ul ul ul li a{padding-left:35px}
+#cssmenu.small-screen ul ul li a{color:#dddddd;background:none}
+#cssmenu.small-screen ul ul li:hover > a,#cssmenu.small-screen ul ul li.active > a{color:#ffffff}
+#cssmenu.small-screen ul ul,#cssmenu.small-screen ul ul ul,#cssmenu.small-screen.align-right ul ul{position:relative;left:0;width:100%;margin:0;text-align:left}
+#cssmenu.small-screen > ul > li.has-sub > a:after,#cssmenu.small-screen > ul > li.has-sub > a:before,#cssmenu.small-screen ul ul > li.has-sub > a:after,#cssmenu.small-screen ul ul > li.has-sub > a:before{display:none}
+#cssmenu.small-screen #menu-button{display:block;padding:18px 0 18px 40px;color:#FFF;cursor:pointer;font-size:12px;text-transform:uppercase;font-weight:700}
+#cssmenu.small-screen #menu-button:after{position:absolute;top:22px;left:10px;display:block;height:8px;width:20px;border-top:2px solid #FFF;border-bottom:2px solid #FFF;content:''}
+#cssmenu.small-screen #menu-button:before{position:absolute;top:16px;left:10px;display:block;height:2px;width:20px;background:#FFF;content:''}
+#cssmenu.small-screen #menu-button.menu-opened:after{top:23px;border:0;height:2px;width:15px;background:#CCC;-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-ms-transform:rotate(45deg);-o-transform:rotate(45deg);transform:rotate(45deg)}
+#cssmenu.small-screen #menu-button.menu-opened:before{top:23px;background:#CCC;width:15px;-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-ms-transform:rotate(-45deg);-o-transform:rotate(-45deg);transform:rotate(-45deg)}
+#cssmenu.small-screen .submenu-button{position:absolute;z-index:99;right:0;top:0;display:block;border-left:1px solid rgba(120,120,120,0.2);height:52px;width:46px;cursor:pointer}
+#cssmenu.small-screen .submenu-button.submenu-opened{background:#999}
+#cssmenu.small-screen ul ul .submenu-button{height:48px;width:34px}
+#cssmenu.small-screen .submenu-button:after{position:absolute;top:23px;right:20px;width:8px;height:2px;display:block;background:#dddddd;content:''}
+#cssmenu.small-screen ul ul .submenu-button:after{top:15px;right:13px}
+#cssmenu.small-screen .submenu-button.submenu-opened:after{background:#ffffff}
+#cssmenu.small-screen .submenu-button:before{position:absolute;top:20px;right:23px;display:block;width:2px;height:8px;background:#dddddd;content:''}
+#cssmenu.small-screen ul ul .submenu-button:before{top:12px;right:16px}
+#cssmenu.small-screen .submenu-button.submenu-opened:before{display:none}
+#cssmenu.small-screen.select-list{padding:5px}
+@media only screen and (max-width: 1200px) {
+#cssmenu li:hover > ul{left:270px}
+}
+@media only screen and (max-width: 992px) {	
+#cssmenu li:hover > ul{left:auto}		
+#cssmenu.small-screen > ul{background:#FFF; border-bottom: 2px solid #CCC;}
+#cssmenu.small-screen ul li {border:1px solid #DDD; border-bottom:none}
+#cssmenu.small-screen ul li li {border:none; border-top:1px solid #DDD}
+#cssmenu > ul > li > a{padding:17px 12px;color:#000}
+#cssmenu > ul > li:hover > a{color:#000; background:#EEE}
+#cssmenu.small-screen ul ul li:hover > a{color:#0272bb; background:#EEE}
+#cssmenu.small-screen ul ul li a{color:#333}
+#cssmenu.small-screen ul ul li a:hover,#cssmenu.small-screen ul ul ul li a:hover{color:#0272bb}
+}

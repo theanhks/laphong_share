@@ -1,0 +1,109 @@
+{include file="$usertemplate/header.tpl.html"}  
+
+
+                    <script type="text/javascript">
+							messages=new Array();
+							messages['nhapten']	= '{$messages.nhapten}';
+							messages['nhapho']	= 'Vui lòng nhập họ';
+							messages['nhapemail']	= '{$messages.nhapemail}';
+							messages['emailkhonghople']	= '{$messages.emailkhonghople}';
+							messages['nhaptieude']	= '{$messages.nhaptieude}';
+							messages['nhapnoidung']	= '{$messages.nhapnoidung}';
+							messages['nhapmaxacnhan']	= '{$messages.nhapmaxacnhan}';
+							</script>
+                    {literal} 							
+							<script language="javascript">
+    function CheckFormMail() {
+        with(document.adminForm) {
+			/*if (gender.value == -1) {
+                alert('Vui lòng chọn giới tính');
+                gender.focus();
+                return false;
+            }*/
+			if (email.value == "") {
+                alert(messages['nhapemail']);
+                email.focus();
+                return false;
+            } else {
+                if (email.value.indexOf("@") < 0 || email.value.indexOf(".") < 0) {
+                    alert(messages['emailkhonghople']);
+                    email.focus();
+                    return false;
+                }
+            }
+            /*if (fullname.value == "") {
+                alert(messages['nhapten']);
+                fullname.focus();
+                return false;
+            }*/
+			if(isregister.value==0){
+				if (password.value == ""){
+					alert('Vui lòng nhập mật khẩu');
+					password.focus();
+					return false;
+				}
+				if (password2.value == "") {
+					alert('Vui lòng nhập mật khẩu xác nhận');
+					password2.focus();
+					return false;
+				}				
+			}			
+			if (password2.value != password.value) {
+                alert('Mật khẩu không đúng');
+                password2.focus();
+                return false;
+            }
+			/*if (address.value == '') {
+                alert('Vui lòng nhập địa chỉ');
+                address.focus();
+                return false;
+            }*/
+			/*f (tel.value == '') {
+                alert('Vui lòng nhập số điện thoại');
+                tel.focus();
+                return false;
+            }*/			
+            /*if (code.value == "") {
+                alert(messages['nhapmaxacnhan']);
+                code.focus();
+                return false;
+            }*/
+
+        }
+
+        return true;
+    }
+</script> 
+                            {/literal}
+
+
+<div class="container-fluid">
+
+			<br />
+   <section>
+    <div class="container">
+       <div class="row">
+        <div class="col-md-12">
+           <div class="contact-main">
+		   {if $lang eq 'vn'}
+            <h3>Thông tin nội bộ</h3>
+			{else}	
+			 <h3>Internal Information</h3>
+			{/if}
+          </div>
+			
+         </div>
+		  <div class="col-md-12">
+			<div class="contact-content">
+				 <div class="col-md-7 col-xs-12 col-sm-6 remove-left remove-right ">
+					{include file="$usertemplate/boxregister.tpl.html"}
+				</div>
+			</div>
+		  </div>
+      </div>
+     </div>
+  </section>
+
+ </div>
+{include file="$usertemplate/footer.tpl.html"}
+

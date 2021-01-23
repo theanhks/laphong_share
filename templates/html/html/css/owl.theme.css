@@ -1,0 +1,37 @@
+.slideshow{width:100%;max-width:1200px;min-height:100px;margin-left:0;overflow:hidden;margin-bottom:10px;z-index:5;float:left;position:relative}
+.slideshow .owl-theme .owl-controls .owl-buttons div{display:none}
+.slideshow:hover #owl-demo .owl-pagination{display:inline-block}
+.slideshow:hover .owl-theme .owl-controls .owl-buttons div{display:inline-block}
+.item-slide img{width:100%}
+.flex-caption{position:absolute;text-align:center;bottom:10px;color:#fff;padding:10px 20px;background:#185770;width:320px;line-height:22px;font-size:14px;opacity:0.9}
+.owl-theme .owl-controls{text-align:center;height:0px}
+.owl-theme .owl-controls .owl-buttons div{color:#FFF;display:block;zoom:1;*display:inline;font-size:12px; filter:Alpha(Opacity=50);opacity:0.7;position:absolute;width:40px;height:40px}
+.owl-pagination{text-align:center;position:relative;bottom:40px; }
+.owl-theme .owl-controls .owl-buttons .owl-prev{left:15px;top:45%;background:url(../img/prev.png) no-repeat}
+#owl-demo .owl-pagination:after{display:table;content:"";clear:both}
+#owl-demo .owl-pagination{ height:20px;padding:0 11px;line-height:29px}
+#owl-demo3 .owl-buttons div.owl-prev{background:url('pre3.jpg') no-repeat;right:22px;top:-48px;left:auto}
+#owl-demo3 .owl-buttons div.owl-next{background:url('next3.jpg') no-repeat;right:0;top:-48px}
+#owl-demo3 .owl-buttons div{width:18px;-webkit-border-radius:2px;-moz-border-radius:2px;border-radius:2px;opacity:1;height:18px}
+#owl-demo2{margin-bottom:10px}
+#owl-demo2.owl-theme .owl-controls .owl-buttons .owl-prev{width:20px;height:20px;background:url(pre_new.png) no-repeat;opacity:1;right:35px;left:auto;top:47%}
+.owl-demo2 .owl-controls{display:none}
+#owl-demo2.owl-theme .owl-controls .owl-buttons .owl-next{width:20px;opacity:1;top:47%;height:20px;background:url(next_new.png) no-repeat}
+#owl-tab1 .owl-controls .owl-buttons div,#owl-tab2 .owl-controls .owl-buttons div,#owl-tab3 .owl-controls .owl-buttons div{width:18px;height:16px}
+#owl-tab1 .owl-controls .owl-buttons div.owl-next,#owl-tab2 .owl-controls .owl-buttons div.owl-next,#owl-tab3 .owl-controls .owl-buttons div.owl-next{background:url(nexttab.png) no-repeat;top:-32px}
+#owl-tab1 .owl-controls .owl-buttons div.owl-prev,#owl-tab2 .owl-controls .owl-buttons div.owl-prev,#owl-tab3 .owl-controls .owl-buttons div.owl-prev{background:url(pretab.png) no-repeat;top:-32px;right:30px;left:auto}
+.owl-theme .owl-controls .owl-buttons .owl-next{right:3px;top:45%;background:url(../img/next.png) no-repeat}
+.owl-theme .owl-controls.clickable .owl-buttons div:hover{filter:Alpha(Opacity=100);opacity:1;text-decoration:none}
+.owl-theme .owl-controls .owl-page{display:inline-block;zoom:1;*display:inline}
+.owl-theme .owl-controls .owl-page span{display:block;width:12px;height:12px;margin:5px 2.5px;filter:Alpha(Opacity=50);opacity:0.4;-webkit-border-radius:20px;-moz-border-radius:20px;border-radius:20px;background-color:#fff}
+.owl-theme .owl-controls .owl-page.active span,.owl-theme .owl-controls.clickable .owl-page:hover span{filter:Alpha(Opacity=100);opacity:1;background:#196835}
+.owl-theme .owl-controls .owl-page span.owl-numbers{height:auto;width:auto;color:#FFF;padding:2px 10px;font-size:12px;-webkit-border-radius:30px;-moz-border-radius:30px;border-radius:30px}
+.owl-item.loading{min-height:150px;background:url(AjaxLoader.gif) no-repeat center center}
+@media screen and (min-width:320px) and (max-width:680px){.owl-theme .owl-controls .owl-buttons .owl-next{display: none!important;}
+.owl-theme .owl-controls .owl-buttons .owl-prev{display: none!important;}
+}
+
+
+.content .banner-slider .owl-theme .owl-controls .owl-buttons div {  width: 52px; height: 52px;}
+.content .banner-slider .owl-theme .owl-controls .owl-buttons .owl-prev{left:10px;top:45%; background:url(../img/prev-main.png) no-repeat}
+.content .banner-slider .owl-theme .owl-controls .owl-buttons .owl-next { right: -10px; top: 45%; background:url(../img/next-main.png) no-repeat}

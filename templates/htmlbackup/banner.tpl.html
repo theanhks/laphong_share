@@ -1,0 +1,23 @@
+   <div class="col-md-12 padi05">
+                <div class="banner">
+                    <div id="owl-demo" class="owl-carousel owl-theme">
+					  {assign var=HomeAds value=$ads->getAdsFront(1)}
+								{if $HomeAds}
+									{foreach from=$HomeAds item=HomeAdsItem}
+									<div class="item"><img src="{$ROOTPATH}/gallery/avatar_upload/ads/storage/{$HomeAdsItem->getLogoUrl()}" alt="" /></div>
+									{/foreach}
+								{/if}
+                    </div>
+                </div>
+                <!--
+                <div id="wrapper">
+                    <div class="callbacks_container">
+                        <ul class="rslides" id="slider4">
+                            <li style="width:100%; float:left;"><img src="images/b1.jpg" alt="" /></li>
+                            <li style="width:100%; float:left;"><img src="images/b2.jpg" alt="" /></li>
+                        </ul>
+                    </div>
+                </div>-->
+            </div>
+  
+ 

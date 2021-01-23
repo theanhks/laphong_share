@@ -1,0 +1,70 @@
+  <div class="col-md-3">
+       <div class="left">
+          <div class="menu-left">
+          <h3>Danh mục sản phẩm</h3>
+          <div id="az_left_bar">
+              <div id="az_left_bar_mid">              
+                <div id="menu-gadget">
+                  <div id="menu-icon">Danh mục sản phẩm</div>
+                  <ul id="nav" class="sf-menu sf-menu-phone">
+
+{foreach from=$productcatItems item=productcatItem}   
+					{assign var=pidSub1 value=$productcatItem->getId()}
+					{assign var=Sub1procategoryItems value=$productcategories->getObjects(1,"status=1 AND pid=$pidSub1",$orderASC)}
+					<li class="{if $Sub1procategoryItems}parent{/if}"><a href="{if $Sub1procategoryItems}#{else}{$productcatItem->getUrl('vn')}{/if}"><span>{$productcatItem->getName('vn')}</span></a>
+						{if $Sub1procategoryItems}
+						<ul>                	
+							{foreach from=$Sub1procategoryItems item=Sub1procategoryItem key=i}   
+							{assign var=pidSub2 value=$Sub1procategoryItem->getId()}
+							{assign var=Sub2procategoryItems value=$productcategories->getObjects(1,"status=1 AND pid=$pidSub2",$orderASC)}
+							<li><a href="{$Sub1procategoryItem->getUrl('vn')}"><span>{$Sub1procategoryItem->getName('vn')}</span></a>
+								{if $Sub2procategoryItems}
+								<ul>
+									{foreach from=$Sub2procategoryItems item=Sub2procategoryItem}
+									<li ><a href="{$Sub2procategoryItem->getUrl('vn')}"><span>{$Sub2procategoryItem->getName('vn')}</span></a>
+											{assign var=pidSub3 value=$Sub2procategoryItem->getId()}
+											{assign var=Sub3procategoryItems value=$productcategories->getObjects(1,"status=1 AND pid=$pidSub3",$orderASC)}
+											{if $Sub3procategoryItems}
+												<ul>
+													{foreach from=$Sub3procategoryItems item=Sub3procategoryItem}
+														<li><a href="{$Sub3procategoryItem->getUrl('vn')}"><span>{$Sub3procategoryItem->getName('vn')}</span></a></li>
+													{/foreach}
+												</ul>
+											{/if}
+									</li>
+									{/foreach}                            
+								</ul>
+								{/if}
+							</li>
+							{/foreach}                    
+						</ul>
+						{/if}
+					</li>
+					{/foreach}					
+                  </ul>
+                </div>
+              </div>
+            </div>
+          
+          </div>
+          <div class="panpage">
+		  <div id="fb-root"></div>
+		  {literal}
+			<script>(function(d, s, id) {
+			  var js, fjs = d.getElementsByTagName(s)[0];
+			  if (d.getElementById(id)) return;
+			  js = d.createElement(s); js.id = id;
+			  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+			  fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));</script>
+		  {/literal}
+		  <div class="fb-page" data-href="https://www.facebook.com/facebook" data-height="400" data-hide-cover="true" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/facebook"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote></div></div>
+		 
+		  </div>
+          <div class="static"> 
+             <i class="fa fa-user-plus"></i>  Đang truy cập: <b>{$online}</b> <br />
+             <i class="fa fa-signal"></i>  Tổng truy cập: <b>{$all_value}</b>          
+          </div>
+        
+       </div>
+     </div>

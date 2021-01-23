@@ -1,0 +1,74 @@
+RewriteEngine On
+RewriteBase /
+
+php_value upload_max_filesize 64M
+php_value post_max_size 64M
+
+RewriteCond %{HTTP_HOST} ^.*$
+RewriteRule ^/?$ vn/ [R=301,L]
+
+RewriteRule ^(vn|en)/index.html?$ index.php?op=index&lang=$1 [L,NC]
+RewriteRule ^(vn|en)[/]?$ index.php?op=index&lang=$1 [L,NC]
+
+
+#static
+RewriteRule ^([a-z0-9-]+)-s([0-9]+).html$ index.php?op=static&slug=$1&id=$3 [L,NC]
+RewriteRule ^([a-z0-9-]+)-s([0-9]+)/page-([0-9]+).html$ index.php?op=static&slug=$1&id=$3&page=$4 [L,NC]
+
+
+#entry - category
+RewriteRule ^(vn|en)/gioi-thieu.html$		index.php?op=category&lang=$1&slug=gioi-thieu&id=1 [L,NC]
+RewriteRule ^dich-vu.html$		index.php?op=category&slug=dich-vu&id=30 [L,NC]
+
+RewriteRule ^(vn|en)/tin-tuc.html$		index.php?op=category&lang=$1&slug=tin-tuc&id=13 [L,NC]
+RewriteRule ^giai-phap.html$		index.php?op=category&slug=bang-gia&id=13 [L,NC]
+RewriteRule ^huong-dan-mua-hang.html$		index.php?op=category&slug=huong-dan-mua-hang&id=15 [L,NC]
+RewriteRule ^dai-ly.html$		index.php?op=category&slug=dai-ly&id=14 [L,NC]
+RewriteRule ^(vn|en)/lien-he.html$		index.php?op=contactform&lang=$1&slug=lien-he&id=26 [L,NC]
+RewriteRule ^(vn|en)/tin-tuc/([0-9]+)/([a-z0-9-]+).html$	index.php?op=newsdetail&lang=$1&id=$2&slug=$3 [L,NC]
+RewriteRule ^(vn|en)/([a-z0-9-]+)-c([0-9]+).html$	index.php?op=category&lang=$1&slug=$2&id=$3 [L,NC]
+RewriteRule ^([a-z0-9-]+)-c([0-9]+)/page-([0-9]+).html$ index.php?op=category&slug=$1&id=$2&page=$3 [L,NC]
+
+#product
+RewriteRule ^san-pham.html$ index.php?op=products&slug=san-pham [L,NC]
+
+
+RewriteRule ^(vn|en)/cho-thue.html$ index.php?op=products&lang=$1&slug=cho-thue&id=1670 [L,NC]
+
+RewriteRule ^(vn|en)/du-an.html$ index.php?op=products&lang=$1&slug=du-an&id=1671 [L,NC]
+
+RewriteRule ^(vn|en)/dat-phong.html$ index.php?op=products&lang=$1&slug=dat-phong&id=1687 [L,NC]
+
+
+RewriteRule ^khuyen-mai.html$ index.php?op=products&slug=khuyen-mai [L,NC]
+
+RewriteRule ^(vn|en)/([a-z0-9-]+)$ index.php?op=products&lang=$1&slug=$2 [L,NC]
+RewriteRule ^(vn|en)/p([a-z0-9-]+)/page-([0-9]+).html$ index.php?op=products&lang=$1&slug=$2&page=$3 [L,NC]
+RewriteRule ^(vn|en)/p([0-9]+)/([a-z0-9-]+).html$	index.php?op=products&lang=$1&id=$2&slug=$3 [L,NC]
+RewriteRule ^(vn|en)/p([0-9]+)/([a-z0-9-]+)/page-([0-9]+).html$	index.php?op=products&lang=$1&id=$2&slug=$3&page=$4 [L,NC]
+
+RewriteRule ^(vn|en)/([0-9]+)([a-z0-9-]+)/page-([0-9]+).html$ index.php?op=products&lang=$1&id=$2&slug=$3&page=$4 [L,NC]
+
+RewriteRule ^(vn|en)/([0-9]+)/([a-z0-9-]+).html$ index.php?op=productdetail&lang=$1&id=$2&slug=$3&type=pro [L,NC]
+RewriteRule ^([a-z0-9-]+)-([0-9]+)-quick.html$ index.php?op=productdetail&slug=$1&id=$2&type=quick [L,NC]
+RewriteRule ^du-an/page-([0-9]+).html$ index.php?op=products&slug=du-an&page=$2 [L,NC]
+
+#contactform
+#RewriteRule ^(mail|lien-he).html$ index.php?op=contactform&slug=gui-email-lien-he [L,NC]
+
+
+#Shopping
+RewriteRule ^(vn|en)/login.html$ index.php?op=login&lang=$1 [L,NC]
+RewriteRule ^logout.html$ index.php?op=logout&lang=vn [L,NC]
+RewriteRule ^(vn|en)/register.html$ index.php?op=register&lang=$1 [L,NC]
+RewriteRule ^(vn|en)/quen-mat-khau.html$ index.php?op=forgotpass&lang=$1 [L,NC]
+RewriteRule ^cart.html$ index.php?op=shopping [L,NC]
+RewriteRule ^order.html$ index.php?op=order&content=order [L,NC]
+RewriteRule ^orderinfo.html$ index.php?op=orderinfo [L,NC]
+
+#Vote
+RewriteRule ^poll.html$ index.php?op=poll [L,NC]
+
+RewriteRule ^(vn|en)/dat-ban.html$	index.php?op=contactform&lang=$1&slug=dat-ban&id=0 [L,NC]
+RewriteRule ^(vn|en)/uu-dai/page-([0-9]+).html$	index.php?op=uudai&lang=$1&id=1&page=$2[L,NC]
+RewriteRule ^(vn|en)/tuyen-dung/page-([0-9]+).html$	index.php?op=tuyendung&lang=$1&id=1&page=$2[L,NC]

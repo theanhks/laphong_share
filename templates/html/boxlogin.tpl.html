@@ -1,0 +1,174 @@
+
+{include file="$usertemplate/header.tpl.html"}
+
+{include file="$usertemplate/sub_header.tpl.html"}
+<div class="Nheader"></div>
+{if $lang eq 'en'}
+{assign var=password value="Password"}
+{assign var=login value="Login"}
+{assign var=register value="Register"}
+{assign var=forgot_pass value="Forgot password"}
+{assign var=continue value="Next"}
+{else}
+{assign var=password value="Mật khẩu"}
+{assign var=login value="Đăng nhập"}
+{assign var=register value="Đăng ký"}
+{assign var=forgot_pass value="Quên mật khẩu"}
+{assign var=continue value="Bỏ qua"}
+{/if}
+<div class="main-giohang wow fadeIn" data-wow-delay="0.2s">
+    <div class="container-full">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title-03 wow fadeInUp" data-wow-delay="0.3s">
+                    <a href="javascript:void(0)">{$pageName}</a>
+                </div>
+            </div>
+        </div>
+        <form action="" method="post">
+            <input type="hidden" name="op" value="login">
+            <input type="hidden" name="language" id="language" value="{$lang}">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="dangnhap-id wow fadeInUp" data-wow-delay="0.3s">
+                        <ul>
+                            <li><input type="text" placeholder="Email" name="email" class="btn-tttk"></li>
+                            <!--<li><input type="password" placeholder="Mật khẩu" name="" class="btn-tttk"></li>-->
+                            <li style="position: relative;">
+                                <input id="password-field" type="password" class="btn-tttk" name="password" value="" placeholder="{$password}">
+                                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                            </li>
+                            <li class="qmk">
+                                <a href="/{$lang}/quen-mat-khau.html">{$forgot_pass}</a>
+                                <a href="{$ROOTPATH}/cart.html" class="boqua">{$continue}</a>
+                            </li>
+                            <li class="but-dn">
+                                <input type="submit" name="gui" value="{$login}" class="dnuser">
+                                <input type="button" name="gui" value="{$register}" class="dkuser" onclick="location.href = '/{$lang}/register.html';">
+                            </li>
+                            <li>
+                                <div id="fb-root"></div>
+                                {literal}
+                                    <script async defer crossorigin="anonymous"
+                                            src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&autoLogAppEvents=1&version=v8.0&appId=296419701672656"
+                                            nonce="I5WYV6AX"
+                                    >
+                                    </script>
+                                {/literal}
+                                <div class="fb-login-button" data-size="large"
+                                     data-button-type="login_with" data-layout="default"
+                                     data-auto-logout-link="false" data-use-continue-as="false" data-width="100%">
+                                </div>
+                                {literal}
+                                <script src="https://apis.google.com/js/platform.js" async defer></script>
+                                <script>
+                                    //JS Facebook
+                                    function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
+                                        console.log('statusChangeCallback');
+                                        console.log(response);                   // The current login status of the person.
+                                        if (response.status === 'connected') {   // Logged into your webpage and Facebook.
+                                            testAPI();
+                                        } else {                                 // Not logged into your webpage or we are unable to tell.
+                                            // document.getElementById('status').innerHTML = '';
+                                            // 'Please log ' + 'into this webpage.';
+                                        }
+                                    }
+                                    window.fbAsyncInit = function() {
+                                        FB.init({
+                                            appId      : '296419701672656',
+                                            cookie     : true,                     // Enable cookies to allow the server to access the session.
+                                            xfbml      : true,                     // Parse social plugins on this webpage.
+                                            version    : 'v8.0'           // Use this Graph API version for this call.
+                                        });
+
+                                        FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
+                                            statusChangeCallback(response);        // Returns the login status.
+                                        });
+                                    };
+                                    function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
+                                        console.log('Welcome!  Fetching your information.... ');
+                                        FB.api('/me', function(response) {
+                                            console.log(response);
+                                            console.log('Successful login for: ' + response.name);
+                                            // document.getElementById('status').innerHTML = 'Welcome, ' + response.name + '!';
+                                            var userFacebookId = response.id;
+                                            var userFacebookName = response.name;
+                                            submit_login(userFacebookId,userFacebookName);
+                                        });
+                                    }
+                                    testAPI();
+                                    function fbLogoutUser() {
+                                        FB.getLoginStatus(function(response) {
+                                            if (response && response.status === 'connected') {
+                                                FB.logout(function(response) {
+                                                    document.location.reload();
+                                                });
+                                            }
+                                        });
+                                    }
+                                </script>
+                                <script>
+                                    //JS Google
+                                    function onSignIn(googleUser) {
+                                        var profile = googleUser.getBasicProfile();
+                                        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+                                        console.log('Name: ' + profile.getName());
+                                        console.log('Image URL: ' + profile.getImageUrl());
+                                        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+                                        // document.querySelector('#content-google').innerHTML = 'Welcome, ' + profile.getName() + '!';
+                                        var userGoogleEmail = profile.getEmail();
+                                        var userGoogleName = profile.getName();
+                                        submit_login(profile.getId(),profile.getName(), profile.getEmail());
+                                    }
+                                    function signOut() {
+                                        var auth2 = gapi.auth2.getAuthInstance();
+                                        auth2.signOut().then(function () {
+                                            console.log('User signed out.');
+                                            document.location.reload();
+                                        });
+                                    }
+                                </script>
+                                <script>
+                                    function submit_login(id = '',name ='',email='',address = '', tel = ''){
+                                        var lang = $('#language').val()
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "/index.php?op=login",
+                                            dataType : 'json',
+                                            data: {
+                                                id: id,
+                                                op: 'login',
+                                                email: email,
+                                                address: address,
+                                                tel: tel,
+                                                name: name,
+                                                type: 'social',
+                                                lang: lang,
+                                            },
+                                            success: function (data) {
+                                                console.log(data);
+                                                location.href = data.url;
+                                            }
+                                        }).done(function( msg ) {
+                                            return false;
+                                        });
+                                    }
+
+
+                                </script>
+                                {/literal}
+                                <meta name="google-signin-client_id" content="924298235982-6bh9b5naqrfviboq8er6be57d3h9cvvs.apps.googleusercontent.com">
+                                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                            </li>
+<!--                                                        Test get info Google and Facebook-->
+<!--                            <li>TT: <div id="content-google"></div><a href="#" onclick="signOut();">Sign out GG</a></li>-->
+<!--                            <li>TT: <div id="status"></div><a href="#" onclick="fbLogoutUser()">Sign out FB</a></li>-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{include file="$usertemplate/footer.tpl.html"}

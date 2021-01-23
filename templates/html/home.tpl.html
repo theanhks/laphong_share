@@ -1,0 +1,71 @@
+{include file="$usertemplate/sub_head_menu.tpl.html"}
+<div class="mainbanner wow fadeIn" data-wow-delay="0.1s">
+	<div id="wrapper">
+		<div class="callbacks_container">
+			<ul class="rslides" id="slider4">
+				{assign var=HomeAds value=$ads->getAdsFront(1)}
+				{if $HomeAds}
+				{foreach from=$HomeAds item=HomeAdsItem}
+				<li><a href="javascript:void(0)" title=""><img src="{$ROOTPATH}/gallery/avatar_upload/ads/storage/{$HomeAdsItem->getLogoUrl()}" alt="" /></a></li>
+				{/foreach}
+				{/if}
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="datban wow fadeInUp" data-wow-delay="0.1s">
+	<a href="/{$lang}/dat-ban.html" class="button-db">
+		<div id="my-div"></div>
+		<p>{if $lang eq 'en'}Book{else}Đặt bàn{/if}</p>
+		<div class="shake-vertical"><img src="{$ROOTPATH}/templates/{$usertemplate}/img//icon-down-1.png" alt="" /></div>
+	</a>
+</div>
+<div class="index-gt">
+	{$content_home1->getDetails('vn')}
+</div>
+
+<div class="index-td wow fadeIn" data-wow-delay="0.2s">
+	<div class="index-td-in">
+		<div class="container-full">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="title-01 wow fadeInUp" data-wow-delay="0.3s">
+						<a href="javascript:void(0)">{if $lang eq 'en'} Menu {else} Thực đơn{/if}</a>
+					</div>
+				</div>
+			</div>
+			<div class="row padi010">
+				{if $productMenu}
+				{foreach from=$productMenu item=proItem key=i}
+				<div class="col-md-3 col-sm-4 col-xs-6 padi05">
+					<div class="box-td wow fadeInUp" data-wow-delay="0.4s">
+						<a href="javascript:void(0)" class="c-preview">
+							<div class="c-preview__img"><img src="{$ROOTPATH}/gallery/avatar_upload/products/avatar/{$proItem->getAvatar()}" alt="{$proItem->getName($lang)}"/>
+							</div></a>
+						<div class="t-preview">
+							<a href="{$proItem->getViewUrl($lang)}">{$proItem->getName($lang)}</a>
+							<p>{$proItem->getPrice()|number_format:0:",":"."} Vnđ</p>
+						</div>
+					</div>
+				</div>
+
+				{/foreach}
+				{/if}
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="index-gt-2">
+	{$content_home2->getDetails('vn')}
+</div>
+
+<div class="ban-qc-full wow fadeIn" data-wow-delay="0.2s">
+	{assign var=QCAds value=$ads->getAdsFront(8)}
+	{if $QCAds}
+	{foreach from=$QCAds item=QCItem}
+	<a href="javascript:void(0)"><img src="{$ROOTPATH}/gallery/avatar_upload/ads/storage/{$QCItem->getLogoUrl()}" alt="" /></a>
+	{/foreach}
+	{/if}
+
+</div>

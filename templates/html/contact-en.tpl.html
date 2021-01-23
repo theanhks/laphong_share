@@ -1,0 +1,186 @@
+{include file="$usertemplate/header.tpl.html"}
+{include file="$usertemplate/sub_head_menu.tpl.html"}
+{literal}
+<script>
+    function myFunction1() {
+        //alert("You pressed a key inside the input field");
+        document.getElementById("first_name").style.display = "none";
+    }
+    function myFunction2() {
+        //alert("You pressed a key inside the input field");
+        document.getElementById("email").style.display = "none";
+    }
+    function myFunction3() {
+        //alert("You pressed a key inside the input field");
+        document.getElementById("address").style.display = "none";
+    }
+    function myFunction4() {
+        //alert("You pressed a key inside the input field");
+        document.getElementById("tel").style.display = "none";
+    }
+    function myFunction5() {
+        //alert("You pressed a key inside the input field");
+        document.getElementById("message").style.display = "none";
+    }
+    function myFunction6() {
+        //alert("You pressed a key inside the input field");
+        document.getElementById("title").style.display = "none";
+    }
+</script>
+{/literal}
+
+{if $lang eq 'en'}
+{literal}
+<script type="text/javascript">
+    messages=new Array();
+    messages['nhapten']	= 'Nhập tên!';
+    messages['tel']	= 'Số điện thoại chưa hợp lệ!';
+    messages['address']	= 'Địa chỉ chưa hợp lệ!';
+    messages['nhapemail']	= 'Nhập mail!';
+    messages['emailkhonghople']	= 'Email không hợp lệ';
+    messages['nhaptieude']	= 'Nhập tiêu đề';
+    messages['nhapnoidung']	= 'Nhập nội dung';
+    messages['nhapmaxacnhan']	= 'Nhập mã xác nhận';
+</script>
+<script language="javascript">
+
+
+
+    function CheckFormMail10() {
+
+
+
+        var first_name = $('#my_first_name').val();
+        var email = $('#my_email').val();
+        var tel = $('#my_tel').val();
+        var message = $('#my_message').val();
+        console.log(first_name,email,tel,message);
+        //return  false;
+
+        if (first_name == "" && email == "" && tel == "" && message == "") {
+            document.getElementById("first_name").style.display = "block";
+            document.getElementById("email").style.display = "block";
+            document.getElementById("tel").style.display = "block";
+            document.getElementById("message").style.display = "block";
+            return false;
+        }
+
+        if (first_name == "") {
+            //alert(messages['nhapten']);
+            document.getElementById("first_name").style.display = "block";
+            return false;
+        }
+
+        if (email == "") {
+            //alert(messages['nhapemail']);
+            document.getElementById("email").style.display = "block";
+            return false;
+        } else {
+            if (email.value.indexOf("@") < 0 || email.value.indexOf(".") < 0) {
+                //alert(messages['emailkhonghople']);
+                document.getElementById("email").style.display = "block";
+                return false;
+            }
+        }
+
+
+        if (tel == "") {
+            //alert(messages['tel']);
+            document.getElementById("tel").style.display = "block";
+            return false;
+        }
+
+        if (message == "") {
+            //alert(messages['nhapnoidung']);
+            document.getElementById("message").style.display = "block";
+            return false;
+        }
+        return true;
+    }
+
+</script>
+{/literal}
+
+<div class="mainbanner3 wow fadeInDown" data-wow-delay="0.1s">
+    {assign var=HomeAds value=$ads->getAdsFront(12)}
+    {if $HomeAds}
+    {foreach from=$HomeAds item=HomeAdsItem}
+    <a href="javascript:void(0)" title=""><img src="{$ROOTPATH}/gallery/avatar_upload/ads/storage/{$HomeAdsItem->getLogoUrl()}" alt="" /></a>
+
+    {/foreach}
+    {/if}
+    <div class="title-05">
+        <div class="container-full">
+            <div class="row">
+                <div class="col-md-12 wow fadeInUp" data-wow-delay="0.4s">
+                    <h2>Contact</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="index-content">
+    <div class="index-gt-2">
+        <div class="container-full">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12 fr">
+                    <p><span style="color:red; font-weight:bold" class="show-error">{if isset($error)}{$error}{/if}</span></p>
+                    <form action="" method="post" class="form-contact" name="FormName1" target="_parent" onSubmit="return CheckFormMail10();">
+                        <div class="lienhe-f wow fadeInRight" data-wow-delay="0.2s">
+                            <p>Send You Feedback</p>
+                            <ul>
+                                <li class="db-1">
+                                    <input class="btn-tttk" name="first_name" type="text" placeholder="Full name" id="my_first_name" onkeydown="myFunction1();"  />
+                                    <label class="error" id ="first_name" style ="display:none; color: red;">Name is required</label>
+                                </li>
+                                <li class="db-2">
+                                    <input class="btn-tttk" name="tel" type="text" placeholder="Phone" id="my_tel" onkeydown="myFunction4();"  />
+                                    <label class="error" id ="tel" style ="display:none; color: red;">Phone is required</label>
+                                </li>
+                                <li class="db-3">
+                                    <input class="btn-tttk" name="email" type="text" placeholder="Email" id="my_email" onkeydown="myFunction2();"  />
+                                    <label class="error" id ="email" style ="display:none; color: red;">Email is required</label>
+                                </li>
+                                <li class="noidung">
+                                    <textarea name="message" placeholder="Message" id="my_message" onkeydown="myFunction5();"></textarea>
+                                    <label class="error" id ="message" style ="display:none; color: red;">Message is required</label>
+                                </li>
+                                <li>
+                                    <input type="submit" name="gui" value="Submit" class="butgd button">
+                                </li>
+                                <input name="lang" value="{$lang}" type="hidden">
+                                <input name="slug" value="{$slug}" type="hidden">
+                                <input name="id" value="{$id}" type="hidden">
+                                <input name="op" value="contactform" type="hidden">
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12 fl">
+                    <div class="tiles">
+                        {assign var=adsItem value=$ads->getObject(228)}
+                        <div class="tile tile3 wow fadeInLeft" data-wow-delay="0.2s" data-scale="1.2" data-image="{$ROOTPATH}/gallery/avatar_upload/ads/storage/{$adsItem->getLogoUrl()}"></div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="add-cont">
+                        <h5>{$siteConfigs->getProperty('company_en')}</h5>
+                        <p>tel: {$siteConfigs->getProperty('tel')}</p>
+                        {if $siteConfigs->getProperty('uptime_en')}<p>
+                        {$siteConfigs->getProperty('uptime_en')}</p>
+                        {/if}
+                        <p>Address: {$siteConfigs->getProperty('address_en')}</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="maps">
+                        <iframe src="{$siteConfigs->getProperty('map')}" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/if}
+{include file="$usertemplate/footer.tpl.html"}

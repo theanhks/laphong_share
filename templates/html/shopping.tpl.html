@@ -1,0 +1,261 @@
+{include file="$usertemplate/header.tpl.html"}
+{include file="$usertemplate/sub_header.tpl.html"}
+{literal}
+<script>
+	function myFunction1() {
+		document.getElementById("name").style.display = "none";
+	}
+	function myFunction2() {
+		document.getElementById("address").style.display = "none";
+	}
+	function myFunction3() {
+		document.getElementById("phone").style.display = "none";
+	}
+</script>
+<script language="javascript">
+	function CheckFormMail() {
+		with(document.adminForm) {
+			if (name.value == "" && address.value == "" && phone.value == "") {
+				document.getElementById("name").style.display = "block";
+				document.getElementById("address").style.display = "block";
+				document.getElementById("phone").style.display = "block";
+			}
+
+			if (name.value == "") {
+				document.getElementById("name").style.display = "block";
+				name.focus();
+				return false;
+			}
+
+			if (address.value == "") {
+				document.getElementById("address").style.display = "block";
+				address.focus();
+				return false;
+			}
+
+			if (email.value == "") {
+				document.getElementById("email").style.display = "block";
+				email.focus();
+				return false;
+			} else {
+				if (email.value.indexOf("@") < 0 || email.value.indexOf(".") < 0) {
+					document.getElementById("email").style.display = "block";
+					email.focus();
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+</script>
+{/literal}
+<div class="mainbanner2 wow fadeInDown" data-wow-delay="0.1s">
+</div>
+<div class="main-giohang wow fadeIn" data-wow-delay="0.2s">
+	<div class="container-full">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="title-03 wow fadeInUp" data-wow-delay="0.3s">
+					<a href="javascript:void(0)">{if $lang eq 'en'}Orders{else}Đơn hàng{/if}</a>
+				</div>
+			</div>
+		</div>
+		<form method="post" id="adminForm" name="adminForm" onsubmit="return CheckFormMail();" target="_parent">
+			<div class="row">
+				<div class="col-md-4 col-sm-6 col-xs-12">
+					<div class="mgiohang1">
+						<p>{if $lang eq 'en'}Orders Information{else}Thông tin đơn hàng{/if}</p>
+						<div class="mgiohang2 height-scroll">
+							{assign var=grandTotal value=0}
+							{assign var=quantityTotal value=0}
+							{if $cartItems}
+							<ul class="dsmua">
+								{foreach from=$cartItems item=cartItem key=i}
+								<li>
+									<p>{$cartItem->getQuantity()} x {$cartItem->getProductName()}</p>
+									<span>{$cartItem->getPrice()|number_format:0:",":"."}</span>
+									<a href="javascript:void(0)" data-featherlight="#lightbox{$cartItem->getId()}">
+										<img src="{$ROOTPATH}/templates/{$usertemplate}/img/icon-fix1.png" alt="" />
+									</a>
+								</li>
+								{assign var=price value=$cartItem->getPrice()}
+								{assign var=quantity value=$cartItem->getQuantity()}
+								{assign var=quantityTotal value=$quantityTotal+$quantity}
+								{assign var=subTotal value=$price*$quantity}
+								{assign var=grandTotal value=$grandTotal+$subTotal}
+								{/foreach}
+							</ul>
+							{/if}
+							<ul class="tinhtien">
+								<li><p>{if $lang eq 'en'}Total{else}Tổng cộng{/if} ({$quantityTotal})</p><span>{$grandTotal|number_format:0:",":"."}</span></li>
+
+								<!--khuyến mãi theo phần trăm-->
+								{if $typePromotion ==1}
+								{assign var=promotion value=$promotionPrice/100}
+								{assign var=discountPrice value=$grandTotal*$promotion}
+								<!--Khuyến mãi theo tiền-->
+								{else}
+								{assign var=promotion value=$promotionPrice}
+								{assign var=discountPrice value=$promotion}
+								{/if}
+								{assign var=vat value=$grandTotal*0.1-$discountPrice*0.1}
+								<li><p>{if $lang eq 'en'}Promotion{else}Giảm giá{/if}</p><span>- {$discountPrice|number_format:0:",":"."}</span></li>
+								<li><p>VAT(10%)</p><span>{$vat|number_format:0:",":"."}</span></li>
+							</ul>
+							<ul class="tongtien">
+								<li>
+									<p>{if $lang eq 'en'}Amount to be paid (VND){else}Số tiền cần thanh toán (VND){/if}</p>
+									<span>{$grandTotal-$discountPrice+$vat|number_format:0:",":"."}</span>
+								</li>
+							</ul>
+
+						</div>
+					</div>
+				</div>
+				{literal}
+				<style type="text/css">
+					.lightbox { display: none; }
+				</style>
+				{/literal}
+				{if $cartItems}
+				{foreach from=$cartItems item=cartItem key=i}
+				<div class="lightbox" id="lightbox{$cartItem->getId()}">
+					<div class="fix-cart">
+						<ul>
+							{assign var=proId value=$cartItem->getPId()}
+							{assign var=proItem value=$products->getObject($proId)}
+							<li class="img-pro"><a href="javascript:void(0)"><img src="{$ROOTPATH}/gallery/avatar_upload/products/avatar/{$proItem->getAvatar()}" alt=""/></a></li>
+							<li class="tit-pro"><a href="javascript:void(0)">{$cartItem->getProductName()}</a></li>
+							<li class="view-pro">
+								<div class="numbox">
+									<div class="numbers-row">
+										<input type="text" class="quantity_{$cartItem->getId()}" name="french-hens" value="{$cartItem->getQuantity()}" />
+									</div>
+								</div>
+								<p>{$cartItem->getPrice()|number_format:0:",":"."}</p>
+							</li>
+							<li class="but-pro add-to-cart" data-curr-product-id="{$cartItem->getId()}">
+								<a href="javascript:void(0)">{if $lang eq 'en'}Update Cart{else}Cập nhật giỏ hàng{/if}</a>
+							</li>
+							<input type="hidden" class="cId_{$cartItem->getId()}" value="{$cartItem->getId()}"  />
+							<input type="hidden" class="id_{$cartItem->getId()}" value="{$cartItem->getId()}"  />
+							<input type="hidden" class="op_{$cartItem->getId()}" value="shopping"/>
+							<input type="hidden" class="slug_{$cartItem->getId()}" value="{$cartItem->getSlug()}"  />
+							<input type="hidden" class="code_{$cartItem->getId()}" value="{$cartItem->getProductCode()}"  />
+							<input type="hidden" class="plus_{$cartItem->getId()}" value="updateoneCart" />
+							<input type="hidden" class="lang_{$cartItem->getId()}" value="{$lang}" />
+						</ul>
+					</div>
+				</div>
+				{/foreach}
+				{/if}
+
+				<div class="col-md-4 col-sm-6 col-xs-12">
+					{assign var=fullname value=''}
+					{assign var=address value=''}
+					{assign var=tel value=''}
+					{assign var=email value=''}
+					{if !empty($memberData)}
+						{assign var=fullname value=$memberData->fullname}
+						{assign var=address value=$memberData->address}
+						{assign var=tel value=$memberData->tel}
+						{assign var=email value=$memberData->email}
+					{/if}
+					<div class="mgiohang1">
+						<p>{if $lang eq 'en'}Shipping Information{else}Thông tin giao hàng{/if}</p>
+						<div class="fgiaohang1 height-scroll">
+							<ul>
+								<li>
+									<input onkeydown="myFunction1();" type="text" placeholder="{if $lang eq 'en'}Name{else}Tên người nhận hàng{/if}(*)" name="name" class="btn-tttk" value="{$fullname}">
+									<label class="error" id ="name" style ="display:none; color: red;">
+										{if $lang eq 'en'}Please enter your full name.{else}Vui lòng nhập họ tên.{/if}
+									</label>
+								</li>
+								<li>
+									<input onkeydown="myFunction2();" type="text" placeholder="{if $lang eq 'en'}Address{else}Địa chỉ giao hàng{/if}(*)" name="address" class="btn-tttk" value="{$address}">
+									<label class="error" id="address" style ="display:none; color: red;">
+										{if $lang eq 'en'}Please enter your address.{else}Vui lòng nhập địa chỉ.{/if}
+									</label>
+								</li>
+								<li>
+									<input onkeydown="myFunction3();" type="text" placeholder="{if $lang eq 'en'}Phone{else}Số điện thoại{/if}(*)" name="phone" class="btn-tttk" value="{$tel}">
+									<label class="error" id="phone" style ="display:none; color: red;">
+										{if $lang eq 'en'}Please enter the phone number.{else}Vui lòng nhập số điện thoại.{/if}
+									</label>
+								</li>
+								<li>
+									<input type="text" placeholder="Email" name="email" class="btn-tttk" value="{$email}">
+								</li>
+								<li class="noidung">
+									<textarea name="note" placeholder="{if $lang eq 'en'}Note{else}Ghi chú{/if}"></textarea>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-12 col-xs-12">
+					<div class="mgiohang1">
+						<p>{if $lang eq 'en'}Payment{else}Thanh toán{/if}</p>
+						{if $lang eq 'en'}
+						{assign var=companyName value='Company Name'}
+						{assign var=companyAddress value='Company Address'}
+						{assign var=tax value='Tax'}
+						{else}
+						{assign var=companyName value='Tên công ty'}
+						{assign var=companyAddress value='Địa chỉ công ty'}
+						{assign var=tax value='Mã số thuế'}
+						{/if}
+						<div class="thanhtoan height-scroll">
+							<ul>
+								<li class="ipt">
+									<input type="radio" name="cash" checked="checked"> {if $lang eq 'en'}Cash on delivery{else}Tiền mặt khi nhận hàng{/if}<br>
+									<input type="radio" disabled name="transfer"> {if $lang eq 'en'}ATM transfer{else}Chuyển khoản ATM{/if}
+								</li>
+								<li class="ipt">
+									<input name="invoice" type="checkbox"  class="invoice"> {if $lang eq 'en'}Invoice{else}Xuất hóa đơn{/if}<br>
+								</li>
+								<li class="hoadon" style="display: none">
+									<input type="text" placeholder="{$companyName}" name="companyName" class="btn-tttk" value="">
+								</li>
+								<li class="hoadon" style="display: none">
+									<input type="text" placeholder="{$companyAddress}" name="companyAddress" class="btn-tttk" value="">
+								</li>
+								<li class="hoadon" style="display: none">
+									<input type="text" placeholder="{$tax}" name="tax" class="btn-tttk" value="">
+								</li>
+								<li class="noidung">
+									<input type="submit" name="gui" value="{if $lang eq 'en'}Order progress{else}Tiến hàng đặt hàng{/if}" class="btn-cot">
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<a href="/{$lang}/p1690/giao-hang-tan-noi.html" class="tieptucbuy">{if $lang eq 'en'}Continue buying{else}Tiếp tục mua hàng{/if}</a>
+				</div>
+			</div>
+			<input type="hidden" value="order" name="op">
+			<input type="hidden" value="submitOrder" name="plus">
+			<input type="hidden" value="vn" name="lang">
+		</form>
+	</div>
+</div>
+{literal}
+<script type="text/javascript">
+	$(document).ready(function(){
+		//  location.href = '/en';
+		$('.invoice').click(function () {
+			if ($(this).is(':checked')) {
+				$('.hoadon').show();
+			}else{
+				$('.hoadon').hide();
+			}
+		})
+
+	})
+
+</script>
+{/literal}
+{include file="$usertemplate/footer.tpl.html"}
+
+

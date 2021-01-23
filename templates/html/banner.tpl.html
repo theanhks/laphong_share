@@ -1,0 +1,24 @@
+  
+<section>
+  <div class="content">
+    <div class="banner-slider">
+      <div class="owl-slider count-slider">
+	  
+					{assign var=HomeAds value=$ads->getAdsFront(1)}
+								{if $HomeAds}
+									{foreach from=$HomeAds item=HomeAdsItem}
+										{if $lang eq 'vn'}
+											<div class="item"> <a href="{$HomeAdsItem->getUrl()}"><img class="owl-dk cms_file"  src="{$ROOTPATH}/gallery/avatar_upload/ads/storage/{$HomeAdsItem->getLogoUrl()}" /></a></div>
+										{else}
+											<div class="item"> <a href="{$HomeAdsItem->getUrl()}"><img class="owl-dk cms_file"  src="{$ROOTPATH}/gallery/avatar_upload/ads/storage/{$HomeAdsItem->getName('en')}" /></a></div>
+										{/if}
+									{/foreach}
+								{/if}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  
+ 

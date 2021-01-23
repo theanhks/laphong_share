@@ -1,0 +1,117 @@
+{include file="$usertemplate/header.temp.html"}
+{include file="$usertemplate/left.temp.html" title=left}
+<div class="contentabc">
+    {assign var=formId value='addItem'}
+    {assign var=rightPanel value='hidden'}
+    <div id="contextual" class="{$rightPanel}">
+        <div class="levBtn">
+            <p><a href="#"><img src="templates/{$usertemplate}/images/btn_arrow_02.gif" alt="" width="18" height="19" /></a></p>
+        </div>
+        <div class="contextType">
+            <form action="" method="post" name="form2" enctype="multipart/form-data">
+                <fieldset>
+                    <p>
+                        <label for="textbox">Textbox</label>
+                        <input type="text" value="" name="textbox" id="textbox" />
+                    </p>
+                    <p>
+                        <label for="textarea">Textarea</label>
+                        <textarea name="textarea" id="textarea" rows="5" cols="5"></textarea>
+                    </p>
+                    <p>
+                        <label for="combobox">Combobox</label>
+                        <select name="combobox" id="combobox" >
+                            <option selected="selected" value="">------------</option>
+                        </select>
+                    </p>
+                    <p class="radioType">
+                        <input type="radio" name="radio" id="radio" />
+                        <label for="radio">radio 1</label>
+                        <input type="radio" name="radio" id="radio2" />
+                        <label for="radio2">radio 2</label>
+                    </p>
+                    <p class="radioType">
+                        <input type="checkbox" name="checkbox" id="checkbox" />
+                        <label for="checkbox">checkbox 1</label>
+                    </p>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <div id="content">
+        <div class="highlight">
+            <h2><a href="">{$amessages.control_panel}</a> &raquo; Thêm đặt bàn</h2>
+            <ul id="tablist">
+                <li class="current"><a href="{$script}?op=manage&amp;part=book&amp;act=add" title="Thêm mới đặt bàn">Thêm mới đặt bàn</a> </li>
+                <li><a href="{$script}?op=manage&part=book&act=list" title="{$amessages.list_book}">{$amessages.list_book}</a> </li>
+                <li><a href="{$script}?op=manage&part=book&act=list&plus=cleanTrash" title="{$amessages.clean_trash}">{$amessages.clean_trash}</a> </li>
+            </ul>
+            {if $infoText}
+            <div class="{$infoClass}">
+                <h4>Result:</h4>
+                <p>{$infoText}</p>
+            </div>
+            {/if}
+            <div class="formType style02 styava">
+                <form action="{$script}" method="post" id="addItem" name="{$formId}" enctype="multipart/form-data">
+                    <fieldset>
+                        <p>
+                            <label for="status">{$amessages.status} *</label>
+                            <span>{$amessages.status_help}</span>
+                            <select name="status">
+                                {$listStatus}
+                            </select>
+                        </p>
+
+                        <p>
+                            <label for="vn_name">Tên khách hàng*</label>
+                            <span>{$amessages.name}</span>
+                            <input type="text" name="name" value="{if isset($name)}{$name}{/if}" />
+                        </p>
+
+                        <p class ="hidden">
+                            <label for="en_name">Email</label>
+                            <input type="text" name="email" id="email" value="{if isset($email)}{$email}{/if}"  />
+                        </p>
+
+                        <p class ="hidden">
+                            <label for="en_name">Số điện thoại</label>
+                            <input type="text" name="tel" id="email" value="{if isset($tel)}{$tel}{/if}"  />
+                        </p>
+
+                        <p class ="hidden">
+                            <label for="en_name">Ngày đặt</label>
+                            <input type="date" name="date" id="date" value="{if isset($date)}{$date}{/if}"  />
+                        </p>
+
+                        <p class ="hidden">
+                            <label for="en_name">Giờ đặt</label>
+                            <input type="time" name="time" id="time" value="{if isset($time)}{$time}{/if}"  />
+                        </p>
+
+                        <p class ="hidden">
+                            <label for="en_name">Ghi chú</label>
+                            <input type="text" name="note" id="note" value="{if isset($note)}{$note}{/if}"  />
+                        </p>
+
+                        <p class ="hidden">
+                            <label for="en_name">Số lượng</label>
+                            <input type="text" name="quantity" id="quantity" value="{if isset($quantity)}{$quantity}{/if}"  />
+                        </p>
+
+                        <p class="btnType">
+                            <input type="hidden" name="op" value="{$op}" />
+                            <input type="hidden" name="part" value="{$part}" />
+                            <input type="hidden" name="act" value="{$act}" />
+                            <input type="hidden" name="searchTerms" value="{$searchTerms}"/>
+                            <input type="hidden" name="searchStatus" value="{$searchStatus}"/>
+                            <input class="bo w90" type="reset" value="{$amessages.reset}" title="{$amessages.reset}" name="btnReset" />
+                            <input class="luu w90" type="submit" value="{$amessages.save}" title="{$amessages.save}" name="btnSubmit" />
+                        </p>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="$usertemplate/footer.temp.html" title=footer}

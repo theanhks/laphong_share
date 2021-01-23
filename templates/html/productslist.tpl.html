@@ -1,0 +1,497 @@
+{include file="$usertemplate/sub_header.tpl.html"}
+{if $slug eq 'giao-hang-tan-noi'}
+<div class="mainbanner2 wow fadeInDown" data-wow-delay="0.1s">
+	{assign var=HomeAds value=$ads->getAdsFront(10)}
+	{if $HomeAds}
+	{foreach from=$HomeAds item=HomeAdsItem}
+	<a href="#" title="">
+		<img src="{$ROOTPATH}/gallery/avatar_upload/ads/storage/{$HomeAdsItem->getLogoUrl()}" alt="" />
+	</a>
+	{/foreach}
+	{/if}
+</div>
+
+<div class="khuyenmai-tit wow fadeIn" data-wow-delay="0.1s">
+	<div class="container-full">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="text-km">
+					<div class="text-km-1">
+						{if $lang eq 'en'}
+							{assign var=discount value="DISCOUNT"}
+							{assign var=orderweb value="ORDER IN WEBSITE"}
+							{assign var=orderFrom value="ORDER FROM"}
+							{assign var=timeStart value="FROM"}
+							{assign var=timeEnd value="END"}
+							{assign var=freeShip value="FREESHIP"}
+						{else}
+							{assign var=discount value="GIẢM"}
+							{assign var=orderweb value="ĐẶT MÓN TRÊN WEBSITE"}
+							{assign var=orderFrom value="ĐƠN HÀNG TỪ"}
+							{assign var=timeStart value="THỜI GIAN TỪ"}
+							{assign var=timeEnd value="ĐẾN"}
+							{assign var=freeShip value="MIỄN PHÍ SHIP"}
+						{/if}
+						{if $siteConfigs->getProperty('price_promotion') != ''}
+						<div class="col-md-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-delay="0.4s">
+							<p>"<span>{$discount} {$siteConfigs->getProperty('price_promotion')}</span> {$orderweb}"</p>
+						</div>
+						{/if}
+						{if $siteConfigs->getProperty('price_free_ship') != ''}
+						<div class="col-md-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-delay="0.6s">
+							<p>"<span>{$freeShip}</span> {$orderFrom} {$siteConfigs->getProperty('price_free_ship')}K"</p>
+						</div>
+						{/if}
+						<div class="col-md-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-delay="0.8s">
+							<p>
+								{if $siteConfigs->getProperty('promotion_time_start') != ''}
+								"{$timeStart} <span>{$siteConfigs->getProperty('promotion_time_start')}</span>
+								{/if}
+								{if $siteConfigs->getProperty('promotion_time_end') != ''}
+								{$timeEnd} <span>{$siteConfigs->getProperty('promotion_time_end')}</span>"
+								{/if}
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="container-full">
+	<div class="row">
+		<div class="col-md-12">
+			<div id="carousel">
+				<div class="btn-bar">
+					<div id="buttons" style="display: none;"><a id="prev" href="#"><</a><a id="next" href="#">></a> </div></div>
+					<div id="slides">
+						<ul>
+
+							{if $lang eq 'en'}
+								{assign var=discount value="DISCOUNT"}
+								{assign var=orderweb value="ORDER IN WEBSITE"}
+								{assign var=orderFrom value="ORDER FROM"}
+								{assign var=timeStart value="FROM"}
+								{assign var=timeEnd value="END"}
+								{assign var=freeShip value="FREESHIP"}
+							{else}
+								{assign var=discount value="GIẢM"}
+								{assign var=orderweb value="ĐẶT MÓN TRÊN WEBSITE"}
+								{assign var=orderFrom value="ĐƠN HÀNG TỪ"}
+								{assign var=timeStart value="THỜI GIAN TỪ"}
+								{assign var=timeEnd value="ĐẾN"}
+								{assign var=freeShip value="MIỄN PHÍ SHIP"}
+							{/if}
+							{if $siteConfigs->getProperty('price_promotion') != ''}
+				            <li class="slide">
+				                <div class="quoteContainer">
+				                    <p>"<span>{$discount} {$siteConfigs->getProperty('price_promotion')}</span> {$orderweb}"</p>
+				                </div>
+				            </li>
+				            {/if}
+				            {if $siteConfigs->getProperty('price_free_ship') != ''}
+				            <li class="slide">
+				                <div class="quoteContainer">
+				                    <p>"<span>{$freeShip}</span> {$orderFrom} {$siteConfigs->getProperty('price_free_ship')}K"</p>
+				                </div>
+				            </li>
+				            {/if}
+				            <li class="slide">
+				                <div class="quoteContainer">
+				                    <p>
+										{if $siteConfigs->getProperty('promotion_time_start') != ''}
+										"{$timeStart} <span>{$siteConfigs->getProperty('promotion_time_start')}</span>
+										{/if}
+										{if $siteConfigs->getProperty('promotion_time_end') != ''}
+										{$timeEnd} <span>{$siteConfigs->getProperty('promotion_time_end')}</span>"
+										{/if}
+									</p>
+				                </div>
+				            </li>
+				        </ul>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<link rel="stylesheet" href="{$ROOTPATH}/templates/{$usertemplate}/s-text/style.css">
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script  src="{$ROOTPATH}/templates/{$usertemplate}/s-text/script.js"></script>
+
+
+
+{/if}
+{assign var=Sub1procategoryItems value=$productcategories->getObjects(1,"status=1 AND pid=$id", $orderASC)}
+{assign var=parentAll value=$productcategories->getParentAllFromCid($id)}
+{if $Sub1procategoryItems}
+{if $parentAll[0] == $id}
+<div class="main-banchay wow fadeIn" data-wow-delay="0.2s">
+	<div class="container-full">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="title-03 wow fadeInUp" data-wow-delay="0.3s">
+					<a href="javascript:void(0)">{if $lang eq 'en'}Hot Deal{else}Món bán chạy{/if}</a>
+				</div>
+			</div>
+		</div>
+		{assign var=proItems value=$products->getObjects(1,"status=1 AND payment=1", $orderASC, $siteConfigs->getProperty('products_spbanchay_per_page'))}
+		{if $proItems}
+		{foreach from=$proItems item=proItem key=i}
+		<div class="col-md-3 col-sm-4 col-xs-12 padi05">
+			<div class="box-ghtn wow fadeInUp" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
+				<a href="javascript:void(0)" class="c-preview">
+					<div class="c-preview__img">
+						<img src="{$ROOTPATH}/templates/{$usertemplate}/img/pro-1.jpg" alt=""/>
+					</div>
+				</a>
+				<div class="ghtn-preview">
+					<a href="javascript:void(0)">{$proItem->getName($lang)}</a>
+					<div class="numbox">
+						<div class="numbers-row">
+							<input type="text" class="quantity_{$proItem->getId()}" name="french-hens" value="0" />
+						</div>
+					</div>
+					<a href="javascript:void(0)" class="add-to-cart b-add-cart" data-curr-product-id="{$proItem->getId()}">
+						<img src="{$ROOTPATH}/templates/{$usertemplate}/img/icon-add-cart.png" alt="" />
+					</a>
+					<input type="hidden" class="id_{$proItem->getId()}" value="{$proItem->getId()}"  />
+					<input type="hidden" class="op_{$proItem->getId()}" value="shopping"/>
+					<input type="hidden" class="slug_{$proItem->getId()}" value="{$proItem->getSlug()}"  />
+					<input type="hidden" class="code_{$proItem->getId()}" value="{$proItem->getNumProduct()}"  />
+					<input type="hidden" class="name_{$proItem->getId()}" value="{$proItem->getName()}"  />
+					<input type="hidden" class="plus_{$proItem->getId()}" value="addToCart" />
+					<input type="hidden" class="lang_{$proItem->getId()}" value="{$lang}" />
+					<p>{$proItem->getPrice($lang)|number_format:0:",":"."}</p>
+				</div>
+			</div>
+		</div>
+		{/foreach}
+		{/if}
+	</div>
+</div>
+{foreach from=$Sub1procategoryItems item=proCategoryItem key=i}
+<div class="list-ghtn-1">
+	<div class="container-full">
+		<div class="row padi010">
+			<div class="col-md-3 col-sm-4 col-xs-12 padi05">
+				<div class="ban-s1 wow fadeInLeft" data-wow-delay="0.4s">
+					<img src="{$ROOTPATH}/gallery/avatar_upload/productcat/storage/{$proCategoryItem->getDetails('vn')}" alt="" />
+					<div class="ban-s1c"></div>
+					<div class="title-04">
+						<p>{$proCategoryItem->getName($lang)}</p>
+						<a href="{$proCategoryItem->getUrl()}">{if $lang eq 'en'}View All{else}Xem tất cả{/if}</a>
+					</div>
+				</div>
+			</div>
+			{assign var=category value=$proCategoryItem->getId()}
+			{assign var=proItems value=$products->getObjects(1,"status=1 AND category=$category", $orderASC, $siteConfigs->getProperty('products_category_per_page'))}
+			{if $proItems}
+			{foreach from=$proItems item=proItem key=i}
+			<div class="col-md-3 col-sm-4 col-xs-12 padi05">
+				<div class="box-ghtn wow fadeInUp" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
+					<a href="javascript:void(0)" class="c-preview">
+						<div class="c-preview__img">
+							<img src="{$ROOTPATH}/gallery/avatar_upload/products/avatar/{$proItem->getAvatar()}" alt=""/>
+						</div>
+					</a>
+					<div class="ghtn-preview">
+						<a href="javascript:void(0)">{$proItem->getName($lang)}</a>
+						<div class="numbox">
+							<div class="numbers-row">
+								<input type="text" class="quantity_{$proItem->getId()}" name="french-hens" value="0" />
+							</div>
+						</div>
+						<a href="javascript:void(0)" class="add-to-cart b-add-cart" data-curr-product-id="{$proItem->getId()}">
+							<img src="{$ROOTPATH}/templates/{$usertemplate}/img/icon-add-cart.png" alt="" />
+						</a>
+						<input type="hidden" class="id_{$proItem->getId()}" value="{$proItem->getId()}"  />
+						<input type="hidden" class="op_{$proItem->getId()}" value="shopping"/>
+						<input type="hidden" class="slug_{$proItem->getId()}" value="{$proItem->getSlug()}"  />
+						<input type="hidden" class="code_{$proItem->getId()}" value="{$proItem->getNumProduct()}"  />
+						<input type="hidden" class="name_{$proItem->getId()}" value="{$proItem->getName()}"  />
+						<input type="hidden" class="plus_{$proItem->getId()}" value="addToCart" />
+						<input type="hidden" class="lang_{$proItem->getId()}" value="{$lang}" />
+						<p>{$proItem->getPrice($lang)|number_format:0:",":"."}</p>
+					</div>
+				</div>
+			</div>
+			{/foreach}
+			{/if}
+		</div>
+	</div>
+</div>
+{/foreach}
+{else}
+{assign var=procategoryItem value=$productcategories->getObject($id)}
+
+<div class="mainbanner3 wow fadeInDown" data-wow-delay="0.1s">
+	<a href="javascript:void(0)" title=""><img src="{$ROOTPATH}/gallery/avatar_upload/productcat/storage/{$procategoryItem->getAvatar()}" alt="" /></a>
+	<div class="title-05">
+		<div class="container-full">
+			<div class="row">
+				<div class="col-md-12 wow fadeInUp" data-wow-delay="0.4s">
+					<h2>{$procategoryItem->getName($lang)}</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<h2 class="mainbanner3-mobile">{$procategoryItem->getName($lang)}</h2>
+<div class="main-ghtn2 wow fadeIn" data-wow-delay="0.1s">
+	<div class="container-full">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="menu-ghtn2">
+					<ul>
+						{foreach from=$Sub1procategoryItems item=proCategoryItem key=i}
+						<li class="{if $proCategoryItem->getId() == $id}active{/if}">
+							<a href="{$proCategoryItem->getUrl()}">{$proCategoryItem->getName($lang)}</a>
+						</li>
+						{/foreach}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="content-ghtn2">
+	<div class="container-full">
+		<div class="row padi010">
+			<div class="col-md-9 col-sm-8 col-xs-12 fl padi05">
+				{assign var=category value=$productcategories->getSubCategory1($id)}
+				{assign var=proItems value=$products->getObjects(1,"status=1 AND category in ($category)", $orderASC, $siteConfigs->getProperty('products_category_per_page'))}
+				{if $proItems}
+				{foreach from=$proItems item=proItem key=i}
+				<div class="col-md-3 col-sm-4 col-xs-12 padi05">
+					<div class="box-ghtn wow fadeInUp" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
+						<a href="javascript:void(0)" class="c-preview">
+							<div class="c-preview__img">
+								<img src="{$ROOTPATH}/gallery/avatar_upload/products/avatar/{$proItem->getAvatar()}" alt=""/>
+							</div>
+						</a>
+						<div class="ghtn-preview">
+							<a href="javascript:void(0)">{$proItem->getName($lang)}</a>
+							<div class="numbox">
+								<div class="numbers-row">
+									<input type="text" class="quantity_{$proItem->getId()}" name="french-hens" value="0" />
+								</div>
+							</div>
+							<a href="javascript:void(0)" class="add-to-cart b-add-cart" data-curr-product-id="{$proItem->getId()}">
+								<img src="{$ROOTPATH}/templates/{$usertemplate}/img/icon-add-cart.png" alt="" />
+							</a>
+							<input type="hidden" class="id_{$proItem->getId()}" value="{$proItem->getId()}"  />
+							<input type="hidden" class="op_{$proItem->getId()}" value="shopping"/>
+							<input type="hidden" class="slug_{$proItem->getId()}" value="{$proItem->getSlug()}"  />
+							<input type="hidden" class="code_{$proItem->getId()}" value="{$proItem->getNumProduct()}"  />
+							<input type="hidden" class="name_{$proItem->getId()}" value="{$proItem->getName()}"  />
+							<input type="hidden" class="plus_{$proItem->getId()}" value="addToCart" />
+							<input type="hidden" class="lang_{$proItem->getId()}" value="{$lang}" />
+							<p>{$proItem->getPrice($lang)|number_format:0:",":"."}</p>
+						</div>
+					</div>
+				</div>
+				{/foreach}
+				{/if}
+			</div>
+			<div class="col-md-3 col-sm-4 col-xs-12 fr padi05">
+				<div class="menuRight wow fadeInUp" data-wow-delay="0.4s">
+					<div class="listRight1">
+						<p class="tgh">{if $lang eq 'en'}Cart{else}Giỏ hàng{/if}</p>
+						<div class="giohang1">
+							{if $cart1Items}
+							<ul class="cart-in-page">
+								{foreach from=$cart1Items item=cartItem key=i}
+								<li>
+									<p><span class="cart-in-page-item-{$cartItem->getPId()}">{$cartItem->getQuantity()}</span> x {$cartItem->getProductName()}</p>
+									<img src="{$ROOTPATH}/templates/{$usertemplate}/img/icon-fix1.png" alt="" />
+								</li>
+								{/foreach}
+								<a href="{$ROOTPATH}/cart.html">{if $lang eq 'en'}View Cart{else}Xem Giỏ Hàng{/if}</a>
+							</ul>
+							{else}
+							<ul class="cart-in-page">
+								<li>
+									<p class="no-item">{if $lang eq 'en'}No Items{else}Chưa có sản phẩm.{/if}</p>
+								</li>
+							</ul>
+							{/if}
+						</div>
+					</div>
+					<div class="listRight1">
+						<p>{if $lang eq 'en'}Delivery menu{else}Thực đơn giao hàng{/if}</p>
+						{assign var=menuItems value=$productcategories->getObjects(1,"status=1 AND pid=1690",$orderASC)}
+						<div class="menuright1">
+							{if $menuItems}
+							<ul>
+								{foreach from=$menuItems item=menuItem key=i}
+								{assign var=itemId value=$menuItem->getId()}
+								{if $itemId == $pcId||  $itemId == $ppcId}
+								{assign var=color value='red'}
+								{else}
+								{assign var=color value=''}
+								{/if}
+
+								<li>
+									<a href="{$menuItem->getUrl($lang)}" style="color: {$color}">{$menuItem->getName($lang)}</a>
+								</li>
+								{/foreach}
+							</ul>
+							{else}
+							<p>{if $lang eq 'en'}No Items{else}Chưa có sản phẩm.{/if}</p>
+							{/if}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{/if}
+{else}
+{assign var=procategoryItems value=$productcategories->getObject($id)}
+{assign var=pid value=$procategoryItems->getPPCId()}
+{assign var=Sub1procategoryItems value=$productcategories->getObjects(1,"status=1 AND pid=$pid", $orderASC)}
+{if $Sub1procategoryItems}
+<div class="mainbanner3 wow fadeInDown" data-wow-delay="0.1s">
+	<a href="javascript:void(0)" title=""><img src="{$ROOTPATH}/gallery/avatar_upload/productcat/storage/{$procategoryItems->getAvatar()}" alt="" /></a>
+	<div class="title-05">
+		<div class="container-full">
+			<div class="row">
+				<div class="col-md-12 wow fadeInUp" data-wow-delay="0.4s">
+					<h2>{$procategoryItems->getName($lang)}</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="main-ghtn2 wow fadeIn" data-wow-delay="0.1s">
+	<div class="container-full">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="menu-ghtn2">
+					<ul>
+						{foreach from=$Sub1procategoryItems item=proCategoryItem key=i}
+						<li class="{if $proCategoryItem->getId() == $id}active{/if}">
+							<a href="{$proCategoryItem->getUrl()}">{$proCategoryItem->getName($lang)}</a>
+						</li>
+						{/foreach}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="content-ghtn2">
+	<div class="container-full">
+		<div class="row padi010">
+			<div class="col-md-9 col-sm-8 col-xs-12 fl padi05">
+				{assign var=proItems value=$products->getObjects(1,"status=1 AND category=$id", $orderASC, $siteConfigs->getProperty('products_category_per_page'))}
+				{if $proItems}
+				{foreach from=$proItems item=proItem key=i}
+				<div class="col-md-3 col-sm-4 col-xs-12 padi05">
+					<div class="box-ghtn wow fadeInUp" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
+						<a href="javascript:void(0)" class="c-preview">
+							<div class="c-preview__img">
+								<img src="{$ROOTPATH}/gallery/avatar_upload/products/avatar/{$proItem->getAvatar()}" alt=""/>
+							</div>
+						</a>
+						<div class="ghtn-preview">
+							<a href="javascript:void(0)">{$proItem->getName($lang)}</a>
+							<div class="numbox">
+								<div class="numbers-row">
+									<input type="text" class="quantity_{$proItem->getId()}" name="french-hens" value="0" />
+								</div>
+							</div>
+							<a href="javascript:void(0)" class="add-to-cart b-add-cart" data-curr-product-id="{$proItem->getId()}">
+								<img src="{$ROOTPATH}/templates/{$usertemplate}/img/icon-add-cart.png" alt="" />
+							</a>
+							<input type="hidden" class="id_{$proItem->getId()}" value="{$proItem->getId()}"  />
+							<input type="hidden" class="op_{$proItem->getId()}" value="shopping"/>
+							<input type="hidden" class="slug_{$proItem->getId()}" value="{$proItem->getSlug()}"  />
+							<input type="hidden" class="code_{$proItem->getId()}" value="{$proItem->getNumProduct()}"  />
+							<input type="hidden" class="name_{$proItem->getId()}" value="{$proItem->getName()}"  />
+							<input type="hidden" class="plus_{$proItem->getId()}" value="addToCart" />
+							<input type="hidden" class="lang_{$proItem->getId()}" value="{$lang}" />
+							<p>{$proItem->getPrice($lang)|number_format:0:",":"."}</p>
+						</div>
+					</div>
+				</div>
+				{/foreach}
+				{/if}
+			</div>
+			<div class="col-md-3 col-sm-4 col-xs-12 fr padi05">
+				<div class="menuRight wow fadeInUp" data-wow-delay="0.4s">
+					<div class="listRight1">
+						<p class="tgh">{if $lang eq 'en'}Cart{else}Giỏ hàng{/if}</p>
+						<div class="giohang1">
+							{if $cart1Items}
+							<ul class="cart-in-page">
+								{foreach from=$cart1Items item=cartItem key=i}
+									<li>
+										<p><span class="cart-in-page-item-{$cartItem->getPId()}">{$cartItem->getQuantity()}</span> x {$cartItem->getProductName()}</p>
+										<img src="{$ROOTPATH}/templates/{$usertemplate}/img/icon-fix1.png" alt="" />
+									</li>
+								{/foreach}
+								<a href="{$ROOTPATH}/cart.html">{if $lang eq 'en'}View Cart{else}Xem Giỏ Hàng{/if}</a>
+							</ul>
+							{else}
+							<ul class="cart-in-page">
+								<li>
+									<p class="no-item">{if $lang eq 'en'}No Items{else}Chưa có sản phẩm.{/if}</p>
+								</li>
+							</ul>
+							{/if}
+						</div>
+					</div>
+					<div class="listRight1">
+						<p>{if $lang eq 'en'}Delivery menu{else}Thực đơn giao hàng{/if}</p>
+						{assign var=menuItems value=$productcategories->getObjects(1,"status=1 AND pid=1690",$orderASC)}
+						<div class="menuright1">
+							{if $menuItems}
+							<ul>
+								{foreach from=$menuItems item=menuItem key=i}
+								{assign var=itemId value=$menuItem->getId()}
+								{if $itemId == $pcId||  $itemId == $ppcId}
+								{assign var=color value='red'}
+								{else}
+								{assign var=color value=''}
+								{/if}
+								<li >
+								<a href="{$menuItem->getUrl($lang)}" style="color:{$color} ">{$menuItem->getName($lang)}</a>
+								</li>
+								{/foreach}
+							</ul>
+							{else}
+							<p>{if $lang eq 'en'}No Items{else}Chưa có sản phẩm.{/if}</p>
+							{/if}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{/if}
+{/if}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

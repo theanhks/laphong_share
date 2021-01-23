@@ -1,0 +1,268 @@
+{if $lang eq 'vn'}
+    {assign var=info value="Thông tin liên hệ"}
+    {assign var=address value="Địa chỉ"}
+    {assign var=phone value="Điện thoại"}
+    {assign var=support value="Hỗ trợ"}
+    {assign var=connect value="Liên kết với chúng tôi"}
+    {assign var=home value="Trang chủ"}
+    {assign var=introduction value="Giới thiệu"}
+    {assign var=promotion value="Ưu đãi"}
+    {assign var=book value="Đặt bàn"}
+    {assign var=login value="Đăng nhập"}
+    {assign var=address_lang value="address_vn"}
+    {assign var=recruitment value="Tuyển dụng"}
+{else}
+    {assign var=info value="Information"}
+    {assign var=address value="Address"}
+    {assign var=phone value="Tel"}
+    {assign var=support value="Support"}
+    {assign var=connect value="Connect with us"}
+    {assign var=home value="Home"}
+    {assign var=introduction value="Introduction"}
+    {assign var=promotion value="Promotion"}
+    {assign var=book value="Book"}
+    {assign var=login value="Login"}
+    {assign var=login value="Login"}
+    {assign var=address_lang value="address_en"}
+    {assign var=recruitment value="Recruitment"}
+{/if}
+<div class="main-footer wow fadeInDown" data-wow-delay="0.2s">
+    <div class="bg-logo">
+        <div class="container-full">
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="logofooter wow fadeInLeft" data-wow-delay="0.2s">
+                        <a href="#"><img src="{$ROOTPATH}/templates/{$usertemplate}/img/logo.png" alt="LaPhong" /></a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <a class="title-02">{$info}</a>
+                    <div class="adfooter">
+                        <p class="add"><!--{$address}:--> {$siteConfigs->getProperty($address_lang)}</p>
+                        {assign var=phoneNumber value=$siteConfigs->getProperty('tel')}
+                        <p class="cel" onclick="document.location.href = 'tel:{$phoneNumber}'"><!--{$phone}:--> {$siteConfigs->getProperty('tel')}</p>
+                        <p class="ema"><a href="mailto:{$siteConfigs->getProperty('admin_mail')}" style="color: #ddd"><!--Email:--> {$siteConfigs->getProperty('admin_mail')}</a></p>
+                        <p class="web"><a href="http://{$siteConfigs->getProperty('website')}" style="color: #ddd"><!--Website:--> {$siteConfigs->getProperty('website')}</a></p>
+                    </div>
+                    <div class="thongbao-BCT">
+                        <a href="#"><img src="{$ROOTPATH}/templates/{$usertemplate}/img/thongbao-BCT.png" alt="" /></a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <a class="title-02 support-02">{$support}</a>
+                    <div class="hotfooter">
+                        <a href="tel:{$siteConfigs->getProperty('hotline1')}">{$siteConfigs->getProperty('hotline1')}</a>
+                    </div>
+                    <a class="title-02">{$connect}</a>
+                    <div class="follow">
+                        <ul>
+                            <li><a href="{$siteConfigs->getProperty('facebook')}"><img src="{$ROOTPATH}/templates/{$usertemplate}/img/fl1.png" /></a></li>
+                            <li><a href="{$siteConfigs->getProperty('youtube')}"><img src="{$ROOTPATH}/templates/{$usertemplate}/img/fl2.png" /></a></li>
+                            <li><a href="{$siteConfigs->getProperty('twitter')}"><img src="{$ROOTPATH}/templates/{$usertemplate}/img/fl3.png" /></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="lkfooter">
+                        <ul>
+                            <li><a href="/{$lang}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;&nbsp;{$home}</a></li>
+                            <li><a href="/{$lang}/gioi-thieu.html"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;&nbsp;{$introduction}</a></li>
+                            {foreach from=$productcatItems item=productcatItem key=i}
+                            {assign var=pidSub1 value=$productcatItem->getId()}
+                            {if $pidSub1 != 1}
+                            <li class=""><a href="{$productcatItem->getUrl($lang)}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;&nbsp;{$productcatItem->getName($lang)}</a></li>
+                            {/if}
+                            {/foreach}
+                            <li><a href="/{$lang}/uu-dai/page-1.html"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;&nbsp;{$promotion}</a></li>
+                            <li><a href="/{$lang}/dat-ban.html"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;&nbsp;{$book}</a></li>
+                            <li><a href="/{$lang}/tuyen-dung/page-1.html"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;&nbsp;{$recruitment}</a></li>
+                            {if isset($sub_khachhang)}
+                                {foreach from=$sub_khachhang item=menu_khachhang key=i}
+                            <li class=""><a href="{$menu_khachhang->getUrl($lang)}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;&nbsp;{$menu_khachhang->getName($lang)}</a></li>
+                            {/foreach}
+                            {/if}
+                            {if empty($memberData)}
+                            <li><a href="/{$lang}/login.html"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;&nbsp;{$login}</a></li>
+                            {/if}
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="copyright">
+    <p>Copyrights 2020 by © LA PHONG all rights reserved. Design by <a href="javascript:void(0)">AVA.vn</a></p>
+</div>
+<div class="hotline-mobile">
+    <a href="tel:{$siteConfigs->getProperty('tel')}">{$siteConfigs->getProperty('tel')}</a>
+</div>
+
+
+{if isset($typePage) && ($typePage == 'giao-hang-tan-noi' || $typePage == 'gio-hang')}
+<link rel="stylesheet" type="text/css" href="{$ROOTPATH}/templates/{$usertemplate}/js/add-number/style.css" />
+<script src="{$ROOTPATH}/templates/{$usertemplate}/js/add-number/incrementing.js"></script>
+{/if}
+<!--<link rel="stylesheet" href="ZoomI/style.css">-->
+<link rel="stylesheet" href="{$ROOTPATH}/templates/{$usertemplate}/css/ZoomI/style.css">
+<!--<script  src="ZoomI/script.js"></script>-->
+<script  src="{$ROOTPATH}/templates/{$usertemplate}/js/ZoomI/script.js"></script>
+<!-- Script
+================================================== -->
+<!--<script type="text/javascript" src="js/bootstrap.js"></script>-->
+<script src="{$ROOTPATH}/templates/{$usertemplate}/js/bootstrap.js" type="text/javascript"></script>
+<!--<script type="text/javascript" src="js/jquery.min.js"></script>-->
+<script src="{$ROOTPATH}/templates/{$usertemplate}/js/jquery.min.js" type="text/javascript"></script>
+<!--<script type="text/javascript" src="js/bootstrap.min.js"></script>-->
+<script src="{$ROOTPATH}/templates/{$usertemplate}/js/bootstrap.min.js" type="text/javascript"></script>
+<!--<script src="js/jquery.js"></script>-->
+<script src="{$ROOTPATH}/templates/{$usertemplate}/js/jquery.js" type="text/javascript"></script>
+<!--<script type="text/javascript" src="js/jquery.mixitup.js"></script>-->
+<script src="{$ROOTPATH}/templates/{$usertemplate}/js/jquery.mixitup.js" type="text/javascript"></script>
+<!--<script type="text/javascript" src="js/jquery.bxslider.js"></script>-->
+<script src="{$ROOTPATH}/templates/{$usertemplate}/js/jquery.bxslider.js" type="text/javascript"></script>
+<!--<script type="text/javascript" src="js/jquery.cslider.js"></script>-->
+<script src="{$ROOTPATH}/templates/{$usertemplate}/js/jquery.cslider.js" type="text/javascript"></script>
+<!--<script type="text/javascript" src="js/jquery.placeholder.js"></script>-->
+<script src="{$ROOTPATH}/templates/{$usertemplate}/js/jquery.placeholder.js" type="text/javascript"></script>
+<!--<script type="text/javascript" src="js/app.js"></script>-->
+<script src="{$ROOTPATH}/templates/{$usertemplate}/js/app.js" type="text/javascript"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/iScroll/5.2.0/iscroll.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--<script src="menu/drawer.min.js" charset="utf-8"></script>-->
+<script src="{$ROOTPATH}/templates/{$usertemplate}/js/menu/drawer.min.js" type="text/javascript"></script>
+
+
+<!--js custom-->
+<link type="text/css" rel="stylesheet" href="{$ROOTPATH}/templates/{$usertemplate}/js/pop-pro/featherlight.min.css" />
+<script src="{$ROOTPATH}/templates/{$usertemplate}/js/pop-pro/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+{literal}
+<script>
+    $(".add-to-cart").click(function(e) {
+        var currElement = $(this).data("curr-product-id")
+        var name = $(".name_" + currElement).val();
+        var quantity = $(".quantity_" + currElement).val();
+        var quantityEdit = $('.featherlight-inner .quantity_' + currElement).val()
+        var current = $(this);
+        if(current.hasClass('disable')){
+            return false;
+        }
+        if (quantity != 0 || quantityEdit) {
+            $.ajax({
+                method: "POST",
+                url: "/index.php",
+                data: {
+                    cId: $(".cId_" + currElement).val(),
+                    id: $(".id_" + currElement).val(),
+                    op: $(".op_" + currElement).val(),
+                    slug: $(".slug_" + currElement).val(),
+                    code: $(".code_" + currElement).val(),
+                    name: name,
+                    plus: $(".plus_" + currElement).val(),
+                    lang: $(".lang_" + currElement).val(),
+                    quantity: quantity,
+                    quantityEdit: $('.featherlight-inner .quantity_' + currElement).val()
+                },
+                success: function (data) {
+                    if (!$('.featherlight-inner .quantity_' + currElement).val()) {
+                        var countItems = $("#count-item").text();
+                        var newCountItems = countItems*1 + $(".quantity_" + currElement).val()*1
+                        $("#count-item").text(newCountItems);
+
+
+                        var currTotalItem = $(".cart-in-page-item-" + currElement).text();
+                        var quantityUpdate;
+                        if (!currTotalItem) {
+                            $(".no-item").remove();
+                            quantityUpdate = quantity;
+                            $(".cart-in-page").append("<li><p>" + quantityUpdate + " x " + name + "</p></li>");
+                        } else {
+                            quantityUpdate = currTotalItem*1 + quantity*1;
+                            $(".cart-in-page-item-" + currElement).text(quantityUpdate);
+                        }
+                        var new_img = '/templates/html/img/icon-uncheck-cart.jpg';
+                        current.find('img').attr('src',new_img);
+                        current.addClass('disable');
+                    } else {
+                        location.reload();
+                    }
+                }
+            }).done(function( msg ) {
+
+            });
+        }
+    });
+</script>
+{/literal}
+
+{literal}
+<script>
+    $(document).ready(function() {
+        $('.drawer').drawer();
+    });
+</script>
+{/literal}
+<!--Banner-->
+<!--<script type="text/javascript" src="js/responsiveslides.min.js"></script>-->
+<script src="{$ROOTPATH}/templates/{$usertemplate}/js/responsiveslides.min.js" type="text/javascript"></script>
+{literal}
+<script>
+    $(function () {
+        $("#slider4").responsiveSlides({
+            auto: true,
+            pager: false,
+            nav: true,
+            speed: 500,
+            namespace: "callbacks",
+            before: function () {
+                $('.events').append("<li>before event fired.</li>");
+            },
+            after: function () {
+                $('.events').append("<li>after event fired.</li>");
+            }
+        });
+    });
+</script><!--EnD-Banner-->
+{/literal}
+{literal}
+<script type="text/javascript">
+    $(document).ready(function(){
+      //  location.href = '/en';
+        $('.change-lang').click(function () {
+
+            var lang = $(this).attr('data-lang');
+            var otherlang = (lang=="en"?"vn":"en");
+            if(location.href.indexOf(".html") > -1 ){
+                var rep_url =  location.href.replace("/" + lang + "/", "/" + otherlang + "/");
+            }else{
+                rep_url = '/'+otherlang;
+            }
+
+            location.href = rep_url;
+            return false;
+        })
+
+        $('.logout').click(function () {
+            location.href = '/logout.html?op=logout';
+            return false;
+        })
+    })
+
+</script>
+{/literal}
+<!--carousel-->
+<script src="{$ROOTPATH}/templates/{$usertemplate}/js/owl.carousel.js" type="text/javascript"></script>
+<!--carousel-->
+<!--WoW-->
+<!--<link rel="stylesheet" type="text/css" href="css/animate.css" />-->
+<link rel="stylesheet" href="{$ROOTPATH}/templates/{$usertemplate}/css/animate.css">
+<!--<script src="js/wow.min.js"></script>-->
+<script src="{$ROOTPATH}/templates/{$usertemplate}/js/wow.min.js" type="text/javascript"></script>
+<!--<script src="js/app-wow.js"></script>-->
+<script src="{$ROOTPATH}/templates/{$usertemplate}/js/app-wow.js" type="text/javascript"></script>
+
+</body>
+</html>

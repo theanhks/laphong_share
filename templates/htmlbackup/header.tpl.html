@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="../../favicon.ico">
+
+<title>{if $pageName}{$pageName}, {/if}{$siteConfigs->getProperty("company_$lang")}</title>
+
+<link href="{$ROOTPATH}/templates/{$usertemplate}/css/bootstrap.min.css" rel="stylesheet">
+<script src="{$ROOTPATH}/templates/{$usertemplate}/js/ie-emulation-modes-warning.js"></script>
+<link href="{$ROOTPATH}/templates/{$usertemplate}/css/carousel.css" rel="stylesheet">
+
+</head>
+
+<link href="{$ROOTPATH}/templates/{$usertemplate}/css/stylef.css" rel="stylesheet">
+<link href="{$ROOTPATH}/templates/{$usertemplate}/css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<!-- NAVBAR
+================================================== -->
+<body>
+
+<div class="mainheader">
+    <div class="headertop">
+        <div class="container-xxx">
+            <div class="row">
+                <div class="col-md-3 col-sm-4 col-xs-12 padi05 fr">
+                    <div class="carttop">
+                        <ul>
+                            <li class="carticon"><a href="{$ROOTPATH}/cart.html">Giỏ hàng {$caritems_count} </a></li>
+                            <li class="iconcart"><a href="{$ROOTPATH}/cart.html">Thanh toán</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-7 col-sm-8 col-xs-12 padi05 fr">
+                    <div class="conttop">
+                        <ul>
+                            <li><a href="#">Hotline: <span class="hotline1">{$siteConfigs->getProperty("tel")}</span></a></li>
+                            <li><a href="#">Email: <span class="email1">{$siteConfigs->getProperty("admin_mail")}</span></a></li>
+                        </ul>
+						
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-xxx">
+        <div class="row">
+            <div class="col-md-2 col-sm-5 col-xs-12 padi05">
+                <div class="logo"><a href="{$ROOTPATH}"><img src="{$ROOTPATH}/templates/{$usertemplate}/images/logo.png" alt="" /></a></div>
+            </div>
+            <div class="col-md-9 col-sm-7 col-xs-12 padi05">
+                <div class="menuTop">
+                    <div class="menudes">
+						<ul>
+					 		<!--<li class="{if $active == 'khuyen-mai'}active{/if}"><a href='{$ROOTPATH}/khuyen-mai.html'><span>Khuyến mãi</span></a> </li>-->
+				  			<li>
+				  				<a href="{$ROOTPATH}/dich-vu.html" title ="Dịch vụ"><span>Dịch vụ</span></a> 
+								{if $sub_dichvu}
+									<ul>
+										{foreach from=$sub_dichvu item=entriesItem}
+											<li><a title="{$entriesItem->getName($lang)}" href="{$entriesItem->getUrl($lang)}"><span>{$entriesItem->getName($lang)}</span></a></li>
+										{/foreach}
+									</ul>
+								{/if}
+				  			</li>
+    
+					{foreach from=$productcatItems item=productcatItem}   
+					{assign var=pidSub1 value=$productcatItem->getId()}
+					{assign var=Sub1procategoryItems value=$productcategories->getObjects(1,"status=1 AND pid=$pidSub1",$orderASC)}
+					<li class="{$productcatItem->getSlug()}{if $activepro==$productcatItem->getId()} active first{/if}"><a href="{$productcatItem->getUrl('vn')}"><span>{$productcatItem->getName('vn')}</span></a>
+						{if $Sub1procategoryItems}
+						<ul>                	
+							{foreach from=$Sub1procategoryItems item=Sub1procategoryItem key=i}   
+							{assign var=pidSub2 value=$Sub1procategoryItem->getId()}
+							{assign var=Sub2procategoryItems value=$productcategories->getObjects(1,"status=1 AND pid=$pidSub2",$orderASC)}
+							<li><a href="{$Sub1procategoryItem->getUrl('vn')}"><span>{$Sub1procategoryItem->getName('vn')}</span></a>
+								{if $Sub2procategoryItems}
+								<ul>
+									{foreach from=$Sub2procategoryItems item=Sub2procategoryItem}
+									<li><a href="{$Sub2procategoryItem->getUrl('vn')}"><span>{$Sub2procategoryItem->getName('vn')}</span></a>
+											{assign var=pidSub3 value=$Sub2procategoryItem->getId()}
+											{assign var=Sub3procategoryItems value=$productcategories->getObjects(1,"status=1 AND pid=$pidSub3",$orderASC)}
+											{if $Sub3procategoryItems}
+												<ul>
+													{foreach from=$Sub3procategoryItems item=Sub3procategoryItem}
+														<li><a href="{$Sub3procategoryItem->getUrl('vn')}"><span>{$Sub3procategoryItem->getName('vn')}</span></a></li>
+													{/foreach}
+												</ul>
+											{/if}
+									</li>
+									{/foreach}                            
+								</ul>
+								{/if}
+							</li>
+							{/foreach}                    
+						</ul>
+						{/if}
+					</li>
+					{/foreach}
+					
+                <!--<li class="{if $active == 'gioi-thieu'}active{/if}"><a href='{$ROOTPATH}/gioi-thieu.html'><span>{$object_gioithieu->getName($lang)}</span></a> </li>-->
+                <li>
+                	<a href='{$ROOTPATH}/tin-tuc.html' title ="tin tức"><span>Tin tức</span></a> 
+                	{if $sub_tintuc}
+						<ul>
+							<li><a href="{$ROOTPATH}/gioi-thieu.html">{$object_gioithieu->getName($lang)}</a></li>
+							{foreach from=$sub_tintuc item=entriesItem}
+								<li><a title="{$entriesItem->getName($lang)}" href="{$entriesItem->getUrl($lang)}"><span>{$entriesItem->getName($lang)}</span></a></li>
+							{/foreach}
+						</ul>
+					{/if}
+                </li>
+				  
+              
+            </ul>
+				
+                    </div>
+                    <div class="menumob">
+                        <div class="productMenu">
+						
+						
+						
+						
+                            <ul class="cap1">
+                                <li>
+                                    <a href="#">Menu</a>
+                                    <ul class="cap2">
+                                        <li>
+							  				<a href="{$ROOTPATH}/dich-vu.html" title ="Dịch vụ"><span>Dịch vụ</span></a> 
+											{if $sub_dichvu}
+												<ul class="cap3">
+													{foreach from=$sub_dichvu item=entriesItem}
+														<li><a title="{$entriesItem->getName($lang)}" href="{$entriesItem->getUrl($lang)}"><span>{$entriesItem->getName($lang)}</span></a></li>
+													{/foreach}
+												</ul>
+											{/if}
+							  			</li>
+									   {if $productcatItems}
+								
+										{foreach from=$productcatItems item=productcatItem}   
+										{assign var=pidSub1 value=$productcatItem->getId()}
+										{assign var=Sub1procategoryItems value=$productcategories->getObjects(1,"status=1 AND pid=$pidSub1",$orderASC)}
+										<li class="{$productcatItem->getSlug()}{if $activepro==$productcatItem->getId()} active first{/if}"><a href="{$productcatItem->getUrl('vn')}"><span>{$productcatItem->getName('vn')}</span></a>
+											{if $Sub1procategoryItems}
+											<ul class="cap3">                	
+												{foreach from=$Sub1procategoryItems item=Sub1procategoryItem key=i}   
+												{assign var=pidSub2 value=$Sub1procategoryItem->getId()}
+												{assign var=Sub2procategoryItems value=$productcategories->getObjects(1,"status=1 AND pid=$pidSub2",$orderASC)}
+												<li><a href="{$Sub1procategoryItem->getUrl('vn')}"><span>{$Sub1procategoryItem->getName('vn')}</span></a>
+													{if $Sub2procategoryItems}
+													<ul class="cap4">
+														{foreach from=$Sub2procategoryItems item=Sub2procategoryItem}
+														<li><a href="{$Sub2procategoryItem->getUrl('vn')}"><span>{$Sub2procategoryItem->getName('vn')}</span></a>
+																{assign var=pidSub3 value=$Sub2procategoryItem->getId()}
+																{assign var=Sub3procategoryItems value=$productcategories->getObjects(1,"status=1 AND pid=$pidSub3",$orderASC)}
+																{if $Sub3procategoryItems}
+																	<ul class="cap5">
+																		{foreach from=$Sub3procategoryItems item=Sub3procategoryItem}
+																			<li><a href="{$Sub3procategoryItem->getUrl('vn')}"><span>{$Sub3procategoryItem->getName('vn')}</span></a></li>
+																		{/foreach}
+																	</ul>
+																{/if}
+														</li>
+														{/foreach}                            
+													</ul>
+													{/if}
+												</li>
+												{/foreach}                    
+											</ul>
+											{/if}
+										</li>
+										{/foreach}
+										
+									
+										{/if}
+	
+       									<li>
+											<a href='{$ROOTPATH}/tin-tuc.html' title ="tin tức"><span>Tin tức</span></a> 
+											{if $sub_tintuc}
+											<ul class="cap3">
+												<li><a href="{$ROOTPATH}/gioi-thieu.html">{$object_gioithieu->getName($lang)}</a></li>
+												{foreach from=$sub_tintuc item=entriesItem}
+												<li><a title="{$entriesItem->getName($lang)}" href="{$entriesItem->getUrl($lang)}"><span>{$entriesItem->getName($lang)}</span></a></li>
+												{/foreach}
+											</ul>
+											{/if}
+										</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1 col-sm-7 col-xs-12 padi05">
+                <div class="search">
+                    <div class="productMenu2">
+                        <ul class="cap1">
+                            <li>
+                                <a href="#">.</a>
+                                <ul class="cap2">
+                                    <li>
+					
+                                        <form action="" method="post" name="search">
+                                            <input type="text" name="keywords" id="txtsearch-tensp" placeholder="Nhập từ khóa tìm kiếm..." onclick="" onblur="" class="txtsearch boxs" />
+                                            <input type="submit" name="timkiem" id="btnsearch" value="" class="btnsearch boxb" />
+                                            <input type="hidden" name="op" value="search" />
+                                            <input type="hidden" name="lang" value="" />
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="mob">
+                            <li>
+                                <form action="" method="post" name="search">
+                                    <input type="text" name="keywords" id="txtsearch-tensp" placeholder="Nhập từ khóa tìm kiếm..." onclick="" onblur="" class="txtsearch boxs" />
+                                    <input type="submit" name="timkiem" id="btnsearch" value="" class="btnsearch boxb" />
+                                    <input type="hidden" name="op" value="search" />
+                                    <input type="hidden" name="lang" value="" />
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

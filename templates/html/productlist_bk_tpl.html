@@ -1,0 +1,94 @@
+{include file="$usertemplate/sub_header.tpl.html"}
+
+<div class="mainbanner2 wow fadeInDown" data-wow-delay="0.1s">
+    {assign var=HomeAds value=$ads->getAdsFront(10)}
+    {if $HomeAds}
+    {foreach from=$HomeAds item=HomeAdsItem}
+    <a href="#" title=""><img src="{$ROOTPATH}/gallery/avatar_upload/ads/storage/{$HomeAdsItem->getLogoUrl()}" alt="" /></a>
+    {/foreach}
+    {/if}
+</div>
+
+<div class="khuyenmai-tit wow fadeIn" data-wow-delay="0.1s">
+    <div class="container-full">
+        <div class="row">
+            {if isset($content_ghtn1)}
+            {$content_ghtn1->getDetails($lang)}
+            {/if}
+        </div>
+    </div>
+</div>
+{if $proItems}
+{foreach from=$proItems item=proItem key=i}
+{math assign="before" equation='x%y' x=$i y=6}
+{math assign="end" equation='(x+1)%y' x=$i y=6}
+{if $before eq 0}
+<div class="list-ghtn-1">
+    <div class="container-full">
+        <div class="row padi010">
+            <div class="col-md-3 col-sm-4 col-xs-12 padi05">
+                <div class="ban-s1 wow fadeInLeft" data-wow-delay="0.4s">
+                    <img src="{$ROOTPATH}/templates/{$usertemplate}/img/ban-s1.jpg" alt="" />
+                    <div class="ban-s1c"></div>
+                    <div class="title-04">
+                        <p>Sashimi</p>
+                        <a href="#">Xem tất cả</a>
+                    </div>
+                </div>
+            </div>
+            {/if}
+            <div class="col-md-3 col-sm-4 col-xs-12 padi05">
+                <div class="box-ghtn wow fadeInUp" data-wow-delay="0.4s">
+                    <a href="#" class="c-preview"><div class="c-preview__img"><img src="{$ROOTPATH}/templates/{$usertemplate}/img/pro-1.jpg" alt=""/></div></a>
+                    <div class="ghtn-preview">
+                        <a href="#">Cá hồi nướng trứng muối</a>
+                        <div class="numbox">
+                            <button type="button" class="tru" data-type="minus"">
+                            <span class="glyphicon glyphicon-minus"></span>
+                            </button>
+                            <input type="text" class="soluong" value="10" min="1" max="100">
+                            <button type="button" class="cong" data-type="plus">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </div>
+                        <a href="#" class="b-add-cart"><img src="{$ROOTPATH}/templates/{$usertemplate}/img/icon-add-cart.png" alt="" /></a>
+                        <p>150.000</p>
+                    </div>
+                </div>
+            </div>
+            {if $end eq 0}
+        </div>
+    </div>
+</div>
+{/if}
+
+{assign var=i value=$i+1}
+{/foreach}
+{/if}
+
+<!--check product % 6-->
+{assign var=x value=$proItems|@count}
+{math assign="checkDivEnd" equation='x%y' x=$x y=6}
+{if $end neq 0}
+</div>
+</div>
+</div>
+{/if}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

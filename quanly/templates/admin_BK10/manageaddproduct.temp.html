@@ -1,0 +1,343 @@
+{include file="$usertemplate/header.temp.html"}
+{include file="$usertemplate/left.temp.html" title=left}
+{assign var=formId value='addItem'}
+{assign var=rightPanel value='hidden'}
+<div id="contextual" class="{$rightPanel}">
+<div class="levBtn">
+<p><a href="#"><img src="templates/{$usertemplate}/images/btn_arrow_02.gif" alt="" width="18" height="19" /></a></p>
+</div>
+<div class="contextType">
+<form action="" method="post" name="form2" enctype="multipart/form-data">
+<fieldset>
+<p>
+<label for="textbox">Textbox</label>
+<input type="text" value="" name="textbox" id="textbox" />
+</p>
+<p>
+<label for="textarea">Textarea</label>
+<textarea name="textarea" id="textarea" rows="5" cols="5"></textarea>
+</p>
+<p>
+<label for="combobox">Combobox</label>
+<select name="combobox" id="combobox" >
+<option selected="selected" value="">------------</option>
+</select>
+</p>
+<p class="radioType">
+<input type="radio" name="radio" id="radio" />
+<label for="radio">radio 1</label>
+<input type="radio" name="radio" id="radio2" />
+<label for="radio2">radio 2</label>
+</p>
+<p class="radioType">
+<input type="checkbox" name="checkbox" id="checkbox" />
+<label for="checkbox">checkbox 1</label>
+</p>
+</fieldset>
+</form>
+</div>
+</div>
+<div id="content">
+<div class="highlight">
+<h2><a href="">{$amessages.control_panel}</a> &raquo; {$amessages.add_product}</h2>
+<ul id="tablist">
+<li class="current"><a href="{$script}?op=manage&amp;part=product&amp;act=add&amp;pId={$pId}" title="{$amessages.add_product}">{$amessages.add_product}</a> </li>
+<li><a href="{$script}?op=manage&part=product&act=list" title="{$amessages.list_product}">{$amessages.list_product}</a> </li>
+<li><a href="{$script}?op=manage&part=product&act=list&plus=cleanTrash" title="{$amessages.clean_trash}">{$amessages.clean_trash}</a> </li>
+</ul>
+{if $infoText}
+<div class="{$infoClass}">
+<h4>Result:</h4>
+<p>{$infoText}</p>
+</div>
+{/if}
+<div class="formType">
+{literal}
+<script language="javascript">		 
+		  function CheckFormID()
+            {         
+					  
+					   if (jQuery('#price').val()!="") 
+					   {
+						   var age =jQuery('#price').val();
+							if(isNaN(age))
+							{
+							 alert("Bạn phải nhập giá sản phẩm là kiểu số");	
+							  jQuery('#price').focus();
+                                    return false;	
+							 }
+						}
+						
+         return true;      
+            }
+            </script>
+{/literal}
+<form action="{$script}" method="post" id="addItem" name="{$formId}" enctype="multipart/form-data">
+<fieldset>
+
+<p>
+<label for="status">{$amessages.status} *</label>
+<span>{$amessages.status_help}</span>
+<select name="status">
+{$listStatus}
+</select>
+</p>
+
+<p>
+<label for="gId">{$amessages.productcategory} *</label>
+<span>{$amessages.parent_help}</span>
+<select name="category">
+<option value="-1">All</option>{$listCategory}
+</select>
+</p>
+<!--<p>
+<label for="vn_name">Mã sản phẩm*</label>
+<span>Nhập vào mã của sản phẩm</span>
+<input type="text" name="code_sp" value="{$code_sp}" />
+</p>-->
+<p>
+<label for="vn_name">{$amessages.vn_name}*</label>
+<span>{$amessages.vn_name_help}</span>
+<input type="text" name="vn_name" value="{$vn_name}" />
+</p>
+<p>
+<label for="vn_name">{$amessages.en_name}*</label>
+<span>{$amessages.en_name_help}</span>
+<input type="text" name="en_name" value="{$en_name}" />
+</p>
+<p class ="hidden">
+<label for="num_product">{$amessages.num_product} *</label>
+<input type="text" name="num_product" value="{$num_product}" />
+</p>
+<p class ="hidden">
+<label for="en_name">{$amessages.price}</label>
+
+<input type="text" name="price" id="price" value="{$price}"  onblur=" return CheckFormID()" />
+</p>
+<p class ="hidden">
+<label  for="en_name">{$amessages.sprice}</label> 
+<input type="text" name="s_price"  id="s_price" value="{$s_price}"  />
+</p>
+<div id="upload">
+<p>
+<label for="en_name">{$amessages.avatar} (Tiếng Việt) </label>
+<span class="error" style="color:red">{$amessages.size}: {$amessages.productsize}</span>
+<input type="file" name="avatar" value="{$avatar}" />
+</p>
+
+<p>
+<label for="en_name">{$amessages.avatar} (Tiếng Anh) </label>
+<span class="error" style="color:red">{$amessages.size}: {$amessages.productsize}</span>
+<input type="file" name="file3" value="{$file3}" />
+</p>
+
+
+<p class ="hidden">
+<div id="uploadortherimage">
+<label for="details">{$amessages.uploadimg}</label>
+<span>Upload những hình ảnh khác của sản phẩm</span>
+<span id="listfiles">     	
+         <input name="files[]" type="file"> <br>
+          
+     </span>
+{literal}
+<script>
+	jQuery(document).ready(function() {		
+		jQuery("[name=btnThem]").click(function(){
+			jQuery("#listfiles").append("<input type='file' name='files[]'> <br/>");
+		});
+	});
+</script>
+{/literal}
+<input name="btnThem" themfile="1" value="Thêm" type="button" style=" width:100px; background-color:none"> 
+</div>
+</p>
+<!-- màu sắc -->
+<p class = "hidden">
+<label for="details">Thêm qui cách in </label>
+<span>Số Lượng</span>
+<span id="mausac">     	
+         <input name="color[]" type="text"> <br>
+          
+     </span>
+{literal}
+<script>
+	jQuery(document).ready(function() {		
+		jQuery("[name=btnThem_mau_sac]").click(function(){
+			jQuery("#mausac").append("<input type='text' name='color[]'> <br/>");
+		});
+	});
+</script>
+{/literal}
+<input name="btnThem_mau_sac" themfile="1" value="Thêm" type="button" style=" width:100px; background-color:none"> 
+</p>
+<!-- kích thước -->
+<p class = "hidden">
+<label for="details">Thêm số lượng</label>
+<span>kích thước</span>
+<span id="kichthuoc">     	
+         <input name="kichthuoc[]" type="text"> <br>
+          
+     </span>
+{literal}
+<script>
+	jQuery(document).ready(function() {		
+		jQuery("[name=btnThem_kich_thuoc]").click(function(){
+			jQuery("#kichthuoc").append("<input type='text' name='kichthuoc[]'> <br/>");
+		});
+	});
+</script>
+{/literal}
+<input name="btnThem_kich_thuoc" themfile="1" value="Thêm" type="button" style=" width:100px; background-color:none"> 
+</p>
+
+
+</div>
+
+
+
+
+
+<!--
+<p>
+<label for="frontpage">Lựa chọn sản phẩm</label>
+<input type="radio" name="hot" id="hot"  value="0" style="width:20px; margin-left:30px" />Chọn là sản phẩm mới (icon mới)
+<input type="radio"name="hot" id="saleoff" value="1" style="width:20px; margin-left:30px" />Chọn là sản phẩm khuyến mãi (icon sale off)
+</p>
+<p>
+<label for="frontpage">Chọn sản phẩm này là sản phẩm hot ở trang chủ</label>
+<input type="checkbox" style="width:50px;" name="newhot" id="newhot" {if $newhot == 1 }checked="checked"{/if} value="1" />
+</p>
+-->
+
+
+<!--<div id="option">
+            	<ul>
+            	<li><label for="spmoi">Còn Hàng</label><input type="checkbox" name="spmoi" id="spmoi" value="1" /></li>
+                <li><label for="spkhuyenmai">Hết Hàng</label><input type="checkbox" name="spkhuyenmai" id="spkhuyenmai" value="1" /></li>
+                <li><label for="giasocmoingay">{$amessages.giasocmoingay}</label><input type="checkbox" name="giasocmoingay" id="giasocmoingay" value="1" /></li>-->
+                <!--<li><label for="spquantam">{$amessages.spquantam}</label><input type="checkbox" name="spquantam" id="spquantam" value="1" /></li>
+                <p>&nbsp;</p>
+                <li><label for="iconnew">{$amessages.iconnew}</label><input type="checkbox" name="iconnew" id="iconnew" value="1" /></li>
+                <li><label for="iconhot">{$amessages.iconhot}</label><input type="checkbox" name="iconhot" id="iconhot" value="1" /></li>  
+                <div class="clr">
+<label for="giamgia">{$amessages.giamgia}</label>
+
+<input type="text" name="giamgia" id="giamgia" value="{$giamgia}" />
+</div>-->              
+            <!--</ul>
+            	{literal}
+                <style>
+				#option li{ float:none; clear:both}
+				#option label{ display:inline; margin-left:10px}
+                #option input[type='checkbox']{ float:left; width:auto}
+                </style>
+                {/literal}
+			</div>-->
+<!--<p>
+<label for="size">{$amessages.size} *</label>
+<input type="text" name="size" value="{$size}" />
+</p>-->
+<p >
+<label for="en_name">{$amessages.vn_sapo}</label>
+<textarea name="vn_nsx" rows="5" cols="5" class="mceSimple">{$vn_nsx}</textarea>
+</p>
+<p>
+<label for="en_name">{$amessages.vn_sapo} </label>
+<textarea name="en_nsx" rows="5" cols="5" class="mceSimple">{$en_nsx}</textarea>
+</p>
+<!--<p>
+<label for="en_nhanhieu">{$amessages.en_nhanhieu}</label>
+<textarea name="en_nhanhieu" rows="5" cols="5" class="mceSimple">{$en_nhanhieu}</textarea>
+</p>-->
+<p class ="hidden">
+<label for="vn_name">Mô tả sản phầm  *</label>
+<span>Mô tả sản phầm *</span>
+<textarea name="vn_details" rows="20" cols="5" class="mceAdvanced">{$vn_details}</textarea>
+</p>
+
+<p class ="hidden">
+<label for="vn_name">Hướng dẫn sử dụng *</label>
+<span>Hướng dẫn sử dụng *</span>
+<textarea name="en_details" rows="20" cols="5" class="mceAdvanced">{$en_details}</textarea>
+</p>
+
+
+<p style = "display: none;">
+<label for="vn_nhanhieu">{$amessages.vn_nhanhieu}</label>
+<textarea name="vn_nhanhieu" rows="20" cols="5" class="mceAdvanced">{$vn_nhanhieu}</textarea>
+</p>
+
+
+
+<p style="display:none">
+<label for="company">Tình trạng sản phẩm</label>
+<span>Chọn tình trạng của sản phẩm (còn hàng hay hết hàng)</span>
+<input name="product_on" value="0" checked="checked" type="radio" style="width:20px; margin-left:30px">
+Còn hàng
+<input name="product_on" value="1" type="radio" style="width:20px; margin-left:30px">
+Hết hàng
+
+</p>
+<!--<p>
+<label for="company">Thuế VAT</label>
+<span>Lựa chọn option phù hợp với sản phẩm của bạn</span>
+<input name="vat_on" value="0" checked="checked" type="radio" style="width:20px; margin-left:30px">
+Đã bao gồm thuế VAT
+<input name="vat_on" value="1" type="radio" style="width:20px; margin-left:30px">
+Chưa bao gồm thuế VAT
+
+</p>-->
+
+ <!--<p><label for="company">Chọn sản phẩm khuyến mãi</label>
+ <span>Chọn sản phẩm khuyến mãi.</span>
+ <input name="sprice_on" id="sprice_on"  value="1" type="checkbox" style="width:50px">
+  </p>-->
+  
+  <p>
+            <label for="company">Chọn sản phẩm còn phòng</label>
+            <input name="newhot" id="newhot"  value="1" type="checkbox" {if $newhot == 1 }checked="checked"{/if} style="width:50px;" /> </p>
+             <p>
+
+<p>
+<label for="frontpage">Chọn sản phẩm này Hot </label>
+<input type="checkbox" style="width:50px;" name="spmoi" id="spmoi" {if $home == 1 }checked="checked"{/if} value="1" />
+</p>
+
+
+
+<p>
+<label for="en_name">Vị trí sản phẩm</label>
+<span>Nhập vào vị trí hiện thị của sản phẩm.</span>
+<input type="text" name="position" value="{$position}" />
+</p>
+
+
+<!--<p>
+<label for="vn_name">{$amessages.position} *</label>
+<span>{$amessages.position_help}</span>
+<input type="text" name="position" value="{$position}" />
+</p>
+-->
+<!--<p class="radioType">
+<input type="checkbox" name="setwatermark" id="setwatermark" checked="checked" value="1" />
+<label for="frontpage">Watermark</label>
+</p>-->
+<p class="btnType">
+<input type="hidden" name="op" value="{$op}" />
+<input type="hidden" name="part" value="{$part}" />
+<input type="hidden" name="act" value="{$act}" />
+<input type="hidden" name="searchTerms" value="{$searchTerms}"/>
+<input type="hidden" name="searchStatus" value="{$searchStatus}"/>
+<span><input type="reset" value="{$amessages.reset}" title="{$amessages.reset}" name="btnReset" /></span>
+<span><input type="submit" value="{$amessages.save}" title="{$amessages.save}" name="btnSubmit" /></span>
+</p>
+</fieldset>
+</form>
+</div>
+</div>
+</div>
+</div>
+<div class="push"></div>
+</div>
+{include file="$usertemplate/footer.temp.html" title=footer}

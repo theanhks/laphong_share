@@ -1,0 +1,69 @@
+
+<section class="sub-bg">
+  <div class="container">
+  {if $lang == 'vn'}
+		<div class="sub-head"> <a href="#"><i class="fa fa-home"></i> Trang chủ </a>
+
+				{foreach from=$pathParentItems key=i item=pathParentItem}
+							<h1><a title="{$pathParentItem->getName($lang)|strip_tags}" href="{$pathParentItem->getUrl($lang)}">{$pathParentItem->getName($lang)|strip_tags}</a></h1>
+						{/foreach} 
+		  
+		</div>
+	{else}
+		<div class="sub-head"> <a href="#"><i class="fa fa-home"></i> Home </a>
+			{foreach from=$pathParentItems key=i item=pathParentItem}
+							<h1><a title="{$pathParentItem->getName($lang)|strip_tags}" href="{$pathParentItem->getUrl($lang)}">{$pathParentItem->getName($lang)|strip_tags}</a></h1>
+						{/foreach} 
+    </div>
+	{/if}
+  </div>
+</section>
+<section  id="duan" style="background:#EEE">
+  <div class="title" style="padding-top: 50px;"><a href="#" style="color:#005a02">{$pageName}</a></div>
+  <div class="container">
+    <div class="product-block list-product">
+      <ul>
+	  
+		{if $proItems}
+					{foreach from=$proItems item=proItem key=i}
+					<li>
+					  <div class="news-slide">
+						<div class="pic-news"><a href="{$proItem->getViewUrl($lang)}" title ="{$proItem->getName($lang)}"><img src="{$ROOTPATH}/gallery/avatar_upload/products/thumb/{$proItem->getAvatar()}" /></a>
+						  <div class="content-project">
+							<h4><a href="{$proItem->getViewUrl($lang)}" title ="{$proItem->getName($lang)}">{$proItem->getName($lang)}</a></h4>
+								<p style ="color: #fff;">{$proItem->getNSX($lang)|strip_tags|truncate:800}</p>
+								
+								{if $lang == 'vn'}
+									<div class="viewmore"><a href="{$proItem->getViewUrl($lang)}" title ="{$proItem->getName($lang)}">Xem thêm</a></div>
+								{else}
+									<div class="viewmore"><a href="{$proItem->getViewUrl($lang)}" title ="{$proItem->getName($lang)}">View More</a></div>
+								{/if}
+						  </div>
+						</div>
+					  </div>
+					</li>
+			
+				{/foreach}
+				{/if}	
+				
+					
+				
+	
+      </ul>
+    </div>
+			{if $pages>1}
+					<div class="nav-page">
+						
+						 {$pager}
+						
+					</div>
+				{/if}  
+    <!--<div class="nav-page"> 
+		<a href="#"><i class="fa fa-angle-double-left" ></i></a> 
+		<a href="#" class="active">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a> <a href="#">6</a> 
+		<a href="#"><i class="fa fa-angle-double-right" ></i></a>
+	</div>-->
+	
+  </div>
+</section>
+

@@ -1,0 +1,140 @@
+{include file="$usertemplate/header.temp.html"}
+{include file="$usertemplate/left.temp.html" title=left}
+<div class="contentabc">
+	{assign var=formId value='addEntry'}
+	{assign var=rightPanel value='hidden'}
+	<div id="contextual" class="{$rightPanel}">
+		<div class="levBtn">
+			<p><a href="#"><img src="templates/{$usertemplate}/images/btn_arrow_02.gif" alt="" width="18" height="19" /></a></p>
+		</div>
+		<div class="contextType">
+			<form action="" method="post" name="form2">
+				<fieldset>
+					<p>
+						<label for="textbox">Textbox</label>
+						<input type="text" value="" name="textbox" id="textbox" />
+					</p>
+					<p>
+						<label for="textarea">Textarea</label>
+						<textarea name="textarea" id="textarea" rows="5" cols="5"></textarea>
+					</p>
+					<p>
+						<label for="combobox">Combobox</label>
+						<select name="combobox" id="combobox" >
+							<option selected="selected" value="">------------</option>
+						</select>
+					</p>
+					<p class="radioType">
+						<input type="radio" name="radio" id="radio" />
+						<label for="radio">radio 1</label>
+						<input type="radio" name="radio" id="radio2" />
+						<label for="radio2">radio 2</label>
+					</p>
+					<p class="radioType">
+						<input type="checkbox" name="checkbox" id="checkbox" />
+						<label for="checkbox">checkbox 1</label>
+					</p>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+	<div id="content">
+		<div class="highlight">
+			<h2><a href="">{$amessages.control_panel}</a> &raquo; {$amessages.edit_static_page}</h2>
+			<ul id="tablist">
+				<li class="current"><a href="{$script}?op=manage&amp;part=staticPage&amp;act=add&amp;pId={$pId}" title="{$amessages.add_category}">{$amessages.edit_static_page}</a> </li>
+				<li><a href="{$script}?op=manage&part=staticPage&act=list" title="{$amessages.list_category}">{$amessages.list_static_page}</a> </li>
+				<li><a href="{$script}?op=manage&part=staticPage&act=list&plus=cleanTrash" title="{$amessages.clean_trash}">{$amessages.clean_trash}</a> </li>
+			</ul>
+			{if $infoText}
+			<div class="{$infoClass}">
+				<h4>Result:</h4>
+				<p>{$infoText}</p>
+			</div>
+			{/if}
+			<div class="formType style02 styava">
+				<form action="{$script}" method="post" id="{$formId}" name="{$formId}" enctype="multipart/form-data">
+					<fieldset>
+						<!--<input type="text" name="addLang1" value="{$addLang}" style="width:100px" />addLang<br />
+						<input type="text" name="addStatus1" value="{$addStatus}" style="width:100px" />addStatus<br />
+						<input type="text" name="title1" value="{$title}" style="width:100px" />title<br />
+						<input type="text" name="cId1" value="{$cId}" style="width:100px" />cId<br />
+						<input type="text" name="keyword1" value="{$keyword}" style="width:100px" />keyword<br />
+						<input type="text" name="sapo1" value="{$sapo}" style="width:100px" />sapo<br />
+						<input type="text" name="details1" value="{$details}" style="width:100px" />details<br />-->
+						<!--<p>
+						<label for="status">{$amessages.language} *</label>
+						<span>{$amessages.language_help}</span>
+						<select name="lang">
+						{$listLang}
+						</select>
+						</p>-->
+						<p>
+							<label for="status">{$amessages.status} *</label>
+							<span>{$amessages.status_help}</span>
+							<select name="status">
+								{$listStatus}
+							</select>
+						</p>
+						<p class ="hidden">
+							<label for="status">{$amessages.category} *</label>
+							<select name="pId">
+							<option value="0">All</option>
+								{$listPid}
+							</select>
+						</p>
+						<p>
+							<label for="slug">{$amessages.vn_name}*</label>
+							<input type="text" name="vn_name" value="{$listObject->getName('vn')}" />
+						</p>
+						<p>
+							<label for="slug">{$amessages.en_name}*</label>
+							<input type="text" name="en_name" value="{$listObject->getName('en')}" />
+						</p>
+						<!--<p>
+							<label for="sapo">Tiêu đề tiếng Anh *</label>
+							<span>Nhập vào tiêu đề tiếng Anh</span>
+							<input type="text" name="position" id="position" value="{$listObject->getPosition()}" />
+						</p>-->
+						<!--<p>
+							<label for="sapo">{$amessages.vn_sapo} *</label>
+							<textarea name="vn_sapo" id="vn_sapo" class="mceAdvanced" rows="10" cols="5">{$listObject->getSapo('vn')}</textarea>
+						</p>-->
+						<!--<p>
+							<label for="sapo">{$amessages.en_sapo} *</label>
+							<textarea name="en_sapo" id="en_sapo" class="mceAdvanced" rows="10" cols="5">{$listObject->getSapo('en')}</textarea>
+						</p>-->
+						<p>
+							<label for="details">{$amessages.vn_details} *</label>
+							<textarea name="vn_details" id="vn_details" class="mceAdvanced" rows="20" cols="5">{$listObject->getDetails('vn')}</textarea>
+						</p>
+						<p>
+							<label for="details">{$amessages.en_details} *</label>
+							<textarea name="en_details" id="en_details" class="mceAdvanced" rows="20" cols="5">{$listObject->getDetails('en')}</textarea>
+						</p>
+						<p>
+							<label for="details">{$amessages.position} </label>
+							<span>{$amessages.position_help}</span>
+							<input type="text" name="position" id="position" value="{$listObject->getPosition()}" />
+						</p>
+						<!--<p class="radioType">
+							<input type="checkbox" name="frontend" id="frontend" {if ($listObject->getHome()) == 1 }checked="checked"{/if} value="1" />
+							<label for="frontpage">Đưa vào mục xuất khẩu </label>
+						</p>
+						-->
+						<p class="btnType">
+							<input type="hidden" name="op" value="{$op}" />
+							<input type="hidden" name="part" value="{$part}" />
+							<input type="hidden" name="act" value="{$act}" />
+							<input type="hidden" name="oId" value="{$listObject->getId()}" />
+							<input type="hidden" name="page" value="{$page}" />
+							<input class="bo w90" type="reset" value="{$amessages.reset}" title="{$amessages.reset}" name="btnReset" />
+							<input class="luu w90" type="submit" value="{$amessages.save}" title="{$amessages.save}" name="btnSubmit" />
+						</p>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{include file="$usertemplate/footer.temp.html" title=footer}

@@ -1,0 +1,58 @@
+
+
+{include file="$usertemplate/header.tpl.html"}  
+
+
+
+
+   <div class="maincontent">
+    <div class="container-xxy">
+        <div class="row">
+
+            <div class="col-md-12 padi05">
+                <div class="titlistpro">
+                    <h5><span>{$pageName}</span></h5>
+                </div>
+            </div>
+            <div class="col-md-12 padi05">
+					
+			
+                        <div class="detailtext">
+							{$catslugItem->getDetails($lang)}
+                        </div>
+						
+				<br>
+				<b class="titlelq">Tin tức Liên Quan</b>
+				
+				{if $entriesItems}
+					{foreach from=$entriesItems item=entriesItem key=i}
+					
+						   <div class="col-md-6 col-sm-6 col-xs-12 padi015">
+								<div class="tinhome">
+									<a title ="{$entriesItem->getName($lang)}" class="pic" href="{$entriesItem->getUrl($lang)}">
+										<img src="{$ROOTPATH}/gallery/avatar_upload/entry/avatar/{$entriesItem->getAvatar()}" alt="{$entriesItem->getName($lang)}" />
+									</a>
+									<p class="tit">
+										<a title ="{$entriesItem->getName($lang)}" href="{$entriesItem->getUrl($lang)}">{$entriesItem->getName($lang)}</a>
+										<em>2015-09-09 05:58:13</em>
+										{$entriesItem->getName($lang)}
+									</p>
+								</div>
+							</div>
+				
+					{/foreach}
+					{/if}
+
+			
+          </div>
+          
+
+ 
+
+{include file="$usertemplate/footer.tpl.html"}
+
+                      
+
+
+                      
+           

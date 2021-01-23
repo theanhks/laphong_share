@@ -1,0 +1,153 @@
+{include file="$usertemplate/header.temp.html"}
+{include file="$usertemplate/left.temp.html" title=left}
+{assign var=formId value='addItem'}
+{assign var=rightPanel value='hidden'}
+<div id="contextual" class="{$rightPanel}">
+<div class="levBtn">
+<p><a href="#"><img src="templates/{$usertemplate}/images/btn_arrow_02.gif" alt="" width="18" height="19" /></a></p>
+</div>
+<div class="contextType">
+
+</div>
+</div>
+<div id="content">
+<div class="highlight">
+<h2><a href="">{$amessages.control_panel}</a>{$amessages.edit_ads}</h2>
+<ul id="tablist">
+<li class="current"><a href="{$script}?op=manage&amp;part=ads_home&amp;act=edit&amp;pId={$pId}" title="{$amessages.edit_ads}">{$amessages.edit_ads}</a> </li>
+<li><a href="{$script}?op=manage&part=ads_home&act=list" title="{$amessages.list_ads}">{$amessages.list_ads}</a> </li>
+<li><a href="{$script}?op=manage&part=ads_home&act=list&plus=cleanTrash" title="{$amessages.clean_trash}">{$amessages.clean_trash}</a> </li>
+</ul>
+{if $infoText}
+<div class="{$infoClass}">
+<h4>Result:</h4>
+<p>{$infoText}</p>
+</div>
+{/if}
+<div class="formType">
+<form action="{$script}" method="post" id="{$formId}" name="{$formId}" enctype="multipart/form-data">
+<fieldset>
+<p class="metro_home hidden">
+{literal}
+<script type="text/javascript">
+jQuery(document).ready(function(){
+	jQuery('.button').click(function(){
+		id=(jQuery(this).val());
+		jQuery(".metro_home .button").removeClass("active");
+		jQuery(this).addClass("active"); 
+		//alert(id);
+		jQuery("select[name='gId'] option").removeAttr('selected');
+		jQuery("select[name='gId'] option[value='"+id+"']").attr("selected", "selected");
+		});
+	});
+</script>
+<style type="text/css">
+.metro_home{ position:relative}
+.metro_home .button{ display:block; width:100px; height:100px; background:#CCC; border:1px solid #000; position:absolute; font-size:20px; font-weight:bold; cursor:pointer}
+.metro_home .button:hover,.metro_home .button.active{ background:#999; border:1px solid #000;}
+.metro_home .button[value='1']{ height: 215px;
+    left: 2px;
+    top: 2px;
+    width: 215px;}
+.metro_home .button[value='2']{ height: 105px;
+    left: 221px;
+    top: 2px;
+    width: 217px;}
+.metro_home .button[value='3']{    height: 106px;
+    left: 442px;
+    top: 2px;
+    width: 106px;}
+.metro_home .button[value='4']{  height: 106px;
+    left: 552px;
+    top: 2px;
+    width: 175px;}
+.metro_home .button[value='5']{ height: 106px;
+    left: 221px;
+    top: 111px;
+    width: 106px;}
+.metro_home .button[value='6']{ height: 106px;
+    left: 332px;
+    top: 111px;
+    width: 106px;}
+.metro_home .button[value='7']{ height: 106px;
+    left: 442px;
+    top: 111px;
+    width: 176px;}
+.metro_home .button[value='8']{ height: 106px;
+    left: 622px;
+    top: 111px;
+    width: 105px;}
+</style>
+{/literal}
+<input type="button" class="button" value="1" /><input type="button" class="button" value="2" /><input type="button" class="button" value="3" /><input type="button" class="button" value="4" /><input type="button" class="button" value="5" /><input type="button" class="button" value="6" /><input type="button" class="button" value="7" /><input type="button" class="button" value="8" /><img src="{$ROOTPATH}/templates/phinam/images/metro_home.png" /></p>
+<p class="hidden">
+<label for="status">{$amessages.status} *</label>
+<span>{$amessages.status_help}</span>
+<select name="status">
+{$listStatus}
+</select>
+</p>
+
+<p class="hidden">
+<label for="gId">{$amessages.group_ads} *</label>
+<span>{$amessages.parent_help}</span>
+<select name="gId">
+<option value="-1">All</option>
+{$listGroupads}
+</select>
+
+</p>
+<p>
+<label for="vn_name">Upload Banner *</label>
+<span>
+{$amessages.uploadbaner_help}</span>
+<table width="100%" cellpadding="0" border="0" >
+<tr>
+
+<td><img src="{$ROOTPATH}/gallery/avatar_upload/ads/avatar/{$listObject->getLogoUrl()}" title="{$listObject->getLogoUrl()}" height="100" alt="{$listObject->getLogoUrl()}" /></td>
+
+</tr></table>
+<input type="file" name="logo_url" value="{$logo_url}" />
+<input type="hidden" name="logo" value="{$listObject->getLogoUrl()}" />
+
+</p>
+<p>
+<label for="url">Link</label>
+
+<!--<textarea name="url" rows="5">{$listObject->getUrl()}</textarea>-->
+<input type="text" name="url" value="{$listObject->getUrl()}" />
+</p>
+<p>
+<label for="vn_name">{$amessages.vn_name} </label>
+
+<input type="text" name="position" value="{$listObject->getPosition()}" />
+</p>
+<!--
+<p class="radioType">
+<input type="radio" name="radio3" id="radio3" />
+<label for="radio3">radio 3</label>
+<input type="radio" name="radio3" id="radio4" />
+<label for="radio4">radio 4</label>
+</p>
+<p class="radioType">
+<input type="checkbox" name="checkbox2" id="checkbox2" />
+<label for="checkbox2">checkbox 2</label>
+</p>
+-->
+<p class="btnType">
+<input type="hidden" name="op" value="{$op}" />
+<input type="hidden" name="part" value="{$part}" />
+<input type="hidden" name="act" value="{$act}" />
+<input type="hidden" name="oId" value="{$listObject->getId()}" />
+<span><input type="reset" value="{$amessages.reset}" title="{$amessages.reset}" name="btnReset" /></span>
+<span><input type="submit" value="{$amessages.save}" title="{$amessages.save}" name="btnSubmit" /></span>
+</p>
+</fieldset>
+</form>
+</div>
+</div>
+</div>
+</div>
+<div class="push"></div>
+</div>
+{include file="$usertemplate/footer.temp.html" title=footer}

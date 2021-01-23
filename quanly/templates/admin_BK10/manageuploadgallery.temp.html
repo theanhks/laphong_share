@@ -1,0 +1,136 @@
+{include file="$usertemplate/header.temp.html"}
+{include file="$usertemplate/left.temp.html" title=left}
+{assign var=formId value='addItem'}
+{assign var=rightPanel value='hidden'}
+<div id="contextual" class="{$rightPanel}">
+<div class="levBtn">
+<p><a href="#"><img src="templates/{$usertemplate}/images/btn_arrow_02.gif" alt="" width="18" height="19" /></a></p>
+</div>
+<div class="contextType">
+<form action="" method="post" name="form2">
+<fieldset>
+<p>
+<label for="textbox">Textbox</label>
+<input type="text" value="" name="textbox" id="textbox" />
+</p>
+<p>
+<label for="textarea">Textarea</label>
+<textarea name="textarea" id="textarea" rows="5" cols="5"></textarea>
+</p>
+<p>
+<label for="combobox">Combobox</label>
+<select name="combobox" id="combobox" >
+<option selected="selected" value="">------------</option>
+</select>
+</p>
+<p class="radioType">
+<input type="radio" name="radio" id="radio" />
+<label for="radio">radio 1</label>
+<input type="radio" name="radio" id="radio2" />
+<label for="radio2">radio 2</label>
+</p>
+<p class="radioType">
+<input type="checkbox" name="checkbox" id="checkbox" />
+<label for="checkbox">checkbox 1</label>
+</p>
+</fieldset>
+</form>
+</div>
+</div>
+<div id="content">
+<div class="highlight">
+<h2><a href="">{$amessages.control_panel}</a> &raquo; Thêm tập tin</h2>
+<ul id="tablist">
+<li class="current"><a href="{$script}?op=manage&amp;part=gallery&amp;act=upload" title="Thêm file download">Thêm tập tin</a> </li>
+<li><a href="{$script}?op=manage&part=resource&act=list" title="Danh sách file download">Danh sách tập tin</a> </li>
+<li><a href="{$script}?op=manage&part=resource&act=list&plus=cleanTrash" title="{$amessages.clean_trash}">{$amessages.clean_trash}</a> </li>
+</ul>
+{if $infoText}
+<div class="{$infoClass}">
+<h4>Result:</h4>
+<p>{$infoText}</p>
+</div>
+{/if}
+<div class="formType">
+<form action="{$script}" method="post" id="{$formId}" name="{$formId}" enctype="multipart/form-data">
+<fieldset>
+<p>
+<label for="status">{$amessages.status} *</label>
+<span>{$amessages.status_help}</span>
+<select name="status">
+{$listStatus}
+</select>
+</p>
+
+<p>
+<label for="status">{$amessages.album} *</label>
+<span>{$amessages.album_help}</span>
+<select name="aId">
+<!--<option value="0">/</option>-->
+{$listAlbum}
+</select>
+</p>
+
+<p>
+<label for="status">Upload File *</label>
+<input type="file" value="{$files}" name="files" />
+</p>
+<p>
+<label for="vn_name">{$amessages.vn_name} *</label>
+<input type="text" value="{$vn_name}" name="vn_name"  />
+</p>
+<!--<p>
+<label for="en_name">{$amessages.en_name} *</label>
+<input type="text" value="{$en_name}" name="en_name"  />
+</p>-->
+<!--<p>
+<label for="status">Mô tả Tiếng Việt *</label>
+<input type="text" value="{$vn_description}" name="vn_description"  />
+</p>-->
+
+<!--<p>
+<label for="status">Mô tả Tiếng Anh *</label>
+<input type="text" value="{$vn_description}" name="vn_description"  />
+</p>-->
+<p>
+<label for="vn_name">{$amessages.position} </label>
+<span>{$amessages.position_help}</span>
+<input type="text" name="position" value="{$position}" />
+</p>
+<!--<p>
+<label for="status">{$amessages.static_slug}</label>
+<input type="text" value="{$static_slug}" name="static_slug"  />
+</p>
+--><!--<p class="radioType">
+<input type="checkbox" name="home" id="home" {if $home == 1 }checked="checked"{/if} value="1" />
+<label for="frontpage">Chọn làm công trình nổi bật </label>
+</p>-->
+
+<!--
+<p class="radioType">
+<input type="radio" name="radio3" id="radio3" />
+<label for="radio3">radio 3</label>
+<input type="radio" name="radio3" id="radio4" />
+<label for="radio4">radio 4</label>
+</p>
+<p class="radioType">
+<input type="checkbox" name="checkbox2" id="checkbox2" />
+<label for="checkbox2">checkbox 2</label>
+</p>
+-->
+<p class="btnType">
+<input type="hidden" name="op" value="{$op}" />
+<input type="hidden" name="part" value="{$part}" />
+<input type="hidden" name="act" value="{$act}" />
+<span><input type="reset" value="{$amessages.reset}" title="{$amessages.reset}" name="btnReset" /></span>
+<span><input type="submit" value="{$amessages.save}" title="{$amessages.save}" name="btnSubmit" /></span>
+</p>
+</fieldset>
+</form>
+</div>
+</div>
+</div>
+</div>
+<div class="push"></div>
+</div>
+{include file="$usertemplate/footer.temp.html" title=footer}

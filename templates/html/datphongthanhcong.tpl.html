@@ -1,0 +1,75 @@
+{include file="$usertemplate/header.tpl.html"}  
+
+ 
+ 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="{$ROOTPATH}/templates/{$usertemplate}/js/jquery.popup.js"></script>  
+
+{literal}
+<script type="text/javascript" >
+
+
+  $(window).load(function() {
+    $('#myModal').linhnguyen($('#myModal').data());
+  });
+  
+</script>
+<style type="text/css">
+  .linhnguyen-modal-bg { position: fixed; height: 100%; width: 100%; background: #000; background: rgba(0,0,0,.8); z-index: 10000; display: none; top: 0; left: 0; } 
+  .linhnguyen-modal { visibility: hidden; text-align:center; top: 100px;  left: 50%; margin-left: -200px; width: 400px; background: #eee url(modal-gloss.png) no-repeat -200px -80px;
+    position: absolute; z-index: 10001; padding: 30px 40px 34px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;
+    -moz-box-shadow: 0 0 10px rgba(0,0,0,.4);
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,.4);
+    -box-shadow: 0 0 10px rgba(0,0,0,.4);
+    }
+  .linhnguyen-modal.small     { width: 200px; margin-left: -140px;}
+ 
+  .linhnguyen-modal.medium    { width: 400px; margin-left: -240px;}
+  .linhnguyen-modal.large     { width: 600px; margin-left: -340px;}
+  .linhnguyen-modal.xlarge    { width: 800px; margin-left: -440px;}
+  .linhnguyen-modal .close-linhnguyen-modal { font-size: 22px; line-height: .5; position: absolute; top: 8px; right: 11px; color: #aaa; text-shadow: 0 -1px 1px rbga(0,0,0,.6); font-weight: bold; cursor: pointer; } 
+  .big-link { display:block; margin-top: 100px; text-align: center; font-size: 70px; color: #06f; }
+  a.ok_finish {background: green;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;}
+</style> 
+
+	{/literal}
+	
+	
+{if $lang == 'vn'}
+	
+	<div id="myModal" class="linhnguyen-modal"><p style="font-weight: bold; color: green; font-weight: bold; font-size: 18px; line-height: 22px; display: block; padding-bottom: 10px;">Chúc mừng bạn đặt phòng thành công, chúng tôi sẽ liên hệ với bạn trong ít phút tới</p>
+	<a class="ok_finish" href = "{$ROOTPATH}">OK</a>
+	<a class="close-linhnguyen-modal">X</a></div>
+		
+{else}
+	<div id="myModal" class="linhnguyen-modal"><p style="font-weight: bold; color: green; font-weight: bold; font-size: 18px; line-height: 22px; display: block; padding-bottom: 10px;">Congratulations on your successful booking, we will contact you in a few minutes</p>
+	<a class="ok_finish" href = "{$ROOTPATH}">OK</a>
+	<a class="close-linhnguyen-modal">X</a></div>
+{/if}
+		
+
+<section class="sub-bg">
+  <div class="container">
+  {if $lang == 'vn'}
+		<div class="sub-head"> <a href="#"><i class="fa fa-home"></i> Trang chủ </a>
+
+				{foreach from=$pathParentItems key=i item=pathParentItem}
+							<h1><a title="{$pathParentItem->getName($lang)|strip_tags}" href="{$pathParentItem->getUrl($lang)}">{$pathParentItem->getName($lang)|strip_tags}</a></h1>
+						{/foreach} 
+		  
+		</div>
+	{else}
+		<div class="sub-head"> <a href="#"><i class="fa fa-home"></i> Home </a>
+			{foreach from=$pathParentItems key=i item=pathParentItem}
+							<h1><a title="{$pathParentItem->getName($lang)|strip_tags}" href="{$pathParentItem->getUrl($lang)}">{$pathParentItem->getName($lang)|strip_tags}</a></h1>
+						{/foreach} 
+    </div>
+	{/if}
+  </div>
+</section>
+
+
+{include file="$usertemplate/footer.tpl.html"}

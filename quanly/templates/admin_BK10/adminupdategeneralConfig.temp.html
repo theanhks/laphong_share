@@ -1,0 +1,287 @@
+{include file="$usertemplate/header.temp.html"}
+{include file="$usertemplate/left.temp.html" title=left}
+{assign var=formId value='updateConfig'}
+{assign var=rightPanel value='hidden'}
+<div id="contextual" class="{$rightPanel}">
+<div class="levBtn">
+<p><a href="#"><img src="templates/{$usertemplate}/images/btn_arrow_02.gif" alt="" width="18" height="19" /></a></p>
+</div>
+<div class="contextType">
+<form action="" method="post" name="form2">
+<fieldset>
+<p>
+<label for="textbox">Textbox</label>
+<input type="text" value="" name="textbox" id="textbox" />
+</p>
+<p>
+<label for="textarea">Textarea</label>
+<textarea name="textarea" id="textarea" rows="5" cols="5"></textarea>
+</p>
+<p>
+<label for="combobox">Combobox</label>
+<select name="combobox" id="combobox" >
+<option selected="selected" value="">------------</option>
+</select>
+</p>
+<p class="radioType">
+<input type="radio" name="radio" id="radio" />
+<label for="radio">radio 1</label>
+<input type="radio" name="radio" id="radio2" />
+<label for="radio2">radio 2</label>
+</p>
+<p class="radioType">
+<input type="checkbox" name="checkbox" id="checkbox" />
+<label for="checkbox">checkbox 1</label>
+</p>
+</fieldset>
+</form>
+</div>
+</div>
+<div id="content">
+<div class="highlight">
+<h2><a href="">{$amessages.control_panel}</a> &raquo; {$amessages.update_config}</h2>
+<ul id="tablist">
+<li class="current"><a href="{$script}?op=admin&amp;part=generalConfig&amp;act=update" title="{$amessages.update_config}">{$amessages.update_config}</a> </li>
+</ul>
+{if $infoText}
+<div class="{$infoClass}">
+<h4>Result:</h4>
+<p>{$infoText}</p>
+</div>
+{/if}
+<div class="formType">
+<form action="{$script}" method="post" id="{$formId}" name="{$formId}" enctype="multipart/form-data">
+<fieldset>
+<p>
+<label for="items_per_row">Số sản phẩm hiển thị</label>
+<span>Số sản phẩm hiển thị</span>
+<input type="text" name="products_per_page" value="{$products_per_page}" />
+</p>
+<p>
+<label for="related_product_per_page">Số sản phẩm khác hiển thị</label>
+<input type="text" name="related_product_per_page" value="{$related_product_per_page}" />
+</p>
+<p class ="hidden">
+<label for="items_per_row">Số sản phẩm chính hiển thị</label>
+<input type="text" name="products_spmoi_per_page" value="{$products_spmoi_per_page}" />
+</p>
+<p style="display:none">
+<label for="products_spkhuyenmai_per_page">Số sản phẩm khuyến mãi hiển thị</label>
+<input type="text" name="products_spkhuyenmai_per_page" value="{$products_spkhuyenmai_per_page}" />
+</p>
+<!--<p>
+<label for="items_per_row">Số sản phẩm bán chạy hiển thị</label>
+<span>Số sản phẩm hiện thị trên 1 trang</span>
+<input type="text" name="products_spbanchay_per_page" value="{$products_spbanchay_per_page}" />
+</p>-->
+<p class ="hidden">
+<label for="items_per_row">Số sản phẩm bán chạy hiển thị</label>
+<input type="text" name="products_spgiasocmoingay_per_page" value="{$products_spgiasocmoingay_per_page}" />
+</p>
+<p class ="hidden">
+<label for="items_per_row">Số tin tức trên 1 trang</label>
+<span>Số tin tức hiện thị</span>
+<input type="text" name="item_news_per_row" value="{$item_news_per_row}" />
+</p>
+<p class ="hidden">
+<label for="items_per_row">Số tin liên quan</label>
+<span>Số tin liên quan</span>
+<input type="text" name="related_news_per_page" value="{$related_news_per_page}" />
+</p>
+<p style="display:none">
+<label for="item_news_index">Số tin tức hiện ở tin mới </label>
+<span>Số tin tức hiện ở tin nóng</span>
+<input type="text" name="item_news_index" value="{$item_news_index}" />
+</p>
+<!--<p>
+<label for="mailcontent">Số tin tức hiện ở tin mới</label>
+<span>Số tin tức hiện ở tin mới.</span>
+<input type="text" name="image_row_items" value="{$image_row_items}" />
+</p>-->
+<p>
+<label for="mailcontent">Tên công ty.</label>
+<span>Tên công ty.</span>
+<input type="text" name="company_vn" value="{$company_vn}" />
+</p>
+<p >
+
+<p>
+<label for="mailcontent">Tên công ty tiếng anh.</label>
+<span>Tên công ty tiếng anh.</span>
+<input type="text" name="company_en" value="{$company_en}" />
+</p>
+<p >
+
+<label for="mailcontent">Thông tin tài khoản.</label>
+<span>Thông tin tài khoản</span>
+<input type="text" name="company_en" value="{$company_en}" />
+</p>
+
+<!--<p>
+<label for="item_news_index">Số tin  tức ở cột left </label>
+<span>Số tin  tức ở cột left</span>
+<input type="text" name="item_news_index" value="{$item_news_index}" />
+</p>
+
+-->
+
+<p>
+<label for="items_per_row">{$amessages.admin_mail}</label>
+<span>{$amessages.admin_mail_help}</span>
+
+<input type="text" name="admin_mail" value="{$admin_mail}" />
+</p>
+<p>
+<label for="mailcontent">Số điện  thoại</label>
+<span>Số điện thoại</span>
+<input type="text" name="tel" value="{$tel}" />
+</p>
+
+<p>
+<label for="mailcontent">Số điện  thoại Hotline1</label>
+<span>Số điện thoại Hotline1</span>
+<input type="text" name="hotline1" value="{$hotline1}" />
+</p>
+<p class ="hidden">
+<label for="mailcontent">Số điện  thoại Hotline2</label>
+<span>Số điện thoại Hotline2</span>
+<input type="text" name="hotline2" value="{$hotline2}" />
+</p>
+<!--<p>
+<label for="mailcontent">Số điện  thoại Hotline3</label>
+<span>Số điện thoại Hotline3</span>
+<input type="text" name="hotline3" value="{$hotline3}" />
+</p>-->
+<p class="hidden">
+<label for="mailcontent">Số fax</label>
+<span>Số fax</span>
+<input type="text" name="fax" value="{$fax}" />
+</p>
+<p style="display:none">
+<label for="mailcontent">Mã số thuế</label>
+<span>Mã số thuế</span>
+<input type="text" name="tax" value="{$tax}" />
+</p>
+<p class="hidden">
+<label for="mailcontent">Địa chỉ tiếng việt</label>
+<span>Địa chỉ tiếng việt</span>
+<input type="text" name="address_vn" value="{$address_vn}" />
+</p>
+<p class ="hidden">
+<label for="mailcontent">Địa chỉ tiếng Anh</label>
+<span>Địa chỉ tiếng Anh</span>
+<input type="text" name="address_en" value="{$address_en}" />
+</p>
+<p>
+<label for="mailcontent">Facebook</label>
+<span>Facebook</span>
+<input type="text" name="facebook" value="{$facebook}" />
+</p>
+<p style="display:none">
+<label for="mailcontent">Youtube</label>
+<span>Youtube</span>
+<input type="text" name="youtube" value="{$youtube}" />
+</p>
+<p style="display:none">
+<label for="mailcontent">Google</label>
+<span>Google</span>
+<input type="text" name="google" value="{$google}" />
+</p>
+<p>
+<label for="mailcontent">Zalo</label>
+<span>Zalo</span>
+<input type="text" name="zingme" value="{$zingme}" />
+</p>
+<p style="display:none">
+<label for="mailcontent">Twitter</label>
+<span>Twitter</span>
+<input type="text" name="twitter" value="{$twitter}" />
+</p>
+<!--
+<p>
+  <label for="mailcontent">Người đại diện (Vietnamese)</label>
+<span>Người đại diện (Vietnamese)</span>
+<input type="text" name="nguoidaidien_vn" value="{$nguoidaidien_vn}" />
+</p>-->
+<!--<p>
+<label for="mailcontent">Người đại diện (English)</label>
+<span>Người đại diện (English)</span>
+<input type="text" name="nguoidaidien_en" value="{$nguoidaidien_en}" />
+</p>-->
+<!--
+<p>
+<label for="mailcontent">Chức vụ người đại diện (Vietnamese)</label>
+<span>chức vụ người đại diện (Vietnamese)</span>
+<input type="text" name="chucvu_vn" value="{$chucvu_vn}" />
+</p>-->
+<!--<p>
+<label for="mailcontent">chức vụ người đại diện (English)</label>
+<span>chức vụ người đại diện (English)</span>
+<input type="text" name="chucvu_en" value="{$chucvu_en}" />
+</p>-->
+<p>
+<label for="items_per_row">Website</label>
+<span>Nhập vào địa chỉ website</span>
+
+<input type="text" name="website" value="{$website}" />
+</p>
+<!--
+<p>
+<label for="items_per_row">Dòng chữ chạy</label>
+
+<input type="text" name="marquee" value="{$marquee}" />
+</p>-->
+
+<p>
+<label for="mailcontent">Từ khóa để tìm kiếm website.</label>
+<input type="text" name="keywords" value="{$keywords}" />
+</p>
+<p>
+<label for="mailcontent">Nội dung mô tả website.</label>
+<input type="text" name="description" value="{$description}" />
+</p>
+
+<!--<p>
+<label for="mailcontent">Popup Trang chủ</label>
+<span>Nếu bạn chọn chế độ hiện thị thì Popup sẽ được hiện thị lên trang chủ. Ngược lại là tắt popup</span>
+ <input name="popup_home" value="1" type="radio" style="width:50px" {if $popup_home eq 1} checked="checked" {/if}>
+Hiển thị 
+<input name="popup_home" value="0" type="radio" style="width:50px"  {if $popup_home eq 0} checked="checked" {/if}>
+Ẩn popup
+
+<p>
+<label for="mailcontent">Chế độ Hiện thị giá tổng quát</label>
+<span>Nếu bạn chọn chế độ hiện thị thì tất cả các sản phẩm điều được hiện thị giá</span>
+<input name="sprice_active" value="1" type="radio" style="width:50px" {if $sprice_active eq 1} checked="checked" {/if}>
+Hiển thị 
+<input name="sprice_active" value="0" type="radio" style="width:50px"  {if $sprice_active eq 0} checked="checked" {/if}>
+Ẩn giá
+
+</p>
+<p>
+<label for="mailcontent">Cấu hình hiện thị banner</label>
+<span>Bạn chọn chế độ hiện thị banner một trong các lựa chọn sau</span>
+<input name="banner_active" value="1" type="radio" style="width:50px" {if $banner_active eq 1} checked="checked" {/if}>
+Flash
+<input name="banner_active" value="2" type="radio" style="width:50px"  {if $banner_active eq 2} checked="checked" {/if}>
+Images
+<input name="banner_active" value="0" type="radio" style="width:50px"  {if $banner_active eq 0} checked="checked" {/if}>
+Text
+
+</p>-->
+<p class="btnType">
+<input type="hidden" name="op" value="{$op}" />
+<input type="hidden" name="part" value="{$part}" />
+<input type="hidden" name="act" value="{$act}" />
+<span><input type="reset" value="{$amessages.reset}" title="{$amessages.reset}" name="btnReset" /></span>
+<span><input type="submit" value="{$amessages.send}" title="{$amessages.send}" name="btnSubmit" /></span>
+</p>
+</fieldset>
+</form>
+</div>
+</div>
+</div>
+</div>
+<div class="push"></div>
+</div>
+{include file="$usertemplate/footer.temp.html" title=footer}

@@ -1,0 +1,371 @@
+<div class="container">
+		<div class="row">
+			<div class="col-md-12" style="margin-top:30px;">
+				<div class="col-md-3 col-sm-6 btf-m">
+					<div class="btf" style="back">
+						<h4>Connect with us</h4>
+						<ul>
+							<li><a href="#">Subscribe to our monthly newsletter!</a></li>
+							<li>
+								<form style=" width:240px; float:left;" onsubmit="return CheckFormMail1();" target="_parent" name="FormName1" method="post" action="" class="formsearch">
+									<div class="form-group">
+										<input name="email" onblur="if(this.value=='') this.value='Email' " onclick="if(this.value=='Email') this.value='' "  type="email" class="form-control" id="exampleInputEmail1" placeholder="Email Address" style="width:70%; float:left; margin-right:1px;" />
+										<button type="submit" class="btn btn-default sendif" style="">Go</button>
+										 <input type="hidden" value="registeremail" name="op">
+									</div>
+								</form>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 btf-m">
+					<div class="btf">
+						<h4>It services</h4>
+						<ul>
+							{if $sub_services}
+								{foreach from=$sub_services item=Itemcat key=i}
+									<li><a href="{$Itemcat->getUrl($lang)}"><span><i class="fa fa-angle-double-right"></i>{$Itemcat->getName($lang)}</span></a></li>
+								{/foreach}
+							{/if}
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 btf-m">
+					<div class="btf">
+						<h4>Customer services</h4>
+						<ul>
+							{if $sub_customer}
+								{foreach from=$sub_customer item=Itemcat key=i}
+									<li><a href="{$Itemcat->getUrl($lang)}"><span><i class="fa fa-angle-double-right"></i>{$Itemcat->getName($lang)}</span></a></li>
+								{/foreach}
+							{/if}
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 btf-m">
+					<div class="btf">
+						<h4>Information center</h4>
+						<ul>
+							{if $sub_information}
+								{foreach from=$sub_information item=Itemcat key=i}
+									<li><a href="{$Itemcat->getUrl($lang)}"><span><i class="fa fa-angle-double-right"></i>{$Itemcat->getName($lang)}</span></a></li>
+								{/foreach}
+							{/if}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container" style="margin-top:20px;x">
+   		<div class="row">
+			<div class="col-md-12" style="padding:0 50px;">
+				<ul id="flexiselDemo3">
+				{assign var=HomeAds value=$ads->getAdsFront(2)}
+					{if $HomeAds}
+						{foreach from=$HomeAds item=HomeAdsItem}
+							<li><img src="{$ROOTPATH}/gallery/avatar_upload/ads/storage/{$HomeAdsItem->getLogoUrl()}" alt="" /></li>
+						{/foreach}
+					{/if}
+				</ul>    
+			</div>
+		</div>
+	</div>
+
+	<div class="mainfooter-1top"></div>
+	<div class="mainfooter">
+		<div class="container">
+			<div class="row" style="padding:0 15px;">
+				<div class="col-md-3 col-sm-6 mfc-ce">
+					<div class="boxfooter">
+						<div class="tt-boxfooter"><h4>About Us</h4></div>
+						<div class="cc-boxfooter">
+							<a href="#">At ABC Computer, we know how to meet our customer’s needs, no matter how small or big your requirement are.</a>
+							<a href="#">One Call Solves All Problems</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-6 mfc-ce">
+					<div class="boxfooter">
+						<div class="tt-boxfooter"><h4>Contact</h4></div>
+						<div class="cc-boxfooter">
+							<a href="#">ABC Computer Distribution</a>
+							<a href="#">383-13988 Cambie Road, Richmond B.C V6V-2K4</a>
+							<a href="#">Tel: 604-730-9981 - Fax: 604-730-2660</a>
+							<a href="#">Monday to Friday:	10 AM to  6PM PST</a>
+							<a href="#">Weekend & Holidays: by appointment</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2 col-sm-6 mfc-ce">
+					<div class="boxfooter">
+						<div class="tt-boxfooter"><h4>Visit 12345</h4></div>
+						<div class="cc-boxfooter">
+							<a href="#">Follow us</a>
+							<ul>
+								<li><a href="#"><img src="{$ROOTPATH}/templates/{$usertemplate}/images/f-1.jpg" alt=""></a></li>
+								<li><a href="#"><img src="{$ROOTPATH}/templates/{$usertemplate}/images/f-2.jpg" alt=""></a></li>
+								<li><a href="#"><img src="{$ROOTPATH}/templates/{$usertemplate}/images/f-3.jpg" alt=""></a></li>
+								<li><a href="#"><img src="{$ROOTPATH}/templates/{$usertemplate}/images/f-4.jpg" alt=""></a></li>
+								<li><a href="#"><img src="{$ROOTPATH}/templates/{$usertemplate}/images/f-5.jpg" alt=""></a></li>
+								<li><a href="#"><img src="{$ROOTPATH}/templates/{$usertemplate}/images/f-6.jpg" alt=""></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 mfc-ce">
+					<div class="boxfooter">
+						<div class="tt-boxfooter"><h5>Please call: One stop shop Solutions</h5></div>
+						<div class="cc-boxfooter">
+							<a href="tel://{$siteConfigs->getProperty('tel')}"><p>{$siteConfigs->getProperty("tel")}</p></a>
+							<a  title="sales@abctechs.ca" href="mailto:sales@abctechs.ca">Sales Department:<span>sales@abctechs.ca</span></a>
+							<a title="support@abctechs.ca" href="mailto:support@abctechs.ca">Support Department:<span>support@abctechs.ca</span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="add">
+                	<p>Công ty TNHH Thương Mại Dịch Vụ Tin Học <b>Vũ Dương</b></p>
+                    <span>Địa chỉ: 190A Phan Văn Trị, Phường 12, Quận Bình Thạnh, Tp. Hồ Chí Minh</span>
+                    <span>Điện thoại: 0909 999 999 - (08) 1234 4321  -  Fax: (08) 1234 5678</span>
+                    <span>Mail: sales@vuduong.com</span>
+                    <span>Website: www.vuduong.com</span>
+                </div>
+			</div>
+			<div class="col-md-6">
+				<div class="follow">
+                	<ul>
+                    	<li><a href="#"><img src="images/icon-face.png" alt="" /></a></li>
+                        <li><a href="#"><img src="images/icon-twe.png" alt="" /></a></li>
+                        <li><a href="#"><img src="images/icon-google.png" alt="" /></a></li>
+                        <li><a href="#"><img src="images/icon-f4.png" alt="" /></a></li>
+                        <li><a href="#"><img src="images/icon-you.png" alt="" /></a></li>
+                    </ul>
+                </div>
+                <div class="ttfooter">
+                	<ul>
+                    	<li class="ttfooter-2"><p>Online: 20 - Lượt truy cập: 65.234</p></li>
+                    	<li class="ttfooter-1">
+                        	<a href="ava.vn">AVA.VN</a>
+                            <p>- Thiết kế web:</p>
+                            <a href="#">Vũ Dương</a>
+                            <p>Copyright © 2014</p>
+                        </li> 
+                    </ul>
+                </div>
+			</div>
+		</div>
+		</div>-->
+	</div>
+
+	<div class="container">
+		<div class="row" style="padding:20px 0 0 0;">
+			<div class="ngh-e">
+				<ul>
+					<li><a href="#"><img src="{$ROOTPATH}/templates/{$usertemplate}/images/1-1.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="{$ROOTPATH}/templates/{$usertemplate}/images/1-2.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="{$ROOTPATH}/templates/{$usertemplate}/images/1-3.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="{$ROOTPATH}/templates/{$usertemplate}/images/1-4.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="{$ROOTPATH}/templates/{$usertemplate}/images/1-5.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="{$ROOTPATH}/templates/{$usertemplate}/images/1-6.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="{$ROOTPATH}/templates/{$usertemplate}/images/1-7.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="{$ROOTPATH}/templates/{$usertemplate}/images/1-8.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="{$ROOTPATH}/templates/{$usertemplate}/images/1-9.jpg" alt="" /></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="container" style="padding:10px 0;">
+		<p style=" text-align:center; display:block; width:100%; margin-top:10px;">Copyright © 2014 by ABC Computer Distribution. All rights reserved</p>
+	</div>
+
+
+    <script type="text/javascript" src="{$ROOTPATH}/templates/{$usertemplate}/js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="{$ROOTPATH}/templates/{$usertemplate}/js/jquery.flexisel.js"></script>
+	<script src="{$ROOTPATH}/templates/{$usertemplate}/js/responsiveslides.min.js"></script>
+{literal}
+  	<script>
+    $(function () {
+      $("#slider4").responsiveSlides({
+        auto: true,
+        pager: false,
+        nav: true,
+        speed: 500,
+        namespace: "callbacks",
+        before: function () {
+          $('.events').append("<li>before event fired.</li>");
+        },
+        after: function () {
+          $('.events').append("<li>after event fired.</li>");
+        }
+      		});
+
+    	});
+  	</script>
+	{/literal}
+  	<script type='text/javascript' src='{$ROOTPATH}/templates/{$usertemplate}/js/menu_jquery.js'></script>
+	<script type="text/javascript" src="{$ROOTPATH}/templates/{$usertemplate}/js/bootstrap.min.js"></script>
+
+{literal}
+	<script type="text/javascript">
+
+$(window).load(function() {
+
+    $("#flexiselDemo3").flexisel({
+        visibleItems: 7,
+        animationSpeed: 1000,
+        autoPlay: true,
+        autoPlaySpeed: 3000,            
+        pauseOnHover: true,
+        enableResponsiveBreakpoints: true,
+        responsiveBreakpoints: { 
+            portrait: { 
+                changePoint:480,
+                visibleItems: 1
+            }, 
+            landscape: { 
+                changePoint:640,
+                visibleItems: 2
+            },
+            tablet: { 
+                changePoint:768,
+                visibleItems: 3
+            }
+        }
+    });
+});
+
+</script>
+
+	{/literal}
+	
+		<!--Slider Product Detail-->
+	<script defer src="{$ROOTPATH}/templates/{$usertemplate}/js/jquery.flexslider.js"></script>
+	{literal}
+	<script type="text/javascript">
+		$(function(){
+		  SyntaxHighlighter.all();
+		});
+		$(window).load(function(){
+		  $('.flexslider').flexslider({
+		    animation: "slide",
+		    controlNav: "thumbnails",
+		    start: function(slider){
+		      $('body').removeClass('loading');
+		    }
+		  });
+		});
+	</script>
+	{/literal}
+	<!--End-->
+
+<!--
+<script src="{$ROOTPATH}/templates/{$usertemplate}/js/inkcartridges.js" type="text/javascript"></script>
+{literal}
+<script type="text/javascript"> 
+	var fbl = {'campaign':{'id':290, 'type':3, 'size':2, 'position':5, 'tab':4, 'control':1}}; (function(){ 
+	    var f = document.createElement('script'); 
+	    f.type = 'text/javascript'; 
+	    f.async = true; 
+	    f.src = 'https://product.feedbacklite.com/v/1.0/feedbacklite.js'; 
+	    var s = document.getElementsByTagName('script')[0]; 
+	    s.parentNode.insertBefore(f, s); 
+	})(); 
+</script>
+{/literal}
+-->
+<div class="leftbutton">
+	<a href="{$ROOTPATH}/contact.html" data-toggle="modal"><img src="{$ROOTPATH}/templates/{$usertemplate}/images/feeback.png" alt="" /></a>
+	<a href="#" data-toggle="modal" data-target="#myModal2"><img src="{$ROOTPATH}/templates/{$usertemplate}/images/onchat.png" alt="" /></a>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Freeback</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Online Chat</h4>
+      </div>
+      <div class="modal-body">
+        {if $partsItems}
+										{foreach from=$partsItems item=partsItem}
+										{assign var=paid value=$partsItem->getId()}
+										{assign var=supportItems value=$support->getObjects(1,"status=1 AND paid=$paid",$orderASC)}
+
+												{if $supportItems}
+												<ul>
+												{foreach from=$supportItems item=supportItem}
+												{if $supportItem->getNickYahoo()}
+												
+													<li>
+														<a style="padding:7px 0; display:block;" href="ymsgr:SendIM?ymsgr:SendIM?{$supportItem->getNickYahoo()}">
+															<img alt="" style="margin-right:10px; margin-left:5px; border:none" src="http://mail.opi.yahoo.com/online?u=ymsgr:SendIM?{$supportItem->getNickYahoo()}&amp;m=g&amp;t=1">
+															<span style="color:#333; font-wight:bold">{$supportItem->getName('vn')}_{$supportItem->getTelephone()}</span>
+														</a>
+													</li>
+												
+												{/if}
+												{if $supportItem->getNickSkype()}
+													 <li>
+														<a style="padding:7px 0; display:block;" href="skype:{$supportItem->getNickSkype()}?chat" class="online">
+														<img border="0" alt="" src="http://mystatus.skype.com/bigclassic/{$supportItem->getNickSkype()}" alt="Nick Skype status" width="66" height="16" style="margin-left: 5px;">
+														<span style="color:#333; font-wight:bold">{$supportItem->getName('vn')}_{$supportItem->getTelephone()}</span>
+														</a>
+													</li>
+													
+												{/if}
+												{/foreach}
+												</ul>
+												{/if}                  
+					
+										{/foreach}
+
+									{/if}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+<!--<script type="text/javascript" src="{$ROOTPATH}/templates/{$usertemplate}/js/jquery.js"></script>-->
+<script type="text/javascript" src="{$ROOTPATH}/templates/{$usertemplate}/js/jquery.itoppage.js"></script>
+{literal}
+<script type="text/javascript">
+	$(document).ready(function() {
+		$().iTopPage();
+	});
+</script>
+{/literal}
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+{include file="$usertemplate/header.tpl.html"}
+{include file="$usertemplate/sub_head_menu.tpl.html"}
+<div class="mainbanner3 wow fadeInDown" data-wow-delay="0.1s">
+    {assign var=HomeAds value=$ads->getAdsFront(15)}
+    {if $HomeAds}
+    {foreach from=$HomeAds item=HomeAdsItem}
+    <a href="javascript:void(0)" title=""><img src="{$ROOTPATH}/gallery/avatar_upload/ads/storage/{$HomeAdsItem->getLogoUrl()}" alt="" /></a>
+    {/foreach}
+    {/if}
+    <div class="title-05">
+        <div class="container-full">
+            <div class="row">
+                <div class="col-md-12 wow fadeInUp" data-wow-delay="0.4s">
+                    <h2>{$pageName}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="index-news">
+    <div class="container-full">
+        <div class="row">
+            {foreach from=$uudaiSub item=uudaiItem}
+            <div class="box-news">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="tiles">
+                        <div class="tile tile4 wow fadeInLeft" data-wow-delay="0.2s" data-scale="1.4" data-image="{$ROOTPATH}/gallery/avatar_upload/entry/avatar/{$uudaiItem->getAvatar()}"></div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="tit-news wow fadeInDown" data-wow-delay="0.1s">
+                        <a href="#">
+                            <p><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;&nbsp;{$uudaiItem->getKeywords()}</p>
+                            <h5>{$uudaiItem->getName($lang)}</h5>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-7 col-xs-12">
+                    <div class="sub-news wow fadeInUp" data-wow-delay="0.1s">
+                        {$uudaiItem->getSapo($lang)}
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-5 col-xs-12">
+                    <div class="view-news wow fadeInRight" data-wow-delay="0.1s">
+                        <a href="{$uudaiItem->getUrl($lang)}"><span>{if $lang eq 'en'}Show more {else}Xem thêm{/if}</span></a>
+                    </div>
+                </div>
+            </div>
+            {/foreach}
+        </div>
+        {if $pages>1}
+        <div class="nav-page">
+            {$pager}
+        </div>
+        {/if}
+    </div>
+</div>
+
+{include file="$usertemplate/footer.tpl.html"}

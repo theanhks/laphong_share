@@ -1,0 +1,123 @@
+
+ {literal} 	
+<script type="text/javascript">
+	messages=new Array();
+	messages['nhapten']	= 'Nhập tên!';
+	messages['tel']	= 'Số điện thoại chưa hợp lệ!';
+	messages['address']	= 'Địa chỉ chưa hợp lệ!';
+	messages['nhapemail']	= 'Nhập mail!';
+	messages['emailkhonghople']	= 'Email không hợp lệ';
+	messages['nhaptieude']	= 'Nhập tiêu đề';
+	messages['nhapnoidung']	= 'Nhập nội dung';
+	messages['nhapmaxacnhan']	= 'Nhập mã xác nhận';
+</script>
+<script language="javascript">
+	function CheckFormMail() {
+		with(document.FormName) {
+			if (first_name.value == "") {
+				alert(messages['nhapten']);
+				first_name.focus();
+				return false;
+			}
+			if (title.value == "") {
+				alert(messages['nhaptieude']);
+				title.focus();
+				return false;
+			}
+			if (email.value == "") {
+				alert(messages['nhapemail']);
+				email.focus();
+				return false;
+			} else {
+				if (email.value.indexOf("@") < 0 || email.value.indexOf(".") < 0) {
+					alert(messages['emailkhonghople']);
+					email.focus();
+					return false;
+				}
+			}
+			if (message.value == "") {
+				alert(messages['nhapnoidung']);
+				message.focus();
+				return false;
+			}
+			
+			if (address.value == "") {
+				alert(messages['address']);
+				address.focus();
+				return false;
+			}
+			
+			if (tel.value == "") {
+				alert(messages['tel']);
+				tel.focus();
+				return false;
+			}
+
+		}
+		return true;
+	}
+</script> 
+{/literal}
+
+
+  <div class="contact">
+          
+                 
+				 	{if $object_lienhe}
+						{$object_lienhe->getDetails($lang)}
+						{/if} 
+        
+                {if $error}<p><span style="color:red; font-weight:bold">{$error}</span></p>
+					{else}
+					{if $error}<p><span style="color:red; font-weight:bold">{$error}</span></p>{/if}
+				{/if}
+				
+				 <form action="" method="post" name="FormName" target="_parent" onSubmit="return CheckFormMail();">
+					<div class="contact-form">   
+							<p>
+							   <span class="col-md-3 col-sm-3 col-xs-12 title-form" >Họ và tên:(<span style="color:red">*</span>) </span>
+							   <span class="col-md-9 col-sm-9  col-xs-12 "  ><input name="first_name" value="{$full_name}" type="text" class="short"></span>
+						   </p>                     
+							<p>
+							   <span class="col-md-3 col-sm-3 col-xs-12 title-form" >Công ty: </span>
+							   <span class="col-md-9 col-sm-9  col-xs-12 "  ><input name="cty" value="{$cty}" type="text" class="short"></span>
+						   </p>  
+						  
+							<p>
+							   <span class="col-md-3 col-sm-3 col-xs-12 title-form" >Email: </span>
+							   <span class="col-md-9 col-sm-9  col-xs-12 "  ><input name="email" value="{$email}" type="text" class="short"></span>
+						   </p>  
+						
+						   
+							<p>
+							   <span class="col-md-3 col-sm-3 col-xs-12 title-form" >Địa chỉ:(<span style="color:red">*</span>) </span>
+							   <span class="col-md-9 col-sm-9  col-xs-12 "  ><input name="address" type="text" class="short"></span>
+						   </p>  
+						   
+							<p>
+							   <span class="col-md-3 col-sm-3 col-xs-12 title-form" >Điện thoại: (<span style="color:red">*</span>)</span>
+							   <span class="col-md-9 col-sm-9  col-xs-12 "  ><input name="tel" type="text" class="short"></span>
+						   </p>  
+						   
+						   <p>
+							   <span class="col-md-3 col-sm-3 col-xs-12 title-form" >Tiêu Đề: (<span style="color:red">*</span>)</span>
+							   <span class="col-md-9 col-sm-9  col-xs-12 "  ><input name="title" type="text" class="short"></span>
+						   </p> 
+						   
+							<p>
+							   <span class="col-md-3 col-sm-3 col-xs-12 title-form" >Nội dung: </span>
+								
+							   <span class="col-md-9 col-sm-9  col-xs-12 "  > <textarea name="message" cols="" rows=""></textarea></span>
+						   </p>  	  
+						   
+						     <input name="op" value="contactform" type="hidden">
+				  </div>
+					<p style="text-align:center; width:100%; float:left; margin-top:20px" class="contact-form">
+				  <input type="submit" value="Gửi đi" /> <input  type="reset" value="Xoá" />
+					</p> 
+					
+			</form>
+				
+        </div>
+
+	

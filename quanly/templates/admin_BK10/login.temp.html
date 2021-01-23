@@ -1,0 +1,23 @@
+{include file="$usertemplate/header.temp.html"}
+<div class="login">
+<h2>{$amessages.login}</h2>
+<form action="{$script}" method="post" name="formLogin">
+<fieldset>
+<p>{$amessages.login_title}</p>
+{if $error}<p class="error">{$error}</p>{/if}
+<p><label for="username">{$amessages.username}</label>
+<input type="text" value="" name="username" id="username" /></p>
+<p><label for="pass">{$amessages.password}</label>
+<input type="password" value="" name="password" id="password" /></p>
+<p class="btnType">
+<span><input type="submit" value="{$amessages.submit}" title="{$amessages.submit}" name="btnSubmit" /></span>
+<span><input type="reset" value="{$amessages.reset}" title="{$amessages.reset}" name="btnReset" /></span></p>
+<input type="hidden" value="login" name="op" />
+<input type="hidden" value="admin" name="site" />
+</fieldset>
+</form>
+</div>
+</div>
+<div class="push"></div>
+</div>
+{include file="$usertemplate/footer.temp.html" title=footer}

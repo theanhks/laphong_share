@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Control Panel</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="deracms, control panel" />
+<meta name="description" content="Control Panel - Content Management System" />
+<meta name="Robots" content="index,all"/>
+<link rel="stylesheet" type="text/css" href="templates/{$usertemplate}/css/screen.css" media="all" />
+<script language="javascript" type="text/javascript" src="../js/tinymce/tiny_mce_gzip.php"></script>
+<script language="javascript" type="text/javascript" src="../js/tinymce/tiny_mce-plog.js"></script>
+
+<script language="javascript" type="text/javascript" src="../js/tinymce/tiny_mce-plog-resourcelist.js"></script>
+<script language="javascript" type="text/javascript" src="../js/tinymce/tiny_mce_popup.js"></script>
+</head>
+<body>
+<div id="container">
+<div id="#">
+</div>
+<div id="main">
+{assign var=formId value='listResource'}
+{assign var=rightPanel value='hidden'}
+<div id="main">
+<div class="highlight">
+<div class="searchType">
+<form action="{$script}" method="post" name="searchMenu" id="searchMenu">
+<fieldset>
+<p>
+<label>Album</label>
+<select name="searchAlbum" id="searchAlbum">
+<option value="0">{$amessages.thu_muc_goc}</option>
+{$listAlbum}
+</select>
+<input type="hidden" name="op" value="manage" />
+<input type="hidden" name="part" value="albumresource" />
+<input type="hidden" name="act" value="list" />
+<input type="submit" value="{$amessages.display}" title="{$amessages.display}" name="btnDisplay" class="btnDisplay" />
+</p>
+</fieldset>
+</form>
+</div>
+{if $infoText}
+<div class="{$infoClass}">
+<h4>Result:</h4>
+<p>{$infoText}</p>
+</div>
+{/if}
+<form id="{$formId}" name="{$formId}" action="{$script}" method="post">
+<div class="tableContent">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<thead>
+<tr>
+<th>
+{$amessages.tap_tin}
+</th>
+<th>{$amessages.cac_hanh_dong}</th>
+</tr>
+</thead>
+<tbody>
+{if $pId !=0}
+<tr class="even">
+<td class="col_highlighted">
+<a href="http://ac1.derasoft.com/cms/?op=manage&part=album&act=list">
+<img src="templates/{$usertemplate}/images/img_clip.jpg" alt="album" /><br />../</a></td>
+<td><a id="linkUpload" href="javascript:void(0)" onclick="initShowHide2();">{$amessages.upload_file}</a></td>
+</tr>
+{/if}
+{if $albumItems}
+{foreach from=$albumItems item=albumItem}
+<tr>
+<td><a href="{$script}?op=manage&amp;part=albumresource&amp;act=list&amp;pId={$albumItem->getId()}">
+<img src="templates/{$usertemplate}/images/img_clip.jpg" alt="album" /><br/>{$albumItem->getName('vn')}</a></td>
+<td>
+<a href="{$script}?op=manage&amp;part=albumresource&amp;act=list&amp;pId={$albumItem->getId()}">{$amessages.tai_album}</a>
+</td>
+</tr>
+{/foreach}
+{/if}
+
+
+{if $listObjects}
+{foreach from=$listObjects item=object}
+{if $object->isImage()}
+<td><img src="{$object->getAvatarUrl()}" border="0" /><br />{$object->getFileName('vn')|truncate:20}</td>
+<td>
+<a href="javascript:addHtmlareaLink('{$object->getId()}','{$object->getAvatarUrl()}','{$object->getAvatarUrl()}','{$object->getFileName('vn')|truncate:20}','','1','{$object->getId()}');">{$amessages.hinh_avatar}</a><br/>
+<a href="javascript:addHtmlareaLink('{$object->getId()}','{$object->getMediumUrl()}','{$object->getMediumUrl()}','{$object->getFileName('vn')|truncate:20}','','1','{$object->getId()}');">{$amessages.hinh_thumbnal} </a><br/>
+<a href="javascript:addHtmlareaLink('{$object->getId()}','{$object->getStorageUrl()}','{$object->getStorageUrl()}','{$object->getFileName('vn')|truncate:20}','','1','{$object->getId()}');">{$amessages.hinh_nguyen_goc} </a>
+</td>
+{/if}
+{if $object->isVideo()}
+<td><img src="templates/{$usertemplate}/images/img_clip.jpg" alt="album" />><br />{$object->getFileName('vn')|truncate:20}</td>
+<td>{$amessages.tai_video}</td>
+{/if}
+{if $object->isFlash()}
+<td><img src="templates/{$usertemplate}/images/icon_flash.jpeg" alt="flash" /><br />{$object->getFileName('vn')|truncate:20}</td>
+<td>
+
+<a href="javascript:insertMediaPlayer('http://ac1.derasoft.com/gallery/album/storage/1792811042_ac.swf','http://ac1.derasoft.com/gallery/album/storage/1792811042_ac.swf','300','300');">{$amessages.tai_flash}</a><br/> 
+</td>
+{/if}
+</tr>
+{/foreach}
+{/if}
+</tbody>
+</table>
+<div class="paging">
+<ul>
+<li>{$amessages.page}</li>
+{if $pId!=0}{$adminPager}{else}{$adminPager1}{/if}
+<li>{$amessages.total} {$rows|number_format} {$amessages.records}, {$pages|number_format} {$amessages.pages}</li>
+</ul>
+</div>
+</div>
+</form>
+<input type="hidden" name="pId" value="{$searchAlbum}" />
+</div>
+</div>
+</div>
+<div class="push"></div>
+</div>

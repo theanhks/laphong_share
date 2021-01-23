@@ -1,0 +1,135 @@
+{include file="$usertemplate/header.temp.html"}
+{include file="$usertemplate/left.temp.html" title=left}
+{assign var=formId value='listResource'}
+{assign var=rightPanel value='hidden'}
+<div id="contextual" class="{$rightPanel}">
+<div class="levBtn">
+<p><a href="#"><img src="templates/{$usertemplate}/images/btn_arrow_02.gif" alt="" width="18" height="19" /></a></p>
+</div>
+<div class="contextType">
+<form action="{$script}" method="post" name="form2">
+<fieldset>
+<p>
+<label for="textbox">Textbox</label>
+<input type="text" value="" name="textbox" id="textbox" />
+</p>
+<p>
+<label for="textarea">Textarea</label>
+<textarea name="textarea" id="textarea" rows="5" cols="5"></textarea>
+</p>
+<p>
+<label for="combobox">Combobox</label>
+<select name="combobox" id="combobox" >
+<option selected="selected" value="">------------</option>
+</select>
+</p>
+<p class="radioType">
+<input type="radio" name="radio" id="radio" />
+<label for="radio">radio 1</label>
+<input type="radio" name="radio" id="radio2" />
+<label for="radio2">radio 2</label>
+</p>
+<p class="radioType">
+<input type="checkbox" name="checkbox" id="checkbox" />
+<label for="checkbox">checkbox 1</label>
+</p>
+</fieldset>
+</form>
+</div>
+</div>
+<div id="content">
+<div class="highlight">
+
+{if $infoText}
+<div class="{$infoClass}">
+<h4>Result:</h4>
+<p>{$infoText}</p>
+</div>
+{/if}
+<form id="{$formId}" name="{$formId}" action="{$script}" method="post">
+<div class="tableContent">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<thead>
+<tr>
+<th><input class="box3" type="checkbox" name="all" id="all" value="1" onclick="toggleAllChecks('{$formId}');" /></th>
+<th>{$amessages.no}</th>
+<th><a href="{$script}?op=manage&amp;part=resource&amp;act=list&amp;searchTerms={$searchTerms}&amp;searchLang={$searchLang}&amp;searchStatus={$searchStatus}&amp;orderBy=id&amp;orderDir={if $orderBy eq 'id' && $orderDir eq 'ASC'}DESC{else}ASC{/if}" title="{$amessages.click_here_to_sort_by} {$amessages.id}">{$amessages.id}{if $orderBy eq 'id'}&nbsp;<img src="templates/{$usertemplate}/images/ico_{if $orderDir eq 'DESC'}down{else}up{/if}.gif" alt="" width="12" height="12" />{/if}</a></th>
+<th>
+<a href="{$script}?op=manage&amp;part=resource&amp;act=list&amp;searchTerms={$searchTerms}&amp;searchLang={$searchLang}&amp;searchStatus={$searchStatus}&amp;orderBy=aid&amp;orderDir={if $orderBy eq 'aid' && $orderDir eq 'ASC'}DESC{else}ASC{/if}" title="{$amessages.click_here_to_sort_by} {$amessages.album}">Thư mục<!--{$amessages.album}-->{if $orderBy eq 'aid'}&nbsp;<img src="templates/{$usertemplate}/images/ico_{if $orderDir eq 'DESC'}down{else}up{/if}.gif" alt="" width="12" height="12" />{/if}</a></th>
+<!--<th>
+<a href="{$script}?op=manage&amp;part=resource&amp;act=list&amp;searchTerms={$searchTerms}&amp;searchLang={$searchLang}&amp;searchStatus={$searchStatus}&amp;orderBy=file_name &amp;orderDir={if $orderBy eq 'file_name ' && $orderDir eq 'ASC'}DESC{else}ASC{/if}" title="{$amessages.click_here_to_sort_by} {$amessages.file_name }">{$amessages.file_name}{if $orderBy eq 'file_name '}&nbsp;<img src="templates/{$usertemplate}/images/ico_{if $orderDir eq 'DESC'}down{else}up{/if}.gif" alt="" width="12" height="12" />{/if}</a></th>-->
+<th>
+<a href="{$script}?op=manage&amp;part=resource&amp;act=list&amp;searchTerms={$searchTerms}&amp;searchLang={$searchLang}&amp;searchStatus={$searchStatus}&amp;orderBy=vn_name&amp;orderDir={if $orderBy eq 'vn_name' && $orderDir eq 'ASC'}DESC{else}ASC{/if}" title="{$amessages.click_here_to_sort_by} {$amessages.vn_name}">{$amessages.vn_name}{if $orderBy eq 'vn_name'}&nbsp;<img src="templates/{$usertemplate}/images/ico_{if $orderDir eq 'DESC'}down{else}up{/if}.gif" alt="" width="12" height="12" />{/if}</a></th>
+<!--<th><a href="{$script}?op=manage&amp;part=resource&amp;act=list&amp;searchTerms={$searchTerms}&amp;searchLang={$searchLang}&amp;searchStatus={$searchStatus}&amp;orderBy=en_name&amp;orderDir={if $orderBy eq 'en_name' && $orderDir eq 'ASC'}DESC{else}ASC{/if}" title="{$amessages.click_here_to_sort_by} {$amessages.en_name}">{$amessages.en_name}{if $orderBy eq 'en_name'}&nbsp;<img src="templates/{$usertemplate}/images/ico_{if $orderDir eq 'DESC'}down{else}up{/if}.gif" alt="" width="12" height="12" />{/if}</a></th>-->
+
+<!--<th>Hình ảnh</th>-->
+<th><a href="{$script}?op=manage&amp;part=resource&amp;act=list&amp;searchTerms={$searchTerms}&amp;searchLang={$searchLang}&amp;searchStatus={$searchStatus}&amp;orderBy=status&amp;orderDir={if $orderBy eq 'status' && $orderDir eq 'ASC'}DESC{else}ASC{/if}" title="{$amessages.click_here_to_sort_by} {$amessages.status}">{$amessages.status}{if $orderBy eq 'status'}&nbsp;<img src="templates/{$usertemplate}/images/ico_{if $orderDir eq 'DESC'}down{else}up{/if}.gif" alt="" width="12" height="12" />{/if}</a></th>
+<th>{$amessages.position}</th>
+<th>{$amessages.actions}</th>
+</tr>
+</thead>
+<tbody>
+
+{if $listObjects}
+{assign var=i value=$start}
+{foreach from=$listObjects item=object}
+{assign var=i value=$i+1}
+<tr{if $i%2 == 0} class="bgType"{/if}>
+
+<td><input class="box3" type="checkbox" name="oIds[]" id="oIds" value="{$object->getId()}" /></td>
+<td>{$i|number_format}</td>
+<td>{$object->getId()}</td>
+<td>{$album->getAlbumName($object->getAlbumId())}</td>
+<td>{$object->getName('vn')}</td>
+<!--<td><img src="{$ROOTPATH}/gallery/album/avatar/{$object->getFileName()}" title="hình ảnh" width="100" /></td>-->
+<td>{if $object->isDeleted()}<span style="color: #FF0000">{$object->getStatusText()}</span>{else}{$object->getStatusText()}{/if}</td>
+<td>
+<input type="text" name="position_{$object->getId()}" id="position_{$object->getId()}" value="{$object->getPosition()}" />
+<input type="button" class="btnOK" name="update" value="OK" onClick="javascript:changePosition('{$formId}','{$object->getId()}');" />
+</td>
+<td>
+<a href="{$script}?op=manage&amp;part=resource&amp;act=edit&amp;pId={$pId}&amp;searchTerms={$searchTerms}&amp;searchStatus={$object->getStatus()}&amp;listAlbum={$object->getAlbumId()}&amp;oId={$object->getId()}&amp;page={$page}" title="{$amessages.edit}"><img src="templates/{$usertemplate}/images/misc/edit.png" alt="{$amessages.edit}" width="16" height="16" /></a>
+{if $object->isEnabled()}
+<a href="{$script}?op=manage&amp;part=resource&amp;act=list&amp;pId={$pId}&amp;searchTerms={$searchTerms}&amp;searchStatus={$searchStatus}&amp;plus=disableItem&amp;oId={$object->getId()}&amp;page={$page}" title="{$amessages.disable}"><img src="templates/{$usertemplate}/images/misc/disable.png" alt="{$amessages.disable}" width="16" height="16" /></a>
+{else}
+<a href="{$script}?op=manage&amp;part=resource&amp;act=list&amp;pId={$pId}&amp;searchTerms={$searchTerms}&amp;searchStatus={$searchStatus}&amp;plus=activateItem&amp;oId={$object->getId()}&amp;page={$page}" title="{$amessages.activate}"><img src="templates/{$usertemplate}/images/misc/activate.png" alt="{$amessages.activate}" width="16" height="16" /></a>
+{/if}
+<a href="{$script}?op=manage&amp;part=resource&amp;act=list&amp;pId={$pId}&amp;searchTerms={$searchTerms}&amp;searchStatus={$searchStatus}&amp;plus=deleteItem&amp;oId={$object->getId()}&amp;page={$page}" title="{$amessages.delete}"><img src="templates/{$usertemplate}/images/misc/delete.png" alt="{$amessages.delete}" width="16" height="16" /></a></td>
+
+</tr>
+{/foreach}
+{/if}
+</tbody>
+</table>
+<div class="paging">
+<p class="btnType">
+<input type="hidden" name="op" value="{$op}" />
+<input type="hidden" name="part" value="{$part}" />
+<input type="hidden" name="act" value="{$act}" />
+<input type="hidden" name="searchTerms" value="{$searchTerms}"/>
+<input type="hidden" name="searchStatus" value="{$searchStatus}"/>
+<input type="hidden" name="orderBy" value="{$orderBy}"/>
+<input type="hidden" name="orderDir" value="{$orderDir}"/>
+<input type="hidden" name="page" value="{$page}"/>
+<input type="hidden" name="pId" value="{$pId}"/>
+<input type="hidden" name="oId" value=""/>
+<input type="hidden" name="position" value=""/>
+<input type="hidden" name="plus" id="plus" value=""/>
+<span><input type="submit" value="{$amessages.activate}" title="{$amessages.activate}" name="btnActivate" onClick="javascript:actionSubmit('{$formId}','activateItems');" /></span>
+<span><input type="submit" value="{$amessages.disable}" title="{$amessages.disable}" name="btnDisable" onClick="javascript:actionSubmit('{$formId}','disableItems');" /></span>
+<span><input type="submit" value="{$amessages.delete}" title="{$amessages.delete}" name="btnDelete" onClick="javascript:actionSubmit('{$formId}','deleteItems');" /></span>
+</p>
+<ul>
+<li>{$amessages.page}</li>
+{$adminPager}
+<li>{$amessages.total} {$rows|number_format} {$amessages.records}, {$pages|number_format} {$amessages.pages}</li>
+</ul>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+<div class="push"></div>
+</div>
+{include file="$usertemplate/footer.temp.html" title=footer}

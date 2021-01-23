@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Detail order</title>
+</head>
+<style media="screen">
+{literal}
+body{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:12px;
+	color:#666;
+}
+.frame{
+	width:100%;
+	margin-top:30px;
+	clear:both;
+}
+.title{
+	width:200px;
+	padding-left:10px;
+}
+.coment{
+	width:350px;
+	padding-left:10px;	
+}
+.cell{
+	border:1px #333 solid;
+}
+.sumtotal{
+	padding:5px 5px 5px 5px;
+	height:auto;
+	width:130px;
+	float:right;
+	background-color:#CCC;
+	font-size:16px;
+	font-weight:900;
+}
+form{
+	text-align:center;
+}
+form input{
+	border:0px;
+	width:100px;
+	height:40px;
+	font-size:16px;
+	font-weight:900;
+	color:#666;
+	text-align:center;
+}
+{/literal}
+</style>
+<body>
+<div class="frame" style="text-align:center; font-size:36px; font-weight:900;">
+<strong>HÓA ĐƠN BÁN HÀNG ONLINE </strong></div>
+<div class="frame">
+{if $infoOrder}
+<table width="50%" border="0" align="left" cellpadding="5">
+  <tr>
+    <td colspan="2"><strong>Người nhận hàng:</strong></td>
+  </tr>
+  {if $infoOrder->getRName()}
+  <tr>
+    <td class="title">Họ Tên:</td>
+    <td class="coment">{$infoOrder->getRName()}</td>
+  </tr>
+  {/if}
+  {if $infoOrder->getEmail()}
+  <tr>
+    <td class="title">Email</td>
+    <td class="coment">{$infoOrder->getEmail()}</td>
+  </tr>
+  {/if}
+  {if $infoOrder->getRTel()}
+  <tr>
+    <td class="title">Điện thoại</td>
+    <td class="coment">{$infoOrder->getRTel()}</td>
+  </tr>
+  {/if}
+  {if $infoOrder->getRAddress()}
+  <tr>
+    <td class="title">Địa chỉ</td>
+    <td class="coment">{$infoOrder->getRAddress()}</td>
+  </tr>
+  {/if}
+  
+  {if $infoOrder->getComment()}
+  <tr>
+    <td class="title">Chi chu</td>
+    <td class="coment">{$infoOrder->getComment()}</td>
+  </tr>
+  {/if}
+  
+</table>
+{/if}
+</div>
+<div class="frame">
+{if $infoOrderItem}
+<table width="100%" border="0" align="left" cellpadding="5">
+  <tr>
+    <td colspan="8"><strong>Nội dung đặt hàng:</strong></td>
+    </tr>
+  <tr>
+    <td align="center" bgcolor="#CCCCCC" class="cell">No</td>
+    <td align="center" bgcolor="#CCCCCC" class="cell">Tên sản phẩm</td>
+    <td align="center" bgcolor="#CCCCCC" class="cell">Hình ảnh</td>
+    <td align="center" bgcolor="#CCCCCC" class="cell">Số lượng</td>
+    
+    <td align="center" bgcolor="#CCCCCC" class="cell">Giá</td>
+    <td align="center" bgcolor="#CCCCCC" class="cell">Total</td>
+  </tr>
+  
+      {assign var=i value=0}
+      {assign var=grandTotal value=0}
+      {foreach from=$infoOrderItem item=object}
+      	  {assign var=i value=$i+1}
+          {assign var=idproduct value=$object->getPId()}
+          {assign var=infoproduct value=$products->getObject($idproduct)}
+          <tr>
+            <td class="cell">{$i|number_format}</td>
+            <td class="cell">
+			
+			{$infoproduct->getName('vn')} 
+            <td class="cell"><img src="{$ROOTPATH}/gallery/avatar_upload/products/avatar/{$object->getSlug()}" title="" width="100"/> </td>
+            <td class="cell">{$object->getQuantity()}  </td>
+            <td class="cell">{$object->getPrice()|number_format:0} VNĐ </td>
+            <td class="cell">
+            {assign var=qty value=$object->getQuantity()}
+            {assign var=price value=$object->getPrice()}
+            {assign var=subTotal value=$qty*$price}
+            {assign var=grandTotal value=$grandTotal+$subTotal}
+            {$subTotal|number_format:0}VNĐ
+            </td>
+          </tr>
+      {/foreach}
+  
+  <tr>
+    <td colspan="8"><div class="sumtotal">Total: {$grandTotal|number_format:0}VNĐ</div></td>
+  </tr>
+{/if}
+</table>
+</div>
+<div class="frame">
+&nbsp;
+<form id="print" name="form1" method="post" action="">
+  <input type="button" name="print" id="print" value="Print" onclick="window.print() "/>
+  <input type="button" name="close" id="print2" value="Close" onclick="window.close()" />
+</form>
+</div>
+</body>
+</html>

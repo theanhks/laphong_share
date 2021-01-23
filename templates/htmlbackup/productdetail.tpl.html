@@ -1,0 +1,169 @@
+{include file="$usertemplate/header.tpl.html"}  
+
+
+<div class="maincontent">
+    <div class="container-xxy">
+        <div class="row padi010">
+            <div class="col-md-12 padi05">
+                <div class="linktit">
+                    <a href="{$ROOTPATH}" class="homelink">Trang chủ</a>
+					
+				{foreach from=$pathParentItems key=i item=pathParentItem}
+					<a title ="{$pathParentItem->getName($lang)|strip_tags}" href="{$pathParentItem->getUrl($lang)}"><i class="fa fa-angle-double-right" aria-hidden="true"></i>{$pathParentItem->getName($lang)}</a>
+				{/foreach}
+				
+                </div>
+            </div>
+            <div class="col-md-5 col-sm-6 col-xs-12 padi05">
+                <div class="slider">
+                    <div id="slider" class="flexslider">
+                        <ul class="slides">
+						
+			
+						 <li class="bigpro"><img src="{if $productItem->getAvatar()}{$ROOTPATH}/gallery/avatar_upload/products/medium/{$productItem->getAvatar()}{/if}" alt="" /></li>
+						
+						 {assign var=imagesItems value=$productItem->getFile(1)}
+						 {if $imagesItems}
+							{foreach from=$imagesItems item=imagesItem key=i}
+							
+								
+								 <li class="bigpro"><img src="{$ROOTPATH}/gallery/avatar_upload/products/medium/{$imagesItem}" alt="" /></li>
+							{/foreach}
+						{/if}	
+			
+                         
+                        </ul>
+                    </div>
+                    <div id="carousel" class="flexslider">
+                        <ul class="slides">
+						
+						 <li class="thumbpro"><img src="{if $productItem->getAvatar()}{$ROOTPATH}/gallery/avatar_upload/products/avatar/{$productItem->getAvatar()}{/if}" alt="" /></li>
+						 {if $imagesItems}
+							{foreach from=$imagesItems item=imagesItem key=i}
+								 <li class="thumbpro"><img src="{$ROOTPATH}/gallery/avatar_upload/products/avatar/{$imagesItem}" alt="" /></li>
+							{/foreach}
+						{/if}	
+		
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7 col-sm-6 col-xs-12 padi05">
+                <div class="viewsub1">
+                    <h2>{$productItem->getName('vn')}</h2>
+                    <p class="pri">
+					
+					{if $productItem->getPrice()}
+						<span class="prin">{$productItem->getPrice()|number_format:0:",":"."}</span>
+					{/if}
+					{if $productItem->getSprice()}
+						 <span class="prio">{$productItem->getSprice()|number_format:0:",":"."}</span>
+					{/if}
+				
+                    </p>
+                    <p class="cod">Mã sản phẩm:  {$productItem->getNumProduct()}</p>
+                    <div class="thongtin">
+                        {$productItem->getNSX('vn')}
+                    </div>
+						
+                    <div class="slmua">
+                        <ul>
+                            <li class="sl">
+                                <p>Số lượng</p>
+                      
+                                    <input class="sldetail" type="number" name="quantity">
+              
+                            </li>
+							<form id="form-id-them" action="" method="post">
+								<li class="bok">
+									<a href ="#" onclick="document.getElementById('form-id-them').submit();">Thêm vào giỏ hàng</a>
+									<input type="hidden" name="themgiohang" value="themgiohang" />
+									 <input type="hidden" name="id" value="{$productItem->getId()}"  />
+									<input type="hidden" name="op" value="productdetail"/>
+									<input type="hidden" name="slug" value="{$productItem->getSlug()}"  />
+									<input type="hidden" name="code" value="{$productItem->getNumProduct()}"  />
+									<input type="hidden" name="plus" value="addToCart" />
+									<input type="hidden" name="lang" value="{$lang}" />
+									
+								</li>
+							</form>
+							<form id="form-id" action="" method="post">
+                            <li class="book">
+						
+                                <a href ="#" onclick="document.getElementById('form-id').submit();">Mua ngay</a>
+                            </li>
+							
+							
+								
+							 <input type="hidden" name="id" value="{$productItem->getId()}"  />
+							<input type="hidden" name="op" value="shopping"/>
+								<input type="hidden" name="slug" value="{$productItem->getSlug()}"  />
+											<input type="hidden" name="code" value="{$productItem->getNumProduct()}"  />
+											<input type="hidden" name="plus" value="addToCart" />
+											<input type="hidden" name="lang" value="{$lang}" />
+							
+							
+                        </ul>
+                    </div>
+					</form>
+                    <div class="likeface">
+					
+                        <div class="fb-like" data-href="{$productItem->getViewUrl($lang)}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 padi05">
+                <div class="tabview">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#t1" aria-controls="t1" role="tab" data-toggle="tab">Mô tả sản phẩm</a></li>
+                        <li role="presentation"><a href="#t2" aria-controls="t2" role="tab" data-toggle="tab">Bình luận</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="t1">
+							{$productItem->getDetails('vn')}
+						</div>
+                        <div role="tabpanel" class="tab-pane" id="t2">
+						
+							
+                            <div class="fb-comments" data-href="{$productItem->getViewUrl($lang)}" data-width="100%" data-numposts="10"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 padi05">
+                <div class="titlistpro">
+                    <h5><span>Sản phẩm khác</span></h5>
+                </div>
+            </div>
+            <div class="col-md-12 padi05">
+			
+				 {if $proItems}
+					{foreach from=$proItems item=proItem key=i}
+					
+				
+						  <div class="boxpropad2">
+							<div class="boxpro">
+								<div class="abimg2">
+									<a href="{$proItem->getViewUrl($lang)}" title="{$proItem->getName($lang)}">
+										<img src="{$ROOTPATH}/gallery/avatar_upload/products/avatar/{$proItem->getAvatar()}" alt="" />
+									</a>
+								</div>
+								<div class="viewpro">
+									<a href="{$proItem->getViewUrl($lang)}" title ="{$proItem->getName($lang)}">{$proItem->getName($lang)}</a>
+									<p>{$proItem->getPrice()|number_format:0:",":"."}</p>
+									<span>{$proItem->getSprice()|number_format:0:",":"."}</span>
+								</div>
+							</div>
+						</div>
+				                
+					{/foreach}
+			{/if}
+		
+            </div>
+			
+  
+
+		
+{include file="$usertemplate/footerchitiet.tpl.html"}

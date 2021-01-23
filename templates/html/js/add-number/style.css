@@ -1,0 +1,19 @@
+
+.button {
+  margin: 0 0 0 5px;
+  text-indent: -9999px;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  text-align: center; margin-top: 3px;
+}
+.inc { background: url(../images/ic-cong.png); float: right; }
+.dec { background: url(../images/ic-tru.png); float: left; margin-right: 7px; }
+
+
+.buttons {
+  padding: 20px 0 0 140px;
+}
+
+
+

@@ -1,0 +1,536 @@
+
+
+	
+ {literal}
+ <script>
+function myFunction1(id) {
+  //alert("You pressed a key inside the input field");
+  document.getElementById("first_name"+id).style.display = "none";
+
+}
+function myFunction2(id) {
+  //alert("You pressed a key inside the input field");
+  document.getElementById("email" + id).style.display = "none";
+}
+function myFunction3(id) {
+  //alert("You pressed a key inside the input field");
+  document.getElementById("address" + id).style.display = "none";
+}
+
+function myFunctiondatengayden(id) {
+  //alert("You pressed a key inside the input field");
+  document.getElementById("ngayden" + id).style.display = "none";
+}
+
+function myFunctiondatengaydi(id) {
+  //alert("You pressed a key inside the input field");
+  document.getElementById("ngaydi" + id).style.display = "none";
+}
+
+function myFunction4(id) {
+  //alert("You pressed a key inside the input field");
+  document.getElementById("tel" + id).style.display = "none";
+}
+function myFunction5(id) {
+  //alert("You pressed a key inside the input field");
+  document.getElementById("message" + id).style.display = "none";
+}
+
+</script>
+
+ 
+ {/literal}
+ 
+ {if $lang == 'vn'}
+ {literal} 	
+<script type="text/javascript">
+	messages=new Array();
+	messages['nhapten']	= 'Nhập tên!';
+	messages['tel']	= 'Số điện thoại chưa hợp lệ!';
+	messages['address']	= 'Địa chỉ chưa hợp lệ!';
+	messages['nhapemail']	= 'Nhập mail!';
+	messages['emailkhonghople']	= 'Email không hợp lệ';
+	messages['nhaptieude']	= 'Nhập tiêu đề';
+	messages['nhapnoidung']	= 'Nhập nội dung';
+	messages['nhapmaxacnhan']	= 'Nhập mã xác nhận';
+</script>
+
+<script language="javascript">
+
+
+function CheckFormMail(id) {
+
+
+		with(document.FormName + id) {
+		
+		var oForm = document.forms["FormName"+id];
+		
+		var first_name = oForm.elements["first_name"+id].value;
+		var email = oForm.elements["email"+id].value;
+		var tel = oForm.elements["tel"+id].value;
+		var message = oForm.elements["message"+id].value;
+		var ngayden = oForm.elements["ngayden"+id].value;
+		var ngaydi = oForm.elements["ngaydi"+id].value;
+	
+	
+			if (first_name == "" && email == "" && tel == "" && message == "" && ngayden == "" && ngaydi == "" ) {
+				document.getElementById("first_name"+id).style.display = "block";
+				document.getElementById("email"+id).style.display = "block";
+				document.getElementById("tel"+id).style.display = "block";
+				document.getElementById("message"+id).style.display = "block";
+				document.getElementById("ngayden"+id).style.display = "block";
+				document.getElementById("ngaydi"+id).style.display = "block";
+				return false;
+			}
+			
+			if (first_name == "" && email == "" && tel == "" && message == "" && ngayden == "") {
+				document.getElementById("first_name"+id).style.display = "block";
+				document.getElementById("email"+id).style.display = "block";
+				document.getElementById("tel"+id).style.display = "block";
+				document.getElementById("message"+id).style.display = "block";
+				document.getElementById("ngayden"+id).style.display = "block";
+				
+				return false;
+			}
+			
+			if (first_name == "" && email == "" && tel == "" && message == "") {
+				document.getElementById("first_name"+id).style.display = "block";
+				document.getElementById("email"+id).style.display = "block";
+				document.getElementById("tel"+id).style.display = "block";
+				document.getElementById("message"+id).style.display = "block";
+		
+				
+				return false;
+			}
+			
+			
+			if (first_name == "" && email == "" && tel == "") {
+				document.getElementById("first_name"+id).style.display = "block";
+				document.getElementById("email"+id).style.display = "block";
+				document.getElementById("tel"+id).style.display = "block";
+		
+				
+				return false;
+			}
+			
+			if (first_name == "" && email == "") {
+				document.getElementById("first_name"+id).style.display = "block";
+				document.getElementById("email"+id).style.display = "block";
+		
+				
+				return false;
+			}
+			
+			
+			if (first_name == "") {
+				//alert(messages['nhapten']);
+				document.getElementById("first_name"+id).style.display = "block";
+				first_name.focus();
+				return false;
+			}
+
+			if (email == "") {
+				//alert(messages['nhapemail']);
+				document.getElementById("email"+id).style.display = "block";
+				email.focus();
+				return false;
+			} else {
+				if (email.value.indexOf("@") < 0 || email.value.indexOf(".") < 0) {
+					//alert(messages['emailkhonghople']);
+					document.getElementById("email"+id).style.display = "block";
+					email.focus();
+					return false;
+				}
+			}
+			
+			
+			if (ngayden == "") {
+				//alert(messages['tel']);
+				document.getElementById("ngayden"+id).style.display = "block";
+				ngayden.focus();
+				return false;
+			}
+			
+			if (ngaydi == "") {
+				//alert(messages['tel']);
+				document.getElementById("ngaydi"+id).style.display = "block";
+				ngaydi.focus();
+				return false;
+			}
+			
+			if (tel == "") {
+				//alert(messages['tel']);
+				document.getElementById("tel"+id).style.display = "block";
+				tel.focus();
+				return false;
+			}
+			
+
+			
+			if (message == "") {
+				//alert(messages['nhapnoidung']);
+				document.getElementById("message"+id).style.display = "block";
+				message.focus();
+				return false;
+			}
+			
+			if (first_name != "" && email != "" && tel != "" && message != "" && ngayden != "" && ngaydi != "" ) {
+				return true;
+			}
+
+		}
+
+		//return true;
+	}
+	
+	
+</script> 
+{/literal}
+{else}
+
+
+ {literal} 	
+<script type="text/javascript">
+	messages=new Array();
+	messages['nhapten']	= 'Enter name!';
+	messages['tel']	= 'Phone number is not valid!';
+	messages['address']	= 'The address is not valid!';
+	messages['nhapemail']	= 'Enter Email!';
+	messages['emailkhonghople']	= 'Email is not valid';
+	messages['nhaptieude']	= 'Enter a title';
+	messages['nhapnoidung']	= 'Import content';
+	messages['nhapmaxacnhan']	= 'Nhập mã xác nhận';
+</script>
+<script language="javascript">
+	
+function CheckFormMail(id) {
+
+
+		with(document.FormName + id) {
+		
+		var oForm = document.forms["FormName"+id];
+		
+		var first_name = oForm.elements["first_name"+id].value;
+		var email = oForm.elements["email"+id].value;
+		var tel = oForm.elements["tel"+id].value;
+		var message = oForm.elements["message"+id].value;
+		var ngayden = oForm.elements["ngayden"+id].value;
+		var ngaydi = oForm.elements["ngaydi"+id].value;
+	
+	
+			if (first_name == "" && email == "" && tel == "" && message == "" && ngayden == "" && ngaydi == "" ) {
+				document.getElementById("first_name"+id).style.display = "block";
+				document.getElementById("email"+id).style.display = "block";
+				document.getElementById("tel"+id).style.display = "block";
+				document.getElementById("message"+id).style.display = "block";
+				document.getElementById("ngayden"+id).style.display = "block";
+				document.getElementById("ngaydi"+id).style.display = "block";
+				return false;
+			}
+			
+			if (first_name == "") {
+				//alert(messages['nhapten']);
+				document.getElementById("first_name"+id).style.display = "block";
+				first_name.focus();
+				return false;
+			}
+
+			if (email == "") {
+				//alert(messages['nhapemail']);
+				document.getElementById("email"+id).style.display = "block";
+				email.focus();
+				return false;
+			} else {
+				if (email.value.indexOf("@") < 0 || email.value.indexOf(".") < 0) {
+					//alert(messages['emailkhonghople']);
+					document.getElementById("email"+id).style.display = "block";
+					email.focus();
+					return false;
+				}
+			}
+			
+			
+			if (ngayden == "") {
+				//alert(messages['tel']);
+				document.getElementById("ngayden"+id).style.display = "block";
+				ngayden.focus();
+				return false;
+			}
+			
+			if (ngaydi == "") {
+				//alert(messages['tel']);
+				document.getElementById("ngaydi"+id).style.display = "block";
+				ngaydi.focus();
+				return false;
+			}
+			
+			if (tel == "") {
+				//alert(messages['tel']);
+				document.getElementById("tel"+id).style.display = "block";
+				tel.focus();
+				return false;
+			}
+			
+
+			
+			if (message == "") {
+				//alert(messages['nhapnoidung']);
+				document.getElementById("message"+id).style.display = "block";
+				message.focus();
+				return false;
+			}
+			
+			
+
+		}
+		
+
+		
+	}
+</script> 
+{/literal}
+
+
+
+{/if}
+
+
+
+
+
+<section class="sub-bg">
+	<div class="container">
+		{if $lang == 'vn'}
+		<div class="sub-head"> <a href="#"><i class="fa fa-home"></i> Trang chủ </a>
+			{foreach from=$pathParentItems key=i item=pathParentItem}
+			<h1><a title="{$pathParentItem->getName($lang)|strip_tags}" href="{$pathParentItem->getUrl($lang)}">{$pathParentItem->getName($lang)|strip_tags}</a></h1>
+			{/foreach} 
+		</div>
+		{else}
+		<div class="sub-head"> <a href="#"><i class="fa fa-home"></i> Home </a>
+			{foreach from=$pathParentItems key=i item=pathParentItem}
+			<h1><a title="{$pathParentItem->getName($lang)|strip_tags}" href="{$pathParentItem->getUrl($lang)}">{$pathParentItem->getName($lang)|strip_tags}</a></h1>
+			{/foreach} 
+		</div>
+		{/if}
+	</div>
+</section>
+
+
+
+<section  id="datphong">
+	<div class="title" style="padding-top: 50px"><a href="#" style="color:#005a02">{$pageName}</a></div>
+	<div class="container">
+		<div class="product-block list-product">
+			<ul>
+				{if $proItems}
+				{foreach from=$proItems item=proItem key=i}
+				<li id="basic-modal0{$i+1}">
+					{if $lang eq 'vn'}
+					{if $proItem->getPayment() == 0}
+					
+					 <div class="pic-news">
+                        <a class="pic basic" href="#" title ="{$proItem->getName($lang)}"><img src="{$ROOTPATH}/gallery/avatar_upload/products/thumb/{$proItem->getAvatar()}" /></a>
+                        <a class="datphong basic" href="#"><i class="fa fa-search-plus" aria-hidden="true"></i></a>
+                    </div>
+                    <h3><a class="basic" href="#">Hết phòng</a></h3>
+					
+					
+					<div id="basic-modal-content0{$i+1}" style="display: none;">
+						<div class="left_dp">
+							<img src="{$ROOTPATH}/gallery/avatar_upload/products/storage/{$proItem->getAvatar()}" />
+						</div>
+						<div class="right_dp">
+									<h3>Hết Phòng</h3>
+									
+								</div>
+								
+					</div>
+					
+					{else}
+				
+					
+							<div class="pic-news">
+								<a class="pic basic" href="#" title ="{$proItem->getName($lang)}"><img alt="{$proItem->getName($lang)}" src="{$ROOTPATH}/gallery/avatar_upload/products/thumb/{$proItem->getAvatar()}" /></a>
+								<a class="datphong basic" href="#"><i class="fa fa-search-plus" aria-hidden="true"></i></a>
+							</div>
+					
+                    <h3><a class="basic" href="#">Còn Phòng</a></h3>
+					
+					
+					<div id="basic-modal-content0{$i+1}" style="display: none;">
+					
+						<div class="left_dp">
+							<img src="{$ROOTPATH}/gallery/avatar_upload/products/storage/{$proItem->getAvatar()}" />
+						</div>
+						<div class="right_dp">
+									<h3>Đặt phòng {$proItem->getName($lang)}</h3>
+									<p>Quý khách điền thông tin phía dưới để đặt phòng tại I@Home</p>
+									<p>* là bắt buộc</p>
+									<form action="" method="post" name="FormName{$i+1}" accept-charset="utf-8" id="frm_contact{$i+1}" onSubmit="return CheckFormMail({$i+1});">
+			
+										<div class="form_dp">
+											<ul>
+												<li>
+													<span>Họ và Tên (*)</span>
+													<input type="text" name ="first_name{$i+1}" onkeydown="myFunction1({$i+1});" value ="">
+													<label class="error" id ="first_name{$i+1}" style ="display:none; color: red;">Vui lòng nhập họ tên.</label>
+												</li>
+												<li>
+													<span>Điện thoại (*)</span>
+													<input type="text" name="tel{$i+1}" onkeydown="myFunction4({$i+1});" >
+													<label class="error" id ="tel{$i+1}" style ="display:none; color: red;">Vui lòng nhập số điện thoại.</label>
+												</li>
+												<li>
+													<span>Email (*)</span>
+													<input  type="text" name="email{$i+1}" onkeydown="myFunction2({$i+1});"  >
+													<label class="error" id ="email{$i+1}" style ="display:none; color: red;">Vui lòng nhập email.</label>
+												</li>
+												<li>
+													<span>Ngày đến(*)</span>
+													<input class="datek" value="" type="date" id="start" name="ngayden{$i+1}" min="2019-01-01" max="2019-12-31" onkeydown="myFunctiondatengayden({$i+1});">
+													<label class="error" id ="ngayden{$i+1}" style ="display:none; color: red;">Vui lòng nhập ngày đến.</label>
+												</li>
+												<li>
+													<span>Ngày đi(*)</span>
+													<input class="datek" value="" type="date" id="start" name="ngaydi{$i+1}" min="2019-01-01" max="2019-12-31" onkeydown="myFunctiondatengaydi({$i+1});">
+													<label class="error" id ="ngaydi{$i+1}" style ="display:none; color: red;">Vui lòng nhập ngày đi.</label>
+												</li>
+												<li>
+													<span>Nội dung (*)</span>
+													<textarea name ="message{$i+1}" onkeydown="myFunction5({$i+1});"></textarea>
+													<label class="error" id ="message{$i+1}" style ="display:none; color: red;">Vui lòng nhập Nội Dung Yêu Cầu.</label>
+												</li>
+												<li>
+						
+													<input class="but_dp" type="submit" value="Đặt phòng">
+												</li>
+											</ul>
+										</div>
+										<input name="idget" value="{$i+1}" type="hidden">
+										
+										<input name="title" value="{$proItem->getName($lang)}" type="hidden">
+										<input name="lang" value="{$lang}" type="hidden">
+										<input name="slug" value="{$slug}" type="hidden">
+										<input name="id" value="{$id}" type="hidden">
+										<input name="op" value="datphong" type="hidden">
+
+								</form>
+								</div>
+								
+					</div>
+					
+					
+			
+					{/if}
+					
+					
+					{else}
+					{if $proItem->getPayment() == 0}
+					
+							{if $proItem->getFile3()}
+								 <div class="pic-news">
+									<a class="pic basic" href="#" title ="{$proItem->getName($lang)}"><img alt="{$proItem->getName($lang)}" src="{$ROOTPATH}/gallery/avatar_upload/products/thumb/{$proItem->getFile3()}" /></a>
+									<a class="datphong basic" href="#"><i class="fa fa-search-plus" aria-hidden="true"></i></a>
+								</div>
+							{else}
+								<div class="pic-news">
+									<a class="pic basic" href="#" title ="{$proItem->getName($lang)}"><img alt="{$proItem->getName($lang)}" src="{$ROOTPATH}/gallery/avatar_upload/products/thumb/{$proItem->getAvatar()}" /></a>
+									<a class="datphong basic" href="#"><i class="fa fa-search-plus" aria-hidden="true"></i></a>
+								</div>
+							{/if}
+					<h3><a id="demo0{$i+1}" href="#">Out of room</a></h3>
+					{else}
+					
+							{if $proItem->getFile3()}
+								 <div class="pic-news">
+									<a class="pic basic" href="#" title ="{$proItem->getName($lang)}"><img alt="{$proItem->getName($lang)}" src="{$ROOTPATH}/gallery/avatar_upload/products/thumb/{$proItem->getFile3()}" /></a>
+									<a class="datphong basic" href="#"><i class="fa fa-search-plus" aria-hidden="true"></i></a>
+								</div>
+							{else}
+								<div class="pic-news">
+									<a class="pic basic" href="#" title ="{$proItem->getName($lang)}"><img alt="{$proItem->getName($lang)}" src="{$ROOTPATH}/gallery/avatar_upload/products/thumb/{$proItem->getAvatar()}" /></a>
+									<a class="datphong basic" href="#"><i class="fa fa-search-plus" aria-hidden="true"></i></a>
+								</div>
+							{/if}
+					<h3><a id="demo0{$i+1}" href="#animatedModal0{$i+1}">Booking</a></h3>
+					<div id="basic-modal-content0{$i+1}" style="display: none;">
+						<div class="left_dp">
+							<img src="{$ROOTPATH}/gallery/avatar_upload/products/storage/{$proItem->getFile3()}" />
+						</div>
+						<div class="right_dp">
+								
+									<h3>Booking {$proItem->getName($lang)}</h3>
+									<p>You fill in the information below to book a room at I @ Home</p>
+									<p>* is required</p>
+									<form action="" method="post" name="FormName{$i+1}" accept-charset="utf-8" id="frm_contact{$i+1}" onSubmit="return CheckFormMail({$i+1});">
+			
+									
+									<div class="form_dp">
+											<ul>
+												<li>
+													<span>Fullname (*)</span>
+													<input type="text" name ="first_name{$i+1}" onkeydown="myFunction1({$i+1});" value ="">
+													<label class="error" id ="first_name{$i+1}" style ="display:none; color: red;">Please enter your full name.</label>
+												</li>
+												<li>
+													<span>Phone (*)</span>
+													<input type="text" name="tel{$i+1}" onkeydown="myFunction4({$i+1});" >
+													<label class="error" id ="tel{$i+1}" style ="display:none; color: red;">Please enter the phone number.</label>
+												</li>
+												<li>
+													<span>Email (*)</span>
+													<input  type="text" name="email{$i+1}" onkeydown="myFunction2({$i+1});"  >
+													<label class="error" id ="email{$i+1}" style ="display:none; color: red;">Please enter email.</label>
+												</li>
+												<li>
+													<span>Destination(*)</span>
+													<input class="datek" value="" type="date" id="start" name="ngayden{$i+1}" min="2019-01-01" max="2019-12-31" onkeydown="myFunctiondatengayden({$i+1});">
+													<label class="error" id ="ngayden{$i+1}" style ="display:none; color: red;">Please enter your arrival date.</label>
+												</li>
+												<li>
+													<span>Date go(*)</span>
+													<input class="datek" value="" type="date" id="start" name="ngaydi{$i+1}" min="2019-01-01" max="2019-12-31" onkeydown="myFunctiondatengaydi({$i+1});">
+													<label class="error" id ="ngaydi{$i+1}" style ="display:none; color: red;">Please enter the date.</label>
+												</li>
+												<li>
+													<span>Content (*)</span>
+													<textarea name ="message{$i+1}" onkeydown="myFunction5({$i+1});"></textarea>
+													<label class="error" id ="message{$i+1}" style ="display:none; color: red;">Please enter Request Content.</label>
+												</li>
+												<li>
+						
+													<input class="but_dp" type="submit" value="Booking">
+												</li>
+											</ul>
+										</div>
+									
+										<input name="title" value="{$proItem->getName($lang)}" type="hidden">
+									<input name="lang" value="{$lang}" type="hidden">
+										<input name="slug" value="{$slug}" type="hidden">
+										<input name="id" value="{$id}" type="hidden">
+										<input name="op" value="datphong" type="hidden">
+
+								</form>
+								</div>
+							</div>
+						
+					{/if}
+					{/if}
+				</li>
+				{/foreach}
+				{/if}	
+			</ul>
+		</div>
+	</div>
+</section>
+
+
+
+<!---->
+
+
+
+
+
+

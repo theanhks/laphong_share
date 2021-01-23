@@ -1,0 +1,73 @@
+{include file="$usertemplate/header.tpl.html"}  
+
+	<div class="indexcontent">
+    	<div class="maincontent">
+		
+            <div class="content">
+            	<div class="titprolist"><h5>{$pageName}</h5></div>
+                    <script type="text/javascript">
+							messages=new Array();							
+							messages['nhapemail']	= '{$messages.nhapemail}';
+							messages['emailkhonghople']	= '{$messages.emailkhonghople}';							
+							</script>
+                    {literal} 							
+							<script language="javascript">
+    function CheckFormMail() {
+        with(document.adminForm) {			
+			if (email.value == "") {
+                alert(messages['nhapemail']);
+                email.focus();
+                return false;
+            } else {
+                if (email.value.indexOf("@") < 0 || email.value.indexOf(".") < 0) {
+                    alert(messages['emailkhonghople']);
+                    email.focus();
+                    return false;
+                }
+            }            			
+            if (code.value == "") {
+                alert(messages['nhapmaxacnhan']);
+                code.focus();
+                return false;
+            }
+        }
+        return true;
+    }
+</script> 
+                            {/literal}
+                	<div id="shopping">
+                        	<div id="vmMainPage">
+
+								<h4><input checked="checked" type="radio" class="toggler" id="toggler1" name="togglerchecker">
+								<label for="toggler1">Xin vui lòng nhập địa chỉ email của bạn. Chúng tôi sẽ gửi bạn đường link để thay đổi mật khẩu.</label>
+								</h4>
+								<div id="register_stretcher" class="stretcher" style="padding-top: 0px; border-top: medium none; padding-bottom: 0px; border-bottom: medium none; overflow: hidden; visibility: visible; opacity: 1; height: auto;">
+
+
+											<form name="adminForm" method="post" action="" onsubmit="return CheckFormMail();" target="_parent">
+										<div style="width:100%;"><fieldset>				     
+													 {if $error}<p style=" color:#F00; font-weight:bold">{$error}</p>{/if}	      
+								<div class="formLabel " id="email_div"><label for="email_field">Email</label><strong>* </strong> </div>
+										  <div id="email_input" class="formField">
+								<input type="text" maxlength="100" class="inputbox" value="" size="30" name="email" id="email_field">
+								<br></div><br style="clear:both;"></fieldset>
+								</div>
+								<div align="center">
+										<input type="submit" class="button" value="Gửi">
+										<input type="hidden" value="forgotpass" name="op">        
+									</div>    
+									
+									</form>
+								   </div>
+								   <br>
+   
+
+									<div id="statusBox">
+								</div>
+							</div>
+                        </div>        
+                </div><!--cc-boxCont-->
+            </div><!--boxCont-->
+        </div><!--content-->
+
+{include file="$usertemplate/footer.tpl.html"}

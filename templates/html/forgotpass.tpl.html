@@ -1,0 +1,49 @@
+
+{include file="$usertemplate/header.tpl.html"}
+
+{include file="$usertemplate/sub_header.tpl.html"}
+<div class="Nheader"></div>
+{if $lang eq 'en'}
+{assign var=register value="Register"}
+{assign var=submit value="Submit"}
+{else}
+{assign var=register value="Đăng ký"}
+{assign var=submit value="Gửi"}
+{/if}
+<div class="main-giohang wow fadeIn" data-wow-delay="0.2s">
+    <div class="container-full">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title-03 wow fadeInUp" data-wow-delay="0.3s">
+                    <a href="javascript:void(0)">{$pageName}</a>
+                </div>
+            </div>
+        </div>
+        {if isset($error)}
+        <p style="text-align: center"><span style="color:red; font-weight:bold; text-align: center">{$error}</span></p>
+        {/if}
+        <p style="text-align: center"><span style="font-weight:bold; margin-left: -158px">Vui lòng nhập địa chỉ email. <br>Mật khẩu mới sẽ được gửi qua email của bạn </span></p>
+
+
+        <form action="" method="post">
+            <input type="hidden" name="op" value="forgotpass">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="dangnhap-id wow fadeInUp" data-wow-delay="0.3s">
+                        <ul>
+                            <li><input type="text" placeholder="email" name="email" class="btn-tttk"></li>
+                            <!--<li><input type="password" placeholder="Mật khẩu" name="" class="btn-tttk"></li>-->
+
+                            <li class="but-dn">
+                                <input type="submit" name="gui" value="{$submit}" class="dnuser button">
+                                <input type="button" name="gui" value="{$register}" class="dkuser button" onclick="location.href = '/{$lang}/register.html';">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{include file="$usertemplate/footer.tpl.html"}

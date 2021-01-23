@@ -1,0 +1,156 @@
+
+{include file="$usertemplate/header.tpl.html"}  
+
+{literal}
+<script language="javascript">	
+	function CheckFormMail() {
+    	with(document.adminForm) {
+            if (rfullname.value == "") {
+                alert('Bạn chưa nhập tên!');
+                rfullname.focus();
+                return false;
+            }
+			if (rtel.value == "") {
+                alert('Chưa nhập số điện thoại');
+                rtel.focus();
+                return false;
+            }
+			var sdt = rtel.value;
+			var n = sdt.length;
+			if(n<10){	
+				alert('Số điện thoại không đúng!');
+                rtel.focus();
+                return false;
+			}
+	
+			if (raddress.value == "") {
+                alert("Chưa nhập địa chỉ!");
+                raddress.focus();
+                return false;
+            }
+        }
+		
+		document.adminForm.submit();
+    }
+</script> 
+{/literal}
+
+<div class="maincontent">
+    <div class="container-xxy">
+        <div class="row padi010">
+            <div class="col-md-12 padi05">
+                <div class="linktit">
+                    <a href="#" class="homelink">Trang chủ</a>
+                    <a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i><span>Đặt hàng</span></a>
+                </div>
+            </div>
+			{if $cartItems}
+            <div class="col-md-8 col-sm-6 col-xs-12 padi05">
+                <div class="caigiohang">
+				
+				
+				  {foreach from=$cartItems item=cartItem key=i}
+				  
+						<ul>
+                        <li class="cartc1"><img src="{$ROOTPATH}/gallery/avatar_upload/products/avatar/{$cartItem->getAvatar()}" alt="{$cartItem->getProductName()}"/></li>
+                        <li class="cartc2">
+                            <p>{$cartItem->getProductName()}</p>
+                            <span>Mã SP: {$cartItem->getProductCode()}</span>
+                            <b>Đơn giá: {$cartItem->getPrice()|number_format:0:",":"."}</b>
+                            <div class="sluongcnhat">
+                                    <p>Số lượng</p>
+                                    <form  method="post" action="">
+                                        <input type="text" value="{$cartItem->getQuantity()}" name="quantity" maxlength="1" size="1" class="inputbox" title="">
+                                        <input type="submit" align="middle" alt="Update" title="Update Quantity In Cart" name="update" class="update" value ="">
+                                        <input type="hidden" value="shopping" name="op">
+                                        <input type="hidden" value="updateoneCart" name="plus">
+                                        <input type="hidden" name="cId" value="{$cartItem->getId()}" class="inputHidden" />
+                                    </form>    
+									
+                                    <form method="post" action="">    
+                                        <input type="submit" align="middle" alt="Delete Product From Cart" title="Delete Product From Cart" name="delete" class="delete" value ="">
+                                        <input type="hidden" value="shopping" name="op">
+                                        <input type="hidden" value="deleteoneCart" name="plus">
+                                        <input type="hidden" name="dId" value="{$cartItem->getId()}" />
+                                    </form>
+                                </div>
+                        </li>
+                        <li class="cartc3">
+						
+						{assign var=price value=$cartItem->getPrice()}
+						{assign var=quantity value=$cartItem->getQuantity()}
+						{assign var=subTotal value=$price*$quantity}
+						{assign var=grandTotal value=$grandTotal+$subTotal}
+                            <p>{$subTotal|number_format:0:",":"."}</p>
+                        </li>
+                    </ul>
+				
+				{/foreach}
+				
+     
+	 
+                    <p><span>Tổng thanh toán:</span> {$grandTotal|number_format:0:",":"."} {$messages.currency}</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12 padi05">
+                <form name="adminForm" id ="adminForm" method="post" action="" onsubmit="return CheckFormMail();" target="_parent">
+                    <div class="dathang">
+                        <ul>
+                            <li class="ttngmua">
+                                <a href="#">
+                                    <span>1. Thông tin người mua</span>
+                                    <input type="radio" name="genner" value="0"><p>Anh</p>
+                                    <input type="radio" name="genner" value="1" checked><p>Chị</p>
+                                </a>
+                                <ul>
+                                    <li><input type="text" name="rfullname" placeholder="Họ tên của bạn (Bắt buộc)"></li>
+                                    <li><input type="text" name="rtel" placeholder="Số di động (Bắt buộc)"></li>
+                                    <li><input type="text" name="email" placeholder="Email (Để nhận thông tin đặt hàng)"></li>
+                                    <li><input type="text" name="raddress" placeholder="Địa chỉ (Để nhận hàng - Bắt buộc)"></li>
+                                    <li>
+                                        <textarea rows="" name ="comment" cols="" placeholder ="Ghi chú (Nếu cần ghi chú cho shop)"></textarea>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="htttoan">
+                                <a href="#">2. Hình thức thanh toán</a>
+                                <ul>
+                                    <li><input type="radio" name="province" value="0"><p>Thanh toán qua Internet Banking</p></li>
+                                    <li><input type="radio" name="province" value="1" checked><p>Thanh toán trực tiếp (COD)</p></li>
+                                </ul>
+                            </li>
+                            <li class="dathangnao">
+                                <a onclick="CheckFormMail();">Đặt hàng</a>
+								
+                            </li>
+                        </ul>
+                    </div>
+					
+					<input type="hidden" value="order" name="op">
+											<input type="hidden" value="submitOrder" name="plus">
+											<input type="hidden" value="vn" name="lang">    
+                </form>
+            </div>
+			{else}
+			<p>Không có sản phẩm nào trong giỏ hàng!</p>
+			<p class="text-center"><a href="{$ROOTPATH}">
+				<i class="fa fa-reply"></i> Tiếp tục mua hàng</a>
+			</p>
+			{/if}
+			
+            <div class="col-md-12 padi05">
+                <div class="hotcart">
+                    <a href="#">
+                        <img src="{$ROOTPATH}/templates/{$usertemplate}/images/icon-9.png" alt="" />
+                        <p>0961 824 566</p>
+                    </a>
+                </div>
+            </div>
+
+   
+	
+
+{include file="$usertemplate/footer.tpl.html"}
+
+                      
+           

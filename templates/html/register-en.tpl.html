@@ -1,0 +1,109 @@
+{include file="$usertemplate/header.tpl.html"}
+{include file="$usertemplate/sub_header.tpl.html"}
+
+<div class="Nheader"></div>
+<div class="main-giohang wow fadeIn" data-wow-delay="0.2s">
+    <div class="container-full">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title-03 wow fadeInUp" data-wow-delay="0.3s">
+                    <a href="javascript:void(0)">{$pageName}</a>
+                </div>
+            </div>
+        </div>
+        <p style="text-align: center"><span style="color:red; font-weight:bold" class="show-error">{if isset($error)}{$error}{/if}</span></p>
+        <form  action="" method="post" onsubmit=" return validate()">
+            <input name="op" value="register" type="hidden">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="dangnhap-id wow fadeInUp" data-wow-delay="0.3s">
+                        <ul>
+                            <li><input type="text" placeholder="Full name (*)" name="fullname" class="btn-tttk" id="fullname"></li>
+                            <li><input type="text" placeholder="Email (*)" name="email" class="btn-tttk" id="email"></li>
+                            <!--<li>
+                                <input type="password" placeholder="Mật khẩu (*)" name="" class="btn-tttk">
+                            </li>
+                            <li>
+                                <input type="password" placeholder="Xác minh lại mật khẩu (*)" name="" class="btn-tttk">
+                            </li>-->
+                            <li style="position: relative;">
+                                <input type="password" class="btn-tttk" name="password" value=""
+                                       placeholder="Password (*)" id="password">
+                                <span toggle="#password-field-01"
+                                      class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                            </li>
+                            <li style="position: relative;">
+                                <input type="password" class="btn-tttk" name="re_password" value=""
+                                       placeholder="Confirm password (*)" id="re_password">
+                                <span toggle="#password-field-02"
+                                      class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                            </li>
+                            <li><input type="text" placeholder="Tel (*)" name="tel" class="btn-tttk" id="phone"></li>
+                            <li><input type="text" placeholder="Address (*)" name="address" class="btn-tttk" id="address"></li>
+                            <li class="qmk">
+                                <input type="radio" name="is_check_rule" id="is_check_rule">I agree with the terms and conditions<br>
+                            </li>
+                            <li class="but-dn">
+                                <input type="submit" name="gui" value="Register" class="butdk button">
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{literal}
+<script>
+    function validate(){
+        $('span.show-error').html('');
+
+        if($('#fullname').val() ==''){
+            //  $('#fullname').focus();
+            $('span.show-error').html('Full name is required');
+            return  false;
+        }
+        if($('#email').val() =='' || !validateEmail($('#email').val())){
+            //     $('#email').focus();
+            $('span.show-error').html('Email invalid');
+            return  false;
+        }
+        if($('#password').val() ==''){
+            //  $('#password').focus();
+            $('span.show-error').html('Password is required');
+            return  false;
+        }else if($('#re_password').val() != $('#password').val()){
+            //    $('#re_password').focus();
+            $('span.show-error').html('Password diffrent confim');
+            return  false;
+        }
+        if($('#address').val() ==''){
+            //      $('#address').focus();
+            $('span.show-error').html('Address is required');
+            return  false;
+        }
+
+        if($('#phone').val() ==''){
+            //$('#phone').focus();
+            $('span.show-error').html('Phone is required');
+            return  false;
+        }
+        if(document.getElementById('is_check_rule').checked == false){
+
+            //fullname.focus();
+            $('span.show-error').html('You not choose policy');
+            return  false;
+        }
+
+        return true;
+    }
+
+    function validateEmail(email) {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+
+</script><!--EnD-Banner-->
+{/literal}
+{include file="$usertemplate/footer.tpl.html"}

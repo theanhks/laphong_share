@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Control Panel</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="deracms, control panel" />
+<meta name="description" content="Control Panel - Content Management System" />
+<meta name="Robots" content="index,all"/>
+<link rel="stylesheet" type="text/css" href="templates/{$usertemplate}/css/screen.css" media="all" />
+<script type="text/javascript" src="templates/{$usertemplate}/scripts/jquery.js"></script>
+<script type="text/javascript" src="templates/{$usertemplate}/scripts/mootools-1.2.1-core.js"></script>
+<script type="text/javascript" src="templates/{$usertemplate}/scripts/mootools-1.2-more.js"></script>
+<script type="text/javascript" src="templates/{$usertemplate}/scripts/common.js"></script>
+<script type="text/javascript" src="templates/{$usertemplate}/scripts/rowhover.js"></script>
+<script type="text/javascript" src="templates/{$usertemplate}/scripts/forms.js"></script>
+
+<!-- TinyMCE -->
+<script type="text/javascript" src="{$ROOTPATH}/addons/jscripts/tiny_mce/tinymce.min.js"></script>
+{literal}
+<script type="text/javascript">
+
+	tinymce.init({
+    selector: "textarea",
+    theme: "modern",
+	
+    plugins: [
+        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime media nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor colorpicker textpattern imagetools responsivefilemanager"
+    ],
+    toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+    toolbar2: " | responsivefilemanager | print preview media | forecolor backcolor emoticons | ajaxfilemanager",
+    image_advtab: true,
+    templates: [
+        {title: 'Test template 1', content: 'Test 1'},
+        {title: 'Test template 2', content: 'Test 2'}
+    ],
+   relative_urls : true,
+	remove_script_host : false,	
+	convert_urls : false
+	
+});
+
+	
+	function ajaxfilemanager(field_name, url, type, win) {
+		var ajaxfilemanagerurl = "../../../../../addons/jscripts/tiny_mce/plugins/ajaxfilemanager/ajaxfilemanager.php?editor=tinymce";
+		switch (type) {
+			case "image":
+				break;
+			case "media":
+				break;
+			case "flash": 
+				break;
+			case "file":
+				break;
+			default:
+				return false;
+		}
+		tinyMCE.activeEditor.windowManager.open({
+			url: "../../../../../addons/jscripts/tiny_mce/plugins/ajaxfilemanager/ajaxfilemanager.php?editor=tinymce",
+			width: 500,
+			height: 440,
+			inline : "yes",
+			close_previous : "no"
+		},{
+			window : win,
+			input : field_name
+		});
+	}	
+</script>
+{/literal}
+<!-- /TinyMCE -->
+</head>
+<body>
+<div id="container">
+<div id="header">
+<a href="http://www.ava.vn" target="_blank"><img src="templates/{$usertemplate}/images/bg_r.png" alt="" style="position:absolute; right:0" /></a>
+</div>
+<div id="main">

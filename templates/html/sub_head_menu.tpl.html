@@ -1,0 +1,76 @@
+<div class="navbar">
+    <div class="container-full" style="position: relative;">
+        <div class="logo"><a href="/{$lang}"><img src="{$ROOTPATH}/templates/{$usertemplate}/img/logo.png" alt="LaPhong" /></a></div>
+        <div class="menu">
+            <ul>
+                <li class="first"><a href="/{$lang}/gioi-thieu.html"><span>{if $lang eq 'en'}Introduction{else}Giới thiệu{/if}</span></a>
+                {foreach from=$productcatItems item=productcatItem key=i}
+                {assign var=pidSub1 value=$productcatItem->getId()}
+                    {if $pidSub1 != 1}
+                {assign var=Sub1procategoryItems value=$productcategories->getObjects(1,"status=1 AND pid=$pidSub1",$orderASC)}
+                <li class=""><a href="{$productcatItem->getUrl($lang)}"><span>{$productcatItem->getName($lang)}</span></a>
+                    {if $Sub1procategoryItems}
+                    <ul>
+                        {foreach from=$Sub1procategoryItems item=Sub1procategoryItem key=i}
+                        {assign var=pidSub2 value=$Sub1procategoryItem->getId()}
+                        {assign var=Sub2procategoryItems value=$productcategories->getObjects(1,"status=1 AND pid=$pidSub2",$orderASC)}
+                        <li><a href="{$Sub1procategoryItem->getUrl($lang)}">{$Sub1procategoryItem->getName($lang)}</a>
+                            <!--{if $Sub2procategoryItems}
+                            <ul>
+                                {foreach from=$Sub2procategoryItems item=Sub2procategoryItem}
+                                <li><a href="{$Sub2procategoryItem->getUrl($lang)}">{$Sub2procategoryItem->getName($lang)}</a>
+                                    {assign var=pidSub3 value=$Sub2procategoryItem->getId()}
+                                    {assign var=Sub3procategoryItems value=$productcategories->getObjects(1,"status=1 AND pid=$pidSub3",$orderASC)}
+                                    {if $Sub3procategoryItems}
+                                    <ul>
+                                        {foreach from=$Sub3procategoryItems item=Sub3procategoryItem}
+                                        <li><a href="{$Sub3procategoryItem->getUrl($lang)}">{$Sub3procategoryItem->getName('vn')}</a></li>
+                                        {/foreach}
+                                    </ul>
+                                    {/if}
+                                </li>
+                                {/foreach}
+                            </ul>
+                            {/if}-->
+                        </li>
+                        {/foreach}
+                    </ul>
+                    {/if}
+                </li>
+                    {/if}
+                {/foreach}
+                <li class=""><a href="/{$lang}/uu-dai/page-1.html"><span>{if $lang eq 'en'}Promotion{else}Ưu đãi{/if}</span></a>
+                <li class=""><a href="/{$lang}/dat-ban.html"><span>{if $lang eq 'en'}Book{else}Đặt bàn{/if}</span></a>
+                <li class=""><a href="/{$lang}/tuyen-dung/page-1.html"><span>{if $lang eq 'en'}Recruitment{else}Tuyển dụng{/if}</span></a>
+               <!-- {if isset($sub_khachhang)}
+                {foreach from=$sub_khachhang item=menu_khachhang key=i}
+                    {if $menu_khachhang->getId() ==40}
+                <li class=""><a href="{$menu_khachhang->getUrl($lang)}">{$menu_khachhang->getName($lang)}</a></li>
+                    {/if}
+                {/foreach}
+                {/if}-->
+                <li class=""><a href="/{$lang}/lien-he.html"><span>{if $lang eq 'en'}Contact{else}Liên hệ{/if}</span></a>
+                {if empty($memberData)}
+                <li class=""><a href="/{$lang}/login.html"><span>{if $lang eq 'en'}Login{else}Đăng nhập{/if}</span></a>
+                {else}
+                <li class="">
+                    <a href="javascript:void(0)"><span>{if $lang eq 'en'}Hi {else} Chào ! {/if}{$memberData->fullname}</span></a>
+                    <ul>
+                        <li> <a href="javascript:void(0)"><span>{if $lang eq 'en'}Logout{else}Đăng xuất{/if}</span></a></li>
+                    </ul>
+                </li>
+                {/if}
+                
+            </ul>
+
+
+        </div>
+        <div class="language">
+            {if $lang eq 'vn'}
+            <a href="javascrip:void(0)" class="change-lang" data-lang="vn"><img src="{$ROOTPATH}/templates/{$usertemplate}/img/flag-en.jpg" alt="" /></a>
+            {else}
+            <a href="javascrip:void(0)" class="change-lang" data-lang="en"><img src="{$ROOTPATH}/templates/{$usertemplate}/img/flag-vn.jpg" alt="" /></a>
+            {/if}
+        </div>
+    </div>
+</div>

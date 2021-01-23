@@ -1,0 +1,19 @@
+{include file="$usertemplate/header.temp.html"}
+<div class="login_home">
+	<form action="{$script}" method="post" name="formLogin">
+		<b>Đăng nhập</b>
+		{if $error}<p class="error" style="color: red; margin-top: 10px;">Sai tên người dùng hoặc mật khẩu !!!</p>{/if}
+		<p>
+			<span>{$amessages.username}</span>
+			<input type="text" value="" name="username" id="username" />
+		</p>
+		<p>
+			<span>{$amessages.password}</span>
+			<input type="password" value="" name="password" id="password" />
+		</p>
+		<input type="submit" value="{$amessages.submit}" title="{$amessages.submit}" name="btnSubmit" />
+		<input class="re" type="reset" value="{$amessages.reset}" title="{$amessages.reset}" name="btnReset" />
+		<input type="hidden" value="login" name="op" />
+		<input type="hidden" value="admin" name="site" />
+	</form>
+</div>

@@ -1,0 +1,310 @@
+<?php
+$messages["newproduct"] = "New Products";
+$messages["sendmail"] = "メールはこちらまで。";
+$messages["ttlienhe"] = "Contact Information";
+$messages["designby"] = "Design by";
+$messages["maps"] = "Maps";
+$messages["botrong"] = "must not be left blank";
+$messages["title_header"] = "Nanavyshop";
+$messages["newproduct"] = "New Products";
+$messages["home"] = "ホーム";
+$messages["phone"] = "電話";
+$messages["menu"] = "Menu";
+$messages["forum"] = "Forum";
+$messages["search"] = "Search";
+$messages["count"] = "Counter";
+$messages["designby"] = "Website designed by";
+$messages["product_index"] = "Feature products";
+$messages["nhanhieu"] = "Brand name";
+$messages["price"] = "Price";
+$messages["price_new"] = "Price";
+$messages["ma_sp"] = "Product code";
+$messages["order"] = "Order";
+$messages["product_detail"] = "Product details";
+$messages['cart']="Cart";
+$messages['images']="Images";
+$messages['product_name']="Product name";
+$messages['quantity'] = "Quantity";
+$messages['total'] = "Total";
+$messages["delete"] = "Delete";
+$messages['currency'] = "VNĐ";
+$messages["update_order"] = "Update Order";
+$messages['continue'] = "Continue";
+$messages['cInformation'] = "Customer Information";
+$messages['cus_name'] = "Customer name";
+$messages['rname'] = "Recipients name";
+$messages['name'] = "Product name";
+$messages['noteorder'] = "Please fill in following form. Lines with * are required.";
+$messages['noteemail'] = "(Very important ! We will send order to this email)";
+$messages['notecell'] = "(Very important ! This is the password of order)";
+$messages['tel'] = "Tel";
+$messages['cel'] = "Cel";
+$messages['fax'] = "Fax";
+$messages['email'] = "メールアドレス";
+$messages['copyright'] = "著作権";
+$messages['website'] = "ウェブサイト";
+$messages['address'] = "Address";
+$messages['rInformation'] = "Recipient information";
+$messages['likecustomer'] = "Like customer information";
+$messages['rdate'] = "Delivery date";
+$messages['continueorder'] = "Continue";
+$messages["reset"] = "Reset";
+$messages['raddress'] = "Address";
+$messages['rcel'] = "cel";
+$messages['rtel'] = "Tel";
+$messages['tax'] = "Tax";
+$messages['scost'] = "Shipping Costs";
+$messages['edit'] = "Edit";
+$messages['pInformation'] = "Product Information";
+$messages['error_ok'] = "Having trouble sending mail. Please resend. Thank you.";
+#Validate
+$messages['notValidString'] = "not empty";
+$messages['notValidStatus'] = "not empty";
+$messages['notValidPassword'] = "Minimum 6 characters (a-z,0-9,..)";
+$messages['notValidTestPass'] = "password must match";
+$messages['notValidCheckPass'] = "invalid";
+$messages['notValidEmail'] = "invalid";
+$messages['notValidUsername'] = "must be (a-z,0-9)";
+$messages['notValidCodeSecurity'] = "not correct";
+$messages['invalid_security_code'] = "security code invalid";
+$messages['cofirm_password'] = "Confirm password not match";
+$messages['check_type'] ="Not supported file type";
+$messages['upload_file'] ="Upload File";
+$messages['notValidRDateTime'] = "Not less than current date";
+$messages["order_email_body"] = "Xin chào bạn,
+
+Đơn hàng của bạn đã được gửi đến ban quản trị webiste Hợp Thành Thịnh.
+";
+$messages["order_email_body3"] =" Chúng tôi sẽ xem xét và liên hệ lại với bạn trong thời gian sớm nhất.";
+$messages["order_email_body4"]="Cám ơn bạn. Chúc bạn 1 ngày làm việc vui vẻ";
+$messages["order_email_body1"]=" Nếu liên kết trên không hoạt động, hãy thử dùng liên kết sau:";
+$messages["order_email_body2"]=" Bạn có thể lựa chọn nhiều cách thanh toán cho đơn hàng của mình khi truy cập vào liên kết trên.
+Chân thành cảm ơn bạn.
+";
+$messages["order_email_title"] = "Thông tin đơn hàng từ Hợp Thành Thịnh!";
+$messages['finish_order'] = "Hoàn tất đơn đặt hàng";
+$messages['finish_order_title'] = "Congratulations!Your order has been successfully created. An email about this order has been sent to your inbox. If the order is not found in the Inbox, please try looking in your spam box (Spam, Bulk, Junk,...)";
+$messages['code_order'] = "Mã số đơn hàng của bạn là";
+$messages['note_order'] = "Bạn nên ghi lại mã số đơn hàng trên để cung cấp cho chúng tôi khi cần thiết. Bạn có thể theo dõi đơn hàng bằng cách nhấp vào liên kết sau";
+$messages['sl_giohang'] = "Shopping cart";
+$messages["detail"] = "Details";
+$messages['contact_truoc'] = "(Please contact prior to!)";
+$messages["result_search"] = "Result Search";
+$messages["linkgt"] = "introduction";
+$messages["about"] = "ご案内";
+$messages["spaservices"] = "スパ サービス";
+$messages["promotion"] = "プロモーション";
+$messages["reservation"] = "ご予約";
+$messages["tipfortourist"] = "お役立ち情報"; //
+$messages["feedback"] = "ご感想";
+$messages["visitus"] = "お問い合わせ"; //私たちのスパ
+$messages["ourspa"] = "メコンブリススパ";
+$messages["news"] = "News";
+$messages["news_event"] = "News &amp; Events";
+$messages["uudai"] = "Preferred Customer Program";
+$messages["news1"] = "news";
+$messages["tuyendung"] = "job";
+$messages["nhamay"] = "factory";
+$messages["congtrinh"] = "photo-works";
+$messages["introduction"] = "Introduction";
+$messages["othernews"] = "Other news";
+$messages["product"] = "Products";
+$messages["splink"] = "products";
+$messages["factory"] = "Factory";
+$messages["anhcongtrinh"] = "Photo";
+$messages["tuyendung"] = "Job";
+$messages["contact"] = "お問い合わせ";
+$messages["lienhe"] = "contacts";
+$messages['productcategory'] = "Product category";
+$messages["support"] = "Support Online";
+$messages["weblink"] = "Web Link";
+$messages["selectlink"] = "Select web link";
+$messages["truycap"] = "Statistics";
+$messages["count"] = "Visitors";
+$messages["ct_ctywin"] = "Works using the product CityWindow";
+$messages["new_hot"] = "News Highlights";
+$messages["video"] = "Introduction Video";
+$messages["dacdiem"] = "Characteristic";
+$messages["nodata"] = "Data is being updated, please come back later";
+$messages["details"] = "Details";
+$messages['title'] = "テーマ";
+$messages['content'] = "お問い合わせ事項";
+$messages['send'] = "Send";
+$messages['noprice'] = "Please contact us for a price";
+$messages['orderproduct'] = "Other Products";
+$messages['tuyendung1'] = "job";
+$messages['othercongtrinh'] = "Other Photos";
+$amessages['mota_ct'] = "Description of works";
+$messages['download'] = "Download price list";
+$messages['please_download'] = "Please download quotes";
+$messages['here'] = "here";
+$messages["customer"] = "Customers";
+#hop thanh thinh
+$messages["services"] = "Services";
+$messages["solution"] = "Solution";
+$messages["sale"] = "Sale";
+$messages["tuyendung"] = "Employment";
+$messages["search_pro"] ="Search Products";
+$messages["giatu"] ="Price from";
+$messages["giaden"] ="Price to";
+$messages["timkiem"] ="Search";
+$messages["htkh"] ="Customer support";
+$messages['ads'] = "Advertisement";
+$messages['doitac'] = "Partners - Clients";
+$messages['gdkt'] = "Technical Assistance";
+$messages['tvkt'] = "Technical advice";
+$messages['spchinh'] = "Main Products";
+$messages['customer'] = "Customer";
+$messages['baohanh'] = "Warranty";
+$messages['hoptac'] = "Cooperation";
+$messages['banggia'] = "Pricing";
+$messages['dk_sudung'] = "Conditions of use";
+$messages['bando'] = "Route map go";
+$messages['giaban'] = "Price";
+$messages['giakm'] = "New price";
+
+/****************hop tac**************/
+$messages['hoptac'] = "Cooperation";
+$messages['title_hoptac'] = "Hop Thinh Thanh is the highest level of partner firms
+information technology leading. We look forward to expanding cooperation to provide network solutions, systems, software and security.";
+$messages['company'] = "Company";
+$messages['city'] = "City";
+$messages['ttlienlac'] = "Conact infomation";
+$messages['chucdanh'] = "Positions";
+$messages['gpdv'] = "Solutions and services";
+$messages['csht'] = "Infrastructure";
+$messages['gpht'] = "System solutions";
+$messages['gpcsdl'] = "Database Solutions";
+$messages['gppmht'] = "Solutions software system";
+$messages['gptt_bm'] = "Communications Solutions - Security";
+$messages['khac'] ="Other";
+$messages['khht'] ="Cooperation Plan";
+$messages['nd'] ="Contents";
+$messages['code_xn'] ="Mã xác nhận";
+$messages['solution1'][1]="Infrastructure";
+$messages['solution1'][2]="System solutions";
+$messages['solution1'][3]="Database Solutions";
+$messages['solution1'][4]="Solutions software system";
+$messages['solution1'][5]="Communications Solutions - Security";
+$messages['solution1'][6]="Other";
+$messages['hoptac_ok']="Thank you for emailing to cooperate with our company. We will send an email to contact you as soon as possible";
+$messages['dkemail']="Email Newsletter";
+$messages["register_sendmail_ok"] = "Thank you for registering at our website email.";
+ $messages['tvkt1'][1]="Technology";
+$messages['tvkt1'][2]="Warranty";
+$messages['tvkt1'][3]="Repair";
+$messages['tvkt1'][4]="Use";
+$messages['tvkt1'][5]="Preservation Equipment";
+$messages['keyword'] = "Enter a keyword";
+$messages["masp"] = "Product Code";
+$messages['sprice'] = "Sale";
+$messages['other_products'] = "Other Products";
+$messages["xndh"] = "Confirm Order";
+$messages["hoantatdonhang"] = "Complete Order";
+$messages["giaidapkythuat"] = "
+Just fill out the form content questions below. After a question, we will reply by email to you. <br/>
+If the question is more interested customers, we will put the content of questions and answers on this website are located in the Technical FAQ. <br/>
+Thank you for your contacts";
+$messages['kythuat']="Technology";
+$messages['baohanh']="Warranty";
+$messages['suachua']="Repair";
+$messages['sudung']="Use";
+$messages['baoquantbi']="Preservation Equipment";
+$messages['chude']="Topics";
+$messages['newletter1']="Join our MailList system, you will receive the latest information on products, services and solutions, news, promotion and recruitment of companies Hop Thanh Thinh via email.";
+$messages['newletter2']="Nhập địa chỉ mail của bạn, nhấn nút Đăng ký hoặc Hủy đăng ký.";
+$messages['chon']="Chọn.";
+$messages['thuonghieu']="Select product category";
+$messages['thanhtoan']="Payment by card";
+$messages['ktbh']="Check Warranty";
+$messages['othercustomer']="Other Customers";
+$messages['tinhtrang']="Product Status";
+$messages['kqsearch'] = "Search Results";
+$messages['conhang'] = "in stock";
+$messages['hethang'] = "Out of stock";
+$messages['baohanh'] = "Warranty";
+$messages['hoidap'] = "Technical FAQs";
+$messages['hoidapchitiet'] = "Detailed questions";
+$messages['otherquestions'] = "Other questions";
+$messages['cauhoi'] = "Questions";
+$messages['dvcntt'] = "Service IT";
+$messages['traloi'] = "Answers";
+$messages["contact_ok"] = "<br/>ご送信完了しました。<br/>すぐにこちらからご返信いたしますので少々お待ちください。お問い合わせありがとうございます。";
+$messages['contacts1'] = "下記に詳細を記入してください:";
+$messages['contacts2'] = "アスタリスク（*）マークのメモが付いている必須フィールド";
+$messages["admin_order_email_body"] = "Xin chào bạn,<br/>
+Bạn đã nhận được đơn đặt hàng từ website <a href='http://www.htt.com.vn'>http://www.htt.com.vn</a>.<br/>
+Thông tin của khách hàng như sau:"; 
+$messages["admin_order_email_body_end"]="
+Bạn vui lòng xem thêm thông tin đặt hàng của khách hàng trong phần (admincp) của website.
+Bạn hãy liên hệ với khách hàng trong thời gian sớm nhất để xác nhận  và có thêm thông tin chi tiết về đơn hàng.
+Cám ơn bạn!<br/>
+<br/>
+Trân trọng.<br/>
+---------------------------------------<br/>
+Phòng bán hàng trực tuyến Hợp Thành Thịnh
+";
+$messages['thuevat'] = "Include V.A.T, delivery and maintenance of the door.";
+$messages['lienhegiaban'] = "Please contact us for a price.";
+$messages['hddh'] = "How to order";
+$messages['quickcart_ok'] = "Thank you for our purchase. <br/> Please check cart";
+$messages['security'] = "検証";
+$messages['sosp'] = "Number of products";
+$messages['no_order'] = "You have not ordered";
+$messages['faq_ok'] = "Your question has been sent successfully. We will consider and reply you as soon as possible. Thank you";
+$messages['body_end'] = "";
+$messages['moinhaphoten'] = "名前を入力して下さい。";
+$messages['moinhapemail'] = "メールアドレスを入力して招待";
+$messages['loiemail'] = "メールエラー";
+$messages['moinhaptieude'] = "タイトル招待";
+$messages['moinhapnoidung'] = "コンテンツを入力するように招待";
+$messages['moinhapmaxacnhan'] = "確認コードを入力するように招待";
+$messages['fullname'] = "フルネーム";
+$messages['address'] = "ご住所";
+$messages['tel'] = "電話";
+$messages['email'] = "Eメールアドレス";
+$messages['subject'] = "テーマ";
+$messages['nd'] = "中身";
+$messages['fieldrequired'] ='(<font color="#FF0000">*</font>) を空欄にすることはできません。';
+$messages['botrong'] = "空にすることはできませ"; //空にすることはできませ
+$messages['loichao'] = "こんにちは、あなたはウェブサイトの連絡先から電子メールを受け取る";
+$messages['cactinkhac'] = "他のサービス";
+$messages['gioitinh'] = "敬称";
+$messages['personalinformation']="個人情報";
+$messages['title']="タイトル";
+$messages['firstname']="名";
+$messages['lastname']="姓";
+$messages['mobile']="携帯電話";
+$messages['tel']="電話番号";
+$messages['treatmentdetails']="ご予約情報";
+$messages['numberofpersons']="ご人数";
+$messages['treatmentdate']="ご予約日";
+$messages['date']="日付";
+$messages['time']="時間";
+$messages['treatmenttime']="ご予約時間";
+$messages['specialrequests']="ご要望欄";//
+$messages['requiredfield']="必須情報";
+$messages['treatmentmenu']="スパサービス";
+$messages['send_mail_ok'] = "ご予約メールの送信を完了しました。ご予約ありがとうございます。24時間以内にこちらからご確認メールを送信いたします。少々おまちください。";
+
+$messages['PleaseselectSpaservices'] = "スパサービスを選択してください。";
+$messages['Pleaseselectgender'] = "性別を選択してください。";
+$messages['PleaseenterLastName'] = "姓を入力してください。";
+$messages['PleaseenterFirstName'] = "ファーストネームを入力してください。";
+$messages['PleaseenterPhoneNumber'] = "電話番号を入力してください。";
+$messages['PleaseenteryourEmail'] = "メールアドレスを入力してください";
+$messages['InvalidEmailAddress'] = "無効なメールアドレス";
+$messages['PleaseselectNumberofPersons'] = "者の数を選択してください。";
+$messages['Pleaseselectdate'] = "日付を選択してください。";
+$messages['Pleaseselectortherdate'] = "別の日付を選択してください。";
+$messages['Pleaseselecttime'] = "時間を選択してください。";
+
+$messages['hotelname'] = "ホテル名";
+$messages['roomnumber'] = "部屋番号";
+
+$messages['Reservations_are_not_final_until_you_receive_a_confirmation_email'] = "最終ご確認メールをお送りいたします。メールが届かない場合にはご予約は完了しておりませんのでご了承ください。２４時間以上経過してもご確認メールが届かない場合にはインターネット上のトラブルも考えられますので直接お電話いただくか、メールにてご連絡ください。";
+$messages['It_is_best_to_call_us_if_you_are_making_same_day_reservations'] = "ご予約日がご予約をいただいた日と同日の場合には、ご確認メールが遅れる場合がございます。直接受付までご連絡ください。";
+$messages['Reservations_are_not_guaranteed_if_you_are_more_than_15_minutes_late_after_time_of_noted_arrival'] = "ご予約時間を１５分以上経過してもお越しにならない場合には、ご予約がキャンセルされる可能性があります。
+
+ご了承ください。";
+?>

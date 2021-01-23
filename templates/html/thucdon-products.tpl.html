@@ -1,0 +1,104 @@
+{include file="$usertemplate/sub_head_menu.tpl.html"}
+{if $lang eq 'en'}
+    {assign var=menu value="Menu"}
+{else}
+    {assign var=menu value="Thực Đơn"}
+{/if}
+<div class="mainbanner3 wow fadeInDown" data-wow-delay="0.1s">
+    {assign var=HomeAds value=$ads->getAdsFront(19)}
+    {if $HomeAds}
+    {foreach from=$HomeAds item=HomeAdsItem}
+    <a href="#" title="">
+        <img src="{$ROOTPATH}/gallery/avatar_upload/ads/storage/{$HomeAdsItem->getLogoUrl()}" alt="" />
+    </a>
+    {/foreach}
+    {/if}
+    <div class="title-05">
+        <div class="container-full">
+            <div class="row">
+                <div class="col-md-12 wow fadeInUp" data-wow-delay="0.4s">
+                    <h2>{$menu}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="index-content">
+    <div class="index-gt-2">
+        <div class="container-full">
+            <div class="row padi010">
+                {if $proItems}
+                {foreach from=$proItems item=proItem key=i}
+                <div class="col-md-3 col-sm-4 col-xs-6 padi05">
+                    <div class="box-td wow fadeInUp" data-wow-delay="0.4s">
+                        <a href="#" class="c-preview" data-featherlight="#td-{$i}">
+                            <div class="c-preview__img"><img src="{$ROOTPATH}/gallery/avatar_upload/products/avatar/{$proItem->getAvatar()}" alt=""/></div>
+                        </a>
+                        <div class="t-preview">
+                            <a href="javascript:void(0)">{$proItem->getName($lang)}</a>
+                            <p>{$proItem->getPrice($lang)|number_format:0:",":"."} Vnđ</p>
+                        </div>
+                    </div>
+                </div>
+                {/foreach}
+                {/if}
+
+            </div>
+
+            {if $pages>1}
+            <div class="nav-page">
+
+                {$pager}
+
+            </div>
+            {/if}
+        </div>
+    </div>
+
+</div>
+
+{literal}
+<style type="text/css">
+    .lightbox { display: none; }
+</style>
+{/literal}
+
+{if $proItems}
+{foreach from=$proItems item=proItem key=i}
+<div class="lightbox" id="td-{$i}">
+    <div class="fix-cart">
+        <ul>
+            <li class="img-pro"><a href="javascript:void(0)"><img src="{$ROOTPATH}/gallery/avatar_upload/products/thumb/{$proItem->getAvatar()}" alt=""/></a></li>
+            <li class="tit-pro"><a href="javascript:void(0)">{$proItem->getName($lang)}</a></li>
+            <li class="view-pro">
+                <p>{$proItem->getPrice($lang)|number_format:0:",":"."} Vnđ</p>
+            </li>
+        </ul>
+    </div>
+</div>
+{/foreach}
+
+{/if}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

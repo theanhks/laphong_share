@@ -1,0 +1,50 @@
+<div class="header2 wow fadeInDown" data-wow-delay="0.2s">
+    <div class="container-full">
+        {if isset($typePage) && ($typePage == 'giao-hang-tan-noi' || $typePage == 'gio-hang')}
+            {assign var=procategoryItem value=$productcategories->getObject(1690)}
+            {assign var=url value=$procategoryItem->getUrl($lang)}
+        {else}
+            {assign var=url value=/$lang}
+        {/if}
+        <div class="logo2"><a href="{$url}"><img src="{$ROOTPATH}/templates/{$usertemplate}/img/logo.png" alt="LaPhong" /></a></div>
+        <div class="language2">
+            {if $lang eq 'vn'}
+            <a href="javascrip:void(0)" class="change-lang" data-lang="vn"><img src="{$ROOTPATH}/templates/{$usertemplate}/img/flag-en.jpg" alt="" /></a>
+            {else}
+            <a href="javascrip:void(0)" class="change-lang" data-lang="en"><img src="{$ROOTPATH}/templates/{$usertemplate}/img/flag-vn.jpg" alt="" /></a>
+            {/if}
+        </div>
+        <div class="hotline2">
+            <a href="javascript:void(0)">{$siteConfigs->getProperty('tel')}</a>
+        </div>
+        <div class="login2">
+            {if $lang eq 'vn'}
+                {assign var=register value="Đăng ký"}
+                {assign var=login value="Đăng nhập"}
+                {assign var=hi value="Chào"}
+                {assign var=logout value="Đăng xuất"}
+            {else}
+                {assign var=register value="Register"}
+                {assign var=login value="Login"}
+                {assign var=hi value="Hi"}
+                {assign var=logout value="Logout"}
+            {/if}
+            {if empty($memberData)}
+            <p><a href="/{$lang}/register.html">{$register}</a> | <a href="/{$lang}/login.html">{$login}</a></p>
+            {else}
+            <p>{$hi} <span>{$memberData->fullname}</span> | <a href="javascript:void(0)" class="logout">{$logout}</a></p>
+            {/if}
+        </div>
+        <div class="giohang2">
+            {if empty($memberData)}
+                {assign var=url value="/$lang/login.html"}
+            {else}
+                {assign var=url value="/cart.html"}
+            {/if}
+            <p>{if $lang eq 'vn'}Giỏ hàng{else}Cart{/if}</p>
+            <a href="{$url}">
+                <span id="count-item">{$count_item}</span>
+            </a>
+        </div>
+    </div>
+</div>

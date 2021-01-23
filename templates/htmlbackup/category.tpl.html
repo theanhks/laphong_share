@@ -1,0 +1,41 @@
+
+{include file="$usertemplate/header.tpl.html"}  
+
+
+
+
+
+
+
+   <div class="maincontent">
+    <div class="container-xxy">
+        <div class="row">
+
+            <div class="col-md-12 padi05">
+                <div class="titlistpro">
+                    <h5><span>{$pageName}</span></h5>
+                </div>
+            </div>
+            <div class="col-md-12 padi05">
+					
+					{if $slug == 'gioi-thieu'}
+						<div class="detailtext">
+							{$catslugItem->getDetails($lang)}
+                        </div>
+					{else}
+						{include file="$usertemplate/articlelist.tpl.html"}
+					{/if}
+
+			
+          </div>
+          
+
+
+
+
+ 
+
+{include file="$usertemplate/footer.tpl.html"}
+
+                      
+           

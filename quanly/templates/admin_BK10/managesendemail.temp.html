@@ -1,0 +1,112 @@
+{include file="$usertemplate/header.temp.html"}
+{include file="$usertemplate/left.temp.html" title=left}
+{assign var=formId value='addEntry'}
+{assign var=rightPanel value='hidden'}
+<div id="contextual" class="{$rightPanel}">
+<div class="levBtn">
+<p><a href="#"><img src="templates/{$usertemplate}/images/btn_arrow_02.gif" alt="" width="18" height="19" /></a></p>
+</div>
+<div class="contextType">
+<form action="" method="post" name="form2">
+<fieldset>
+<p>
+<label for="textbox">Textbox</label>
+<input type="text" value="" name="textbox" id="textbox" />
+</p>
+<p>
+<label for="textarea">Textarea</label>
+<textarea name="textarea" id="textarea" rows="5" cols="5"></textarea>
+</p>
+<p>
+<label for="combobox">Combobox</label>
+<select name="combobox" id="combobox" >
+<option selected="selected" value="">------------</option>
+</select>
+</p>
+<p class="radioType">
+<input type="radio" name="radio" id="radio" />
+<label for="radio">radio 1</label>
+<input type="radio" name="radio" id="radio2" />
+<label for="radio2">radio 2</label>
+</p>
+<p class="radioType">
+<input type="checkbox" name="checkbox" id="checkbox" />
+<label for="checkbox">checkbox 1</label>
+</p>
+</fieldset>
+</form>
+</div>
+</div>
+<div id="content">
+<div class="highlight">
+<h2><a href="">{$amessages.control_panel}</a> &raquo; {$amessages.send_email}</h2>
+<ul id="tablist">
+<li class="current"><a href="#" title="{$amessages.send_email}">{$amessages.send_email}</a></li>
+<li><a href="{$script}?op=manage&part=mail&act=list" title="List Email">List Email</a> </li>
+</ul>
+{if $infoText}
+<div class="{$infoClass}">
+<h4>Result:</h4>
+<p>{$infoText}</p>
+</div>
+{/if}
+<div class="formType">
+{if $sendmailok neq 1}
+<form action="{$script}" method="post" id="{$formId}" name="{$formId}" enctype="multipart/form-data">
+<fieldset>
+
+<!--<p>
+<label for="mail_to">Danh sách Email To *</label>
+<span>Nhập vào danh sách Email mà bạn cần gửi mail, mỗi mail cách nhau bằng dấu ;</span>
+<input type="mail_to" name="mail_to" value="{$mail_to}"  />
+</p>-->
+
+<p>
+<label for="subject">{$amessages.subject} *</label>
+<span>{$amessages.subject}</span>
+<input type="text" name="subject" id="subject" value="{$subject}" />
+</p>
+<p>
+<label for="subject">Extra emails *</label>
+<span>Use commas ";" to separate e-mail addresses</span>
+<input type="text" name="mail_bcc" id="subject" value="{$mail_bcc}" />
+</p>
+<p>
+<label for="mailcontent">Mail contents  *</label>
+<span>Enter the content you need to send email to customers</span>
+<textarea name="mailcontent"  rows="20" cols="5" class="mceAdvanced"> {$mailcontent}</textarea>
+</p>
+
+<!--
+<p class="radioType">
+<input type="radio" name="radio3" id="radio3" />
+<label for="radio3">radio 3</label>
+<input type="radio" name="radio3" id="radio4" />
+<label for="radio4">radio 4</label>
+</p>
+-->
+
+
+
+<p class="btnType">
+<input type="hidden" name="op" value="{$op}" />
+<input type="hidden" name="part" value="email" />
+<input type="hidden" name="act" value="send" />
+<input type="hidden" name="listlang" value="{$listlang}" />
+<input type="hidden" name="gId" value="{$gId}" />
+<input type="hidden" name="plus" id="plus" value=""/>
+<span><input type="reset" value="{$amessages.reset}" title="{$amessages.reset}" name="btnReset" /></span>
+<span><input type="submit" value="Gửi" title="{$amessages.send}" name="btnSubmit" onClick="javascript:actionSubmit('{$formId}','send');" /></span>
+<span><input type="submit" value="Save to Email Template" title="Save to Email Template" name="btnDelete" onClick="javascript:actionSubmit('{$formId}','save');" style="width:150px"/></span>
+
+</p>
+</fieldset>
+</form>
+{/if}
+</div>
+</div>
+</div>
+</div>
+<div class="push"></div>
+</div>
+{include file="$usertemplate/footer.temp.html" title=footer}

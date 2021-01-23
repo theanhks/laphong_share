@@ -1,0 +1,22 @@
+
+/* cloud zoom */
+ 
+
+.box_img_product {width:100% ;  
+float: left;
+margin-bottom: 30px; 
+position: relative; }
+
+.box_img_product .img_product {width:71%; float:left;background:#E3E3E3 ;   }
+
+.box_img_product .img_product img {  margin:0 ; float:left; } 
+ 
+
+.zoom-section{clear:both;  text-align:center;  }
+.zoom-desc{ background:#FFF; ;float:left; width:20% }
+.zoom-desc a, .zoomGalleryActive{ float: left; border: 1px solid #ddd; margin: 0 0 5px 10px}
+
+.zoom-desc a img {padding:5px }
+
+.zoom-desc a:hover{border-color: #999;}
+ 

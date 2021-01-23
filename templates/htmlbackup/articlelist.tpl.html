@@ -1,0 +1,37 @@
+
+<div class="maincontent">
+    <div class="container-xxy">
+        <div class="row">
+			
+			{if $entriesItems}
+			{foreach from=$entriesItems item=entriesItem key=i}
+			
+			       <div class="col-md-6 col-sm-6 col-xs-12 padi015">
+						<div class="tinhome">
+							<a title ="{$entriesItem->getName($lang)}" class="pic" href="{$entriesItem->getUrl($lang)}">
+								<img src="{$ROOTPATH}/gallery/avatar_upload/entry/avatar/{$entriesItem->getAvatar()}" alt="{$entriesItem->getName($lang)}" />
+							</a>
+							<p class="tit">
+								<a title ="{$entriesItem->getName($lang)}" href="{$entriesItem->getUrl($lang)}">{$entriesItem->getName($lang)}</a>
+								<em>{$entriesItem->getDateCreated()|date_format:"%d/%m/%Y"}</em>
+								{$entriesItem->getDetails($lang)|strip_tags|truncate:400}
+							</p>
+						</div>
+					</div>
+		
+			{/foreach}
+         	{/if}
+
+			
+		{if $pages>1}
+		<div class="clearfix"></div>
+		<div class="paging">
+			<ul id="pagination" class="pagination">{$pager}</ul>
+		</div>
+		<div class="clearfix"></div>
+		{/if}  
+     
+			
+
+
+	

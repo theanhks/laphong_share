@@ -1,0 +1,20 @@
+@font-face { font-family: 'UTM-Avo'; src: url('../font/UTM-Avo/UTM-Avo.eot'); src: url('../font/UTM-Avo/UTM-Avo.eot?#iefix') format('embedded-opentype'), url('../font/UTM-Avo/UTM-Avo.woff') format('woff'), url('../font/UTM-Avo/UTM-Avo.ttf') format('truetype'), url('../font/UTM-Avo/UTM-Avo.svg#UTM-alter') format('svg'); font-weight: normal; font-style: normal;}
+@font-face { font-family: 'UTM-Banque'; src: url('../font/UTM-Banque/UTM-Banque.eot'); src: url('../font/UTM-Banque/UTM-Banque.eot?#iefix') format('embedded-opentype'), url('../font/UTM-Banque/UTM-Banque.woff') format('woff'), url('../font/UTM-Banque/UTM-Banque.ttf') format('truetype'), url('../font/UTM-Banque/UTM-Banque.svg#UTM-alter') format('svg'); font-weight: normal; font-style: normal;}
+@font-face { font-family: 'UTM-Albertaheavy'; src: url('../font/UTM-Albertaheavy/UTM-Albertaheavy.eot'); src: url('../font/UTM-Albertaheavy/UTM-Albertaheavy.eot?#iefix') format('embedded-opentype'), url('../font/UTM-Albertaheavy/UTM-Albertaheavy.woff') format('woff'), url('../font/UTM-Albertaheavy/UTM-Albertaheavy.ttf') format('truetype'), url('../font/UTM-Albertaheavy/UTM-Albertaheavy.svg#UTM-alter') format('svg'); font-weight: normal; font-style: normal;}
+@font-face { font-family: 'UTM-Androgyne'; src: url('../font/UTM-Androgyne/UTM-Androgyne.eot'); src: url('../font/UTM-Androgyne/UTM-Androgyne.eot?#iefix') format('embedded-opentype'), url('../font/UTM-Androgyne/UTM-Androgyne.woff') format('woff'), url('../font/UTM-Androgyne/UTM-Androgyne.ttf') format('truetype'), url('../font/UTM-Androgyne/UTM-Androgyne.svg#UTM-alter') format('svg'); font-weight: normal; font-style: normal;}
+@font-face { font-family: 'UTM-Colossalis'; src: url('../font/UTM-Colossalis/UTM-Colossalis.eot'); src: url('../font/UTM-Colossalis/UTM-Colossalis.eot?#iefix') format('embedded-opentype'), url('../font/UTM-Colossalis/UTM-Colossalis.woff') format('woff'), url('../font/UTM-Colossalis/UTM-Colossalis.ttf') format('truetype'), url('../font/UTM-Colossalis/UTM-Colossalis.svg#UTM-alter') format('svg'); font-weight: normal; font-style: normal;}
+@font-face { font-family: 'UTM-Cafeta'; src: url('../font/UTM-Cafeta/UTM-Cafeta.eot'); src: url('../font/UTM-Cafeta/UTM-Cafeta.eot?#iefix') format('embedded-opentype'), url('../font/UTM-Cafeta/UTM-Cafeta.woff') format('woff'), url('../font/UTM-Cafeta/UTM-Cafeta.ttf') format('truetype'), url('../font/UTM-Cafeta/UTM-Cafeta.svg#UTM-alter') format('svg'); font-weight: normal; font-style: normal;}
+
+html, body, div, span, h1, h2, h3, h4, h5, h6, p,a, em, img, strong, ol, ul, li { margin:0px; padding:0px; border:0px; outline:0px; vertical-align:baseline; background:transparent; text-decoration:none; font-family:'arial'; font-size:14px;}
+body { padding:0 0; background:#fafafa;}
+
+.padi0 { padding:0;}
+.padi05 { padding:0 5px;}
+.padi010 { padding:0 10px;}
+.padi015 { padding:0 15px;}
+
+.fl { float: left;}
+.fr { float: right;}
+
+.container-xxx { max-width: 1144px; width: 100%; padding-right:15px; padding-left:15px; margin-right:auto; margin-left:auto;}
+.container-xxy { max-width: 1134px; width: 100%; padding-right:15px; padding-left:15px; margin-right:auto; margin-left:auto; border: 1px solid #ddd; background: white;}

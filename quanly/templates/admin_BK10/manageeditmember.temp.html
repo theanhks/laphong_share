@@ -1,0 +1,191 @@
+{include file="$usertemplate/header.temp.html"}
+{include file="$usertemplate/left.temp.html" title=left}
+{assign var=formId value='editItem'}
+{assign var=rightPanel value='hidden'}
+<div id="contextual" class="{$rightPanel}">
+<div class="levBtn">
+<p><a href="#"><img src="templates/{$usertemplate}/images/btn_arrow_02.gif" alt="" width="18" height="19" /></a></p>
+</div>
+<div class="contextType">
+<form action="" method="post" name="form2">
+<fieldset>
+<p>
+<label for="textbox">Textbox</label>
+<input type="text" value="" name="textbox" id="textbox" />
+</p>
+<p>
+<label for="textarea">Textarea</label>
+<textarea name="textarea" id="textarea" rows="5" cols="5"></textarea>
+</p>
+<p>
+<label for="combobox">Combobox</label>
+<select name="combobox" id="combobox" >
+<option selected="selected" value="">------------</option>
+</select>
+</p>
+<p class="radioType">
+<input type="radio" name="radio" id="radio" />
+<label for="radio">radio 1</label>
+<input type="radio" name="radio" id="radio2" />
+<label for="radio2">radio 2</label>
+</p>
+<p class="radioType">
+<input type="checkbox" name="checkbox" id="checkbox" />
+<label for="checkbox">checkbox 1</label>
+</p>
+</fieldset>
+</form>
+</div>
+</div>
+<div id="content">
+<div class="highlight">
+<h2><a href="">{$amessages.control_panel}</a> &raquo; {$amessages.edit_member}</h2>
+<ul id="tablist">
+<li class="current"><a href="" title="{$amessages.edit_member}">{$amessages.edit_member}</a> </li>
+<li><a href="{$script}?op=manage&part=member&act=list" title="{$amessages.list_member}">{$amessages.list_member}</a> </li>
+<li><a href="{$script}?op=manage&part=member&act=list&plus=cleanTrash" title="{$amessages.clean_trash}">{$amessages.clean_trash}</a> </li>
+</ul>
+{if $infoText}
+<div class="{$infoClass}">
+<h4>Result:</h4>
+<p>{$infoText}</p>
+</div>
+{/if}
+<div class="formType">
+<form action="{$script}" method="post" id="{$formId}" name="{$formId}">
+<fieldset>
+<p>
+<label for="status">{$amessages.status} *</label>
+<span>{$amessages.status_help}</span>
+<select name="status">
+{$listStatus}
+</select>
+</p>
+
+<p>
+<label for="username">{$amessages.username} *</label>
+<span>{$amessages.username_help}</span>
+<input type="text" name="username" value="{$listObject->getUsername()}" disabled="disabled" />
+</p>
+<p>
+<label for="pass">{$amessages.old_pass}*</label>
+<span>{$amessages.pass_help}</span>
+<input type="password" name="old_pass" value="{$listObject->getPass()}"  disabled="disabled"/>
+</p>
+<p>
+<label for="pass">{$amessages.new_pass} *</label>
+<span>{$amessages.pass_help}</span>
+<input type="password" name="new_pass" value="" />
+</p>
+<p>
+<label for="pass">{$amessages.confirm} *</label>
+<span>{$amessages.confirm_help}</span>
+<input type="password" name="confirm" value="{$confirm}" />
+</p>
+<p>
+<label for="fname">Họ tên*</label>
+<span>Nhập vào họ tên đầy đủ</span>
+<input type="text" name="fullname" value="{$listObject->getFullname()}" /></p>
+<p>
+<label for="status">Giới tính *</label>
+<select name="phai">
+{$listGender}
+</select>
+</p>
+<label for="about">{$amessages.about}</label>
+<span>{$amessages.about_help}</span>
+<input type="text" name="about" value="{$listObject->getAbout()}" />
+</p>
+<p>
+<label for="address">{$amessages.address}</label>
+<span>{$amessages.address_help}</span>
+<input type="text" name="address" value="{$listObject->getAddress()}" />
+</p>
+<p>
+<label for="email">{$amessages.email} *</label>
+<span>{$amessages.email_help}</span>
+<input type="text" name="email" value="{$listObject->getEmail()}" />
+</p>
+<p>
+<label for="tel">{$amessages.tel} </label>
+<span>{$amessages.tel_help}</span>
+<input type="text" name="tel" value="{$listObject->getTel()}" />
+</p>
+<p>
+<label for="fax">{$amessages.fax} </label>
+<span>{$amessages.fax_help}</span>
+<input type="text" name="fax" value="{$listObject->getFax()}" />
+</p>
+<!--<p>
+<label for="company">{$amessages.company} </label>
+<span>{$amessages.company_help}</span>
+<input type="text" name="company" value="{$listObject->getCompany()}" />
+</p>
+<p>
+<label for="company">Tỉnh </label>
+<span>Nhập vào tỉnh của bạn</span>
+<input type="text" name="tinh" value="{$listObject->getTinh()}" />
+</p>
+<p>
+<label for="company">Quốc gia </label>
+<span>Nhập vào đất nước của bạn</span>
+<input type="text" name="country " value="{$listObject->getCountry()}" />
+</p>
+<p><label for="company">Dịch vụ </label>
+ <input name="chk_service" id="chk_service" value="1" type="checkbox" style="width:50px" {if $chk_service_old eq 1} checked="checked" {/if}>
+  </p>   
+  <p><label for="company">Sản phẩm </label>
+ <input name="chk_product" id="chk_product" value="1" type="checkbox" style="width:50px" {if $chk_product eq 1} checked="checked" {/if}>
+  </p>
+  <p><label for="company">Bạn chỉ là khách viếng thăm? </label>
+ <input name="chk_visistor" value="1" type="radio" style="width:50px" {if $chk_visistor eq 1} checked="checked" {/if}>
+                Có
+                <input name="chk_visistor" value="0" type="radio" style="width:50px" {if $chk_visistor eq 0} checked="checked" {/if}>
+               Không
+  </p>
+              
+	<p><label for="company">Bạn muốn xây các loại công trình? </label>
+   				<input name="chk_project" id="chk_project" value="1" type="checkbox" style="width:50px" {if $chk_project eq 1} checked="checked" {/if}>
+			      P1
+			      <input name="chk_project" id="chk_project" value="2" type="checkbox" style="width:50px" {if $chk_project eq 2} checked="checked" {/if}>
+	            P2			    
+	            <input name="chk_project" id="chk_project" value="3" type="checkbox" style="width:50px" {if $chk_project eq 3} checked="checked" {/if}>
+	            P3
+	            <input name="chk_project" id="chk_project" value="4" type="checkbox" style="width:50px" {if $chk_project eq 4} checked="checked" {/if}>
+	            P4
+	            <input name="chk_project" id="chk_project" value="5" type="checkbox" style="width:50px" {if $chk_project eq 5} checked="checked" {/if}>
+	            P5
+	            <input name="chk_project" id="chk_project" value="6" type="checkbox" style="width:50px" {if $chk_project eq 6} checked="checked" {/if}>
+	            P6
+  </p>
+  	  <p><label for="company">Bạn mong muốn là nhân viên VIETCONS trong tương lai?</label>
+<input name="chk_isvietcons" value="1" type="radio" style="width:50px" {if $chk_isvietcons eq 1} checked="checked" {/if}>
+Có
+<input name="chk_isvietcons" value="0" type="radio" style="width:50px" {if $chk_isvietcons eq 0} checked="checked" {/if}>
+Không
+  </p>	 
+  <p><label for="company">Bạn muốn là đối tác công ty VIETCONS ?</label>
+<input name="chk_ispartner" value="1"  type="radio" style="width:50px" {if $chk_ispartner eq 1} checked="checked" {/if}>
+Có
+<input name="chk_ispartner" value="0" type="radio" style="width:50px" {if $chk_ispartner eq 0} checked="checked" {/if}>
+Không
+  </p>	 -->
+<p class="btnType">
+<input type="hidden" name="op" value="{$op}" />
+<input type="hidden" name="part" value="{$part}" />
+<input type="hidden" name="act" value="{$act}" />
+<input type="hidden" name="oId" value="{$listObject->getId()}"/>
+<input type="hidden" name="searchTerms" value="{$searchTerms}"/>
+<input type="hidden" name="searchStatus" value="{$searchStatus}"/>
+<span><input type="reset" value="{$amessages.reset}" title="{$amessages.reset}" name="btnReset" /></span>
+<span><input type="submit" value="{$amessages.save}" title="{$amessages.save}" name="btnSubmit" /></span>
+</p>
+</fieldset>
+</form>
+</div>
+</div>
+</div>
+</div>
+<div class="push"></div>
+</div>
+{include file="$usertemplate/footer.temp.html" title=footer}

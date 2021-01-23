@@ -1,0 +1,26 @@
+html, body, div, span, h1, h2, h3, h4, h5, h6, p,a, em, img, strong, ol, ul, li { margin:0px; padding:0px; border:0px; outline:0px; vertical-align:baseline; background:transparent; text-decoration:none; font-size:16px;}
+body {}
+
+
+.mainheader { width: 100%; height: 50px; float: left; position: fixed; top: 0; left: 0; background: #333; }
+.mainheader > p { width: calc(100% - 300px); float: left; background: #333; color: white; height: 50px; display: block; line-height: 50px; padding: 0 15px; text-align: right;}
+.mainheader > p > span { color: green; text-transform: uppercase; font-size: 18px; font-weight: bold; }
+
+.menuLeft { width: 300px;float: left;}
+
+.productMenu { width: 100%; float: left;}
+.productMenu ul { list-style: none; width: 100%; float: left; margin: 0; padding: 0;}
+.productMenu ul.cap1 > li { width: 100%; float: left; background: #222;}
+.productMenu ul.cap1 > li > a { width: 100%; float: left; display: block; line-height: 50px; color: #ddd; padding-left: 15px; text-transform: uppercase; }
+.productMenu ul.cap2 > li { width: 100%; float: left; background: #444; border-bottom: 1px solid #555;}
+.productMenu ul.cap2 > li > a { width: 100%; float: left; display: block; line-height: 40px; color: #ddd; padding-left: 15px;}
+.productMenu ul.cap3 > li { width: 100%; float: left; background: #666; border-bottom: 1px solid #777;}
+.productMenu ul.cap3 > li > a { width: 100%; float: left; display: block; line-height: 34px; color: #ddd; padding-left: 41px;}
+.productMenu ul.cap3 > li > a > i { font-size: 14px; color: orange; }
+.productMenu ul.cap4 > li { width: 100%; float: left; background: #888; border-bottom: 1px solid #999;}
+.productMenu ul.cap4 > li > a { width: 100%; float: left; display: block; line-height: 30px; color: #ddd; padding-left: 56px;}
+.productMenu ul.cap4 > li > a > i { font-size: 14px; color: green; }
+
+
+
+.contRight { width: calc(100% - 300px); float: left; background: red; padding: 0 15px; }

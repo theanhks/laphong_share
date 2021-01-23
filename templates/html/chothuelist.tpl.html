@@ -1,0 +1,55 @@
+
+
+<section class="sub-bg">
+  <div class="container">
+    {if $lang == 'vn'}
+		<div class="sub-head"> <a href="#"><i class="fa fa-home"></i> Trang chủ </a>
+
+				{foreach from=$pathParentItems key=i item=pathParentItem}
+							<h1><a title="{$pathParentItem->getName($lang)|strip_tags}" href="{$pathParentItem->getUrl($lang)}">{$pathParentItem->getName($lang)|strip_tags}</a></h1>
+						{/foreach} 
+		  
+		</div>
+	{else}
+		<div class="sub-head"> <a href="#"><i class="fa fa-home"></i> Home </a>
+			{foreach from=$pathParentItems key=i item=pathParentItem}
+							<h1><a title="{$pathParentItem->getName($lang)|strip_tags}" href="{$pathParentItem->getUrl($lang)}">{$pathParentItem->getName($lang)|strip_tags}</a></h1>
+						{/foreach} 
+    </div>
+	{/if}
+	
+  </div>
+</section>
+
+
+<section  id="chothue">
+  <div class="title" style="padding-top: 50px"><a href="#" style="color:#005a02">{$pageName}</a></div>
+  <div class="container">
+    <div class="product-block list-product">
+      <ul>
+	  
+			{if $proItems}
+					{foreach from=$proItems item=proItem key=i}
+						<li>
+						  <div class="pic-news"><a href="{$proItem->getViewUrl($lang)}" title ="{$proItem->getName($lang)}"><img  alt ="{$proItem->getName($lang)}" src="{$ROOTPATH}/gallery/avatar_upload/products/thumb/{$proItem->getAvatar()}" /></a></div>
+						  <h3><a href="{$proItem->getViewUrl($lang)}" title ="{$proItem->getName($lang)}">{$proItem->getName($lang)}</a></h3>
+						</li>
+						
+			
+				{/foreach}
+				{/if}
+	   
+      </ul>
+    </div>
+	
+	{if $pages>1}
+					<div class="nav-page">
+						
+						 {$pager}
+						
+					</div>
+				{/if} 
+	
+  </div>
+</section>
+

@@ -1,0 +1,235 @@
+{include file="$usertemplate/header.temp.html"}
+{include file="$usertemplate/left.temp.html" title=left}
+{assign var=formId value='listAds'}
+{assign var=rightPanel value='hidden'}
+<div id="contextual" class="{$rightPanel}">
+<div class="levBtn">
+<p><a href="#"><img src="templates/{$usertemplate}/images/btn_arrow_02.gif" alt="" width="18" height="19" /></a></p>
+</div>
+<div class="contextType">
+<form action="{$script}" method="post" name="form2">
+<fieldset>
+<p>
+<label for="textbox">Textbox</label>
+<input type="text" value="" name="textbox" id="textbox" />
+</p>
+<p>
+<label for="textarea">Textarea</label>
+<textarea name="textarea" id="textarea" rows="5" cols="5"></textarea>
+</p>
+<p>
+<label for="combobox">Combobox</label>
+<select name="combobox" id="combobox" >
+<option selected="selected" value="">------------</option>
+</select>
+</p>
+<p class="radioType">
+<input type="radio" name="radio" id="radio" />
+<label for="radio">radio 1</label>
+<input type="radio" name="radio" id="radio2" />
+<label for="radio2">radio 2</label>
+</p>
+<p class="radioType">
+<input type="checkbox" name="checkbox" id="checkbox" />
+<label for="checkbox">checkbox 1</label>
+</p>
+</fieldset>
+</form>
+</div>
+</div>
+<div id="content">
+<div class="highlight">
+<h2><a href="">{$amessages.control_panel}</a> &raquo; {$amessages.control_panel}</h2>
+<ul id="tablist">
+<li><a href="{$script}?op=manage&amp;part=ads_home&amp;act=add&amp;gId={$gId}" title="{$amessages.add_ads}">{$amessages.add_ads}</a> </li>
+<li class="current"><a href="{$script}?op=manage&part=ads_home&act=list" title="{$amessages.list_ads}">{$amessages.list_ads}</a> </li>
+<li><a href="{$script}?op=manage&part=ads_home&act=list&plus=cleanTrash" title="{$amessages.clean_trash}">{$amessages.clean_trash}</a> </li>
+</ul>
+<div class="searchType">
+<form action="{$script}" method="post" name="searchMenu" id="searchMenu">
+<fieldset>
+<h3>{$amessages.search_for}</h3>
+<p>
+<label>{$amessages.keyword}</label>
+<input type="text" value="{$searchTerms}" name="searchTerms" />
+<label>{$amessages.status}</label>
+<select name="searchStatus">
+{$listStatus}
+</select>
+<label>{$amessages.group_ads}</label>
+<select name="searchGroupAds">
+<option value="-1">All</option>
+{$listGroupads}
+</select>
+
+<!--
+<input type="checkbox" value="" name="checkbox2" class="box2" />
+<label>Checkbox</label>
+<input type="checkbox" value="" name="checkbox2" class="box2" />
+<label>Checkbox</label>
+<input type="radio" value="" name="checkbox2" class="box2" />
+<label>Radio</label>
+<input type="radio" value="" name="checkbox2" class="box2" />
+<label>Radio</label>
+-->
+<input type="hidden" name="op" value="{$op}" />
+<input type="hidden" name="part" value="{$part}" />
+<input type="hidden" name="act" value="{$act}" />
+<input type="submit" value="{$amessages.display}" title="{$amessages.display}" name="btnDisplay" class="btnDisplay" />
+</p>
+</fieldset>
+</form>
+</div>
+{if $infoText}
+<div class="{$infoClass}">
+<h4>Result:</h4>
+<p>{$infoText}</p>
+</div>
+{/if}
+<p class="metro_home">
+{literal}
+<script type="text/javascript">
+jQuery(document).ready(function(){
+	jQuery('.button').click(function(){
+		id=(jQuery(this).val());
+		jQuery(".metro_home .button").removeClass("active");
+		jQuery(this).addClass("active"); 
+		//alert(id);
+		jQuery("select[name='gId'] option").removeAttr('selected');
+		jQuery("select[name='gId'] option[value='"+id+"']").attr("selected", "selected");
+		});
+	});
+</script>
+<style type="text/css">
+.metro_home{ position:relative}
+.metro_home .button{ display:block; width:100px; height:100px; background:#CCC; border:1px solid #000; position:absolute; font-size:20px; font-weight:bold; cursor:pointer}
+.metro_home .button:hover,.metro_home .button.active{ background:#999; border:1px solid #000;}
+.metro_home .button[value='1']{ height: 215px;
+    left: 2px;
+    top: 2px;
+    width: 215px;}
+.metro_home .button[value='2']{ height: 105px;
+    left: 221px;
+    top: 2px;
+    width: 217px;}
+.metro_home .button[value='3']{    height: 106px;
+    left: 442px;
+    top: 2px;
+    width: 106px;}
+.metro_home .button[value='4']{  height: 106px;
+    left: 552px;
+    top: 2px;
+    width: 175px;}
+.metro_home .button[value='5']{ height: 106px;
+    left: 221px;
+    top: 111px;
+    width: 106px;}
+.metro_home .button[value='6']{ height: 106px;
+    left: 332px;
+    top: 111px;
+    width: 106px;}
+.metro_home .button[value='7']{ height: 106px;
+    left: 442px;
+    top: 111px;
+    width: 176px;}
+.metro_home .button[value='8']{ height: 106px;
+    left: 622px;
+    top: 111px;
+    width: 105px;}
+</style>
+{/literal}
+{if $listObjects}
+{assign var=i value=$start}
+{foreach from=$listObjects item=object}<a type="button" class="button" value="{$groupads->getParentId($object->getGroup())}" href="{$script}?op=manage&amp;part=ads_home&amp;act=edit&amp;searchTerms={$searchTerms}&amp;searchStatus={$object->getStatus()}&amp;searchGroupAds={$object->getGroup()}&amp;orderBy={$orderBy}&amp;orderDir={$orderDir}&amp;oId={$object->getId()}" title="{$object->getPosition()}" /><img src="{$ROOTPATH}/gallery/avatar_upload/ads/storage/{$object->getLogoUrl()}" width="100%" height="100%" border="0" /><span style="background:url('{$ROOTPATH}/templates/phinam/images/bg-ban.png'); position:absolute; bottom:0; display:block; color:white; font-size:11px">{$object->getPosition()}</span></a>{/foreach}{/if}<img src="{$ROOTPATH}/templates/phinam/images/metro_home.png" /></p>
+<form id="{$formId}" name="{$formId}" action="{$script}" method="post">
+<div class="tableContent">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<thead>
+<tr>
+<th><input class="box3" type="checkbox" name="all" id="all" value="1" onclick="toggleAllChecks('{$formId}');" /></th>
+<th>{$amessages.no}</th>
+<th>
+<a href="{$script}?op=manage&amp;part=ads_home&amp;act=list&amp;searchTerms={$searchTerms}&amp;searchStatus={$searchStatus}&amp;searchGroupAds={$searchGroupAds}&amp;orderBy=id&amp;orderDir={if $orderBy eq 'id' && $orderDir eq 'ASC'}DESC{else}ASC{/if}" title="{$amessages.click_here_to_sort_by} {$amessages.id}">{$amessages.id}{if $orderBy eq 'id'}&nbsp;<img src="templates/{$usertemplate}/images/ico_{if $orderDir eq 'DESC'}down{else}up{/if}.gif" alt="" width="12" height="12" />{/if}</a></th>
+<th><a href="{$script}?op=manage&amp;part=ads_home&amp;act=list&amp;searchTerms={$searchTerms}&amp;searchStatus={$searchStatus}&amp;searchGroupAds={$searchGroupAds}&amp;orderBy=gid&amp;orderDir={if $orderBy eq 'gid' && $orderDir eq 'ASC'}DESC{else}ASC{/if}" title="{$amessages.click_here_to_sort_by} {$amessages.group_ads}">{$amessages.group_ads}{if $orderBy eq 'gid'}&nbsp;<img src="templates/{$usertemplate}/images/ico_{if $orderDir eq 'DESC'}down{else}up{/if}.gif" alt="" width="12" height="12" />{/if}</a></th>
+<th>{$amessages.img}</th>
+<th><a href="{$script}?op=manage&amp;part=ads_home&amp;act=list&amp;searchTerms={$searchTerms}&amp;searchStatus={$searchStatus}&amp;searchGroupAds={$searchGroupAds}&amp;orderBy=status&amp;orderDir={if $orderBy eq 'status' && $orderDir eq 'ASC'}DESC{else}ASC{/if}" title="{$amessages.click_here_to_sort_by} {$amessages.status}">{$amessages.status}{if $orderBy eq 'status'}&nbsp;<img src="templates/{$usertemplate}/images/ico_{if $orderDir eq 'DESC'}down{else}up{/if}.gif" alt="" width="12" height="12" />{/if}</a></th>
+<!--<th><a href="{$script}?op=manage&amp;part=ads_home&amp;act=list&amp;searchTerms={$searchTerms}&amp;searchStatus={$searchStatus}&amp;searchGroupAds={$searchGroupAds}&amp;orderBy=position&amp;orderDir={if $orderBy eq 'position' && $orderDir eq 'ASC'}DESC{else}ASC{/if}" title="{$amessages.click_here_to_sort_by} {$amessages.position}">{$amessages.position}{if $orderBy eq 'position'}&nbsp;<img src="templates/{$usertemplate}/images/ico_{if $orderDir eq 'DESC'}down{else}up{/if}.gif" alt="" width="12" height="12" />{/if}</a></th>-->
+<th>{$amessages.vn_name}</th>
+<th>{$amessages.actions}</th>
+</tr>
+</thead>
+<tbody>
+{if $listObjects}
+{assign var=i value=$start}
+{foreach from=$listObjects item=object}
+{assign var=i value=$i+1}
+<tr{if $i%2 == 0} class="bgType"{/if}>
+<tr><td><input class="box3" type="checkbox" name="oIds[]" id="oIds" value="{$object->getId()}" /></td>
+<td>{$i|number_format}</td>
+<td>{$object->getId()}</td>
+<td>[ {$groupads->getParentId($object->getGroup())} ] - {$groupads->getParentName($object->getGroup())}</td>
+<td>
+{if $object->isFlash()}
+<img src="{$ROOTPATH}/admincp/templates/admin/images/swf.gif" width="110" height="75" border="0" />
+{else}
+	{if $object->isVideo()}
+    <img src="{$ROOTPATH}/admincp/templates/admin/images/icon_video.jpg" width="110" height="75" border="0" />
+    {else}
+<img src="{$ROOTPATH}/gallery/avatar_upload/ads/avatar/{$object->getLogoUrl()}" width="100" height="60" border="0" />
+{/if}{/if}
+{if $groupads->getParentName($object->getGroup()) == 'Music'}
+<img src="templates/admin/images/music.gif" height="50" border="0" />
+{/if}
+</td>
+<td>{if $object->isDeleted()}<span style="color: #FF0000">{$object->getStatusText()}</span>{else}{$object->getStatusText()}{/if}</td>
+<td>
+<span>{$object->getPosition()}</span>
+<!--<input type="text" name="position_{$object->getId()}" id="position_{$object->getId()}" value="{$object->getPosition()}" />-->
+<!--<input type="button" class="btnOK" name="update" value="OK" onClick="javascript:changePosition('{$formId}','{$object->getId()}');" />--></td>
+<td>
+<!--<a href="{$script}?op=manage&amp;part=ads_home&amp;act=list&amp;searchTerms={$searchTerms}&amp;searchStatus={$searchStatus}&amp;searchGroupAds={$searchGroupAds}&amp;orderBy={$orderBy}&amp;orderDir={$orderDir}&amp;plus=down&amp;oId={$object->getId()}&amp;position={$object->getPosition()}&amp;page={$page}" title="{$amessages.down}"><img src="templates/{$usertemplate}/images/ico_down.gif" alt="{$amessages.down}" width="16" height="16" /></a>
+<a href="{$script}?op=manage&amp;part=ads_home&amp;act=list&amp;searchTerms={$searchTerms}&amp;searchStatus={$searchStatus}&amp;searchGroupAds={$searchGroupAds}&amp;orderBy={$orderBy}&amp;orderDir={$orderDir}&amp;plus=up&amp;oId={$object->getId()}&amp;position={$object->getPosition()}&amp;page={$page}" title="{$amessages.up}"><img src="templates/{$usertemplate}/images/ico_up.gif" alt="{$amessages.up}" width="16" height="16" /></a>
+--><a href="{$script}?op=manage&amp;part=ads_home&amp;act=edit&amp;searchTerms={$searchTerms}&amp;searchStatus={$object->getStatus()}&amp;searchGroupAds={$object->getGroup()}&amp;orderBy={$orderBy}&amp;orderDir={$orderDir}&amp;oId={$object->getId()}" title="{$amessages.edit}"><img src="templates/{$usertemplate}/images/misc/edit.png" alt="{$amessages.edit}" width="16" height="16" /></a>
+{if $object->isEnabled()}
+<!--<a href="{$script}?op=manage&amp;part=ads_home&amp;act=list&amp;searchTerms={$searchTerms}&amp;searchStatus={$searchStatus}&amp;searchGroupAds={$searchGroupAds}&amp;orderBy={$orderBy}&amp;orderDir={$orderDir}&amp;plus=disableItem&amp;oId={$object->getId()}&amp;page={$page}" title="{$amessages.disable}"><img src="templates/{$usertemplate}/images/misc/disable.png" alt="{$amessages.disable}" width="16" height="16" /></a>-->
+{else}
+<!--<a href="{$script}?op=manage&amp;part=ads_home&amp;act=list&amp;searchTerms={$searchTerms}&amp;searchStatus={$searchStatus}&amp;searchGroupAds={$searchGroupAds}&amp;orderBy={$orderBy}&amp;orderDir={$orderDir}&amp;plus=activateItem&amp;oId={$object->getId()}&amp;page={$page}" title="{$amessages.activate}"><img src="templates/{$usertemplate}/images/misc/activate.png" alt="{$amessages.activate}" width="16" height="16" /></a>-->
+{/if}
+<!--<a href="{$script}?op=manage&amp;part=ads_home&amp;act=list&amp;searchTerms={$searchTerms}&amp;searchStatus={$searchStatus}&amp;searchGroupAds={$searchGroupAds}&amp;orderBy={$orderBy}&amp;orderDir={$orderDir}&amp;plus=deleteItem&amp;oId={$object->getId()}&amp;page={$page}" title="{$amessages.delete}"><img src="templates/{$usertemplate}/images/misc/delete.png" alt="{$amessages.delete}" width="16" height="16" /></a>--></td>
+</tr>
+{/foreach}
+{/if}
+</tbody>
+</table>
+<div class="paging">
+<p class="btnType">
+<input type="hidden" name="op" value="{$op}" />
+<input type="hidden" name="part" value="{$part}" />
+<input type="hidden" name="act" value="{$act}" />
+<input type="hidden" name="searchTerms" value="{$searchTerms}"/>
+<input type="hidden" name="searchStatus" value="{$searchStatus}"/>
+<input type="hidden" name="searchGroupAds" value="{$searchGroupAds}"/>
+<input type="hidden" name="orderBy" value="{$orderBy}"/>
+<input type="hidden" name="orderDir" value="{$orderDir}"/>
+<input type="hidden" name="page" value="{$page}"/>
+<input type="hidden" name="oId" value=""/>
+<input type="hidden" name="position" value=""/>
+<input type="hidden" name="plus" id="plus" value=""/>
+<span><input type="submit" value="{$amessages.activate}" title="{$amessages.activate}" name="btnActivate" onClick="javascript:actionSubmit('{$formId}','activateItems');" /></span>
+<span><input type="submit" value="{$amessages.disable}" title="{$amessages.disable}" name="btnDisable" onClick="javascript:actionSubmit('{$formId}','disableItems');" /></span>
+<span><input type="submit" value="{$amessages.delete}" title="{$amessages.delete}" name="btnDelete" onClick="javascript:actionSubmit('{$formId}','deleteItems');" /></span>
+</p>
+<ul>
+<li>{$amessages.page}</li>
+{$adminPager}
+<li>{$amessages.total} {$rows|number_format} {$amessages.records}, {$pages|number_format} {$amessages.pages}</li>
+</ul>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+<div class="push"></div>
+</div>
+{include file="$usertemplate/footer.temp.html" title=footer}

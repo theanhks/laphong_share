@@ -1,0 +1,39 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>html,body{ margin:0; padding:0; font:12px Arial;} html{ width:100%; height:100%}</style>
+<title></title>
+<!--    Chuỗi khai báo lấy tham số của google maps   -->
+<script type="text/javascript" 
+src="http://maps.googleapis.com/maps/api/js?sensor=false&language=vi"></script>
+<script type="text/javascript">
+var map;
+function initialize() {
+      var myLatlng = new google.maps.LatLng(10.997078925386342, 106.64870738983154);
+      var myOptions = {
+    zoom: 16,
+    center: myLatlng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+}
+map = new google.maps.Map(document.getElementById("div_id"), myOptions); 
+  // Biến text chứa nội dung sẽ được hiển thị
+var text;
+text= "<div style='width:200px'>540 Đại Lộ Bình Dương, Hiệp Thành, Thu Dau Mot Binh Duong province, Vietnam</div>";
+   var infowindow = new google.maps.InfoWindow(
+    { content: text,
+        size: new google.maps.Size(100,50),
+        position: myLatlng
+    });
+       infowindow.open(map);    
+    var marker = new google.maps.Marker({
+      position: myLatlng, 
+      map: map,
+      title:""
+  });
+}
+</script>
+</head>
+<body onLoad="initialize()">
+    <div id="div_id" style="height:100%; width:100%"></div>
+</body>
+</html>

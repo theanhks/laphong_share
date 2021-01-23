@@ -1,0 +1,310 @@
+{include file="$usertemplate/header.temp.html"}
+{include file="$usertemplate/left.temp.html" title=left}
+{assign var=formId value='addItem'}
+{assign var=rightPanel value='hidden'}
+<div id="contextual" class="{$rightPanel}">
+  <div class="levBtn">
+    <p><a href="#"><img src="templates/{$usertemplate}/images/btn_arrow_02.gif" alt="" width="18" height="19" /></a></p>
+  </div>
+  <div class="contextType">
+    
+  </div>
+</div>
+<div id="content">
+  <div class="highlight">
+    <h2><a href="">{$amessages.control_panel}</a> &raquo; {if $act == 'edit'}{$amessages.edit_product}{else}{$amessages.copy_product}{/if}</h2>
+    <ul id="tablist">
+      <li class="current"><a title="{$amessages.edit_product}">{if $act == 'edit'}{$amessages.edit_product}{else}{$amessages.copy_product}{/if}</a> </li>
+      <li><a href="{$script}?op=manage&part=product&act=list" title="{$amessages.list_product}">{$amessages.list_product}</a> </li>
+      <li><a href="{$script}?op=manage&part=product&act=list&plus=cleanTrash" title="{$amessages.clean_trash}">{$amessages.clean_trash}</a> </li>
+    </ul>
+    {if $infoText}
+    <div class="{$infoClass}">
+      <h4>Result:</h4>
+      <p>{$infoText}</p>
+    </div>
+    {/if}
+    <div class="formType"> {literal} 
+      <script language="javascript">		 
+		  function CheckFormID()
+            {         
+					  
+					   if (jQuery('#price').val()!="") 
+					   {
+						   var age =jQuery('#price').val();
+							if(isNaN(age))
+							{
+							 alert("Bạn phải nhập giá sản phẩm là kiểu số");	
+							  jQuery('#price').focus();
+                                    return false;	
+							 }
+						}
+						
+         return true;      
+            }
+            </script> 
+      {/literal}
+      <form action="{$script}" method="post" id="{$formId}" name="{$formId}" enctype="multipart/form-data">
+        <fieldset>
+          <p>
+            <label for="status">{$amessages.status} *</label>
+            <span>{$amessages.status_help}</span>
+            <select name="status">
+              
+{$listStatus}
+
+            </select>
+          </p>
+          <p>
+            <label for="gId">{$amessages.productcategory} *</label>
+            <span>{$amessages.parent_help}</span>
+            <select name="category">
+              <option value="-1">All</option>
+              {$listCategory}
+
+            </select>
+          </p>
+         <!--<p>
+            <label for="vn_name">Mã sản phẩm *</label>
+            <span>Nhập vào mã của sản phẩm</span>
+            <input type="text" name="code_sp" value="{$listObject->getPayment()}" />
+          </p>-->
+          <p>
+            <label for="vn_name">{$amessages.vn_name} *</label>
+            
+            <input type="text" name="vn_name" value="{$listObject->getName('vn')}" />
+          </p>
+          <p>
+            <label for="en_name">{$amessages.en_name} *</label>
+            
+            <input type="text" name="en_name" value="{$listObject->getName('en')}" />
+          </p>
+          <p class ="hidden">
+            <label for="num_product">{$amessages.num_product} *</label>
+            
+            <input type="text" name="num_product" value="{$listObject->getNumProduct()}" />
+          </p>
+          <!--<p>
+            <label for="size">{$amessages.size} *</label>
+            
+            <input type="text" name="size" value="{$listObject->getViewed()}" />
+          </p>-->
+			<p>
+				<label for="en_name">{$amessages.avatar} (Tiếng việt) </label>
+				<span class="error" style="color:red">{$amessages.size}: {$amessages.productsize}</span>
+				{if $listObject->getAvatar()}
+				<span><img src="{$ROOTPATH}/gallery/avatar_upload/products/avatar/{$listObject->getAvatar()}" /></span>
+				
+				<!--<span><input type="checkbox" style="width:50px;" value="1" id="delete_avatar" name="delete_avatar">&nbsp;<label style="float:left">Xóa</label></span>-->
+				{/if}
+				<input type="file" name="avatar" value="{$avatar}" />
+				<input type="hidden" name="avatar_old" value="{$listObject->getAvatar()}" />
+			</p>
+			
+			<p>
+				<label for="en_name">{$amessages.avatar} (Tiếng anh) </label>
+				<span class="error" style="color:red">{$amessages.size}: {$amessages.productsize}</span>
+				{if $listObject->getFile3()}
+				<span><img src="{$ROOTPATH}/gallery/avatar_upload/products/avatar/{$listObject->getFile3()}" /></span>
+				
+				<!--<span><input type="checkbox" style="width:50px;" value="1" id="delete_avatar" name="delete_avatar">&nbsp;<label style="float:left">Xóa</label></span>-->
+				{/if}
+				<input type="file" name="file3" value="{$file3}" />
+				<input type="hidden" name="file3_old" value="{$listObject->getFile3()}" />
+			</p>
+			
+			
+			
+			
+			<p class ="hidden">
+            
+			 <label for="en_name">Qui cách in *</label>
+			 <span id="mausac">   
+			{assign var=imagesItems value=$listObject->getProperties(0)}
+														{if $imagesItems}        
+															{foreach from=$imagesItems item=imagesItem key=i}
+															{if $imagesItem eq ''}
+															
+															{else}
+																<input type="text" name="color[]" value="{$imagesItem}" />
+															{/if}
+															{/foreach}
+			
+			{/if}
+			</span>
+			
+			{literal}
+					<script>
+						jQuery(document).ready(function() {		
+							jQuery("[name=btnThem_mau_sac]").click(function(){
+								jQuery("#mausac").append("<input type='text' name='color[]'> <br/>");
+							});
+						});
+					</script>
+					{/literal}
+					<input name="btnThem_mau_sac" themfile="1" value="Thêm" type="button" style=" width:100px; background-color:none"> 
+			
+			</p>
+			<p class ="hidden">
+			<span id="kichthuoc"> 
+           <label for="en_name">Số lượng *</label>
+			{assign var=imagesItems1 value=$listObject->getFile(2)}
+														{if $imagesItems1}        
+															{foreach from=$imagesItems1 item=imagesItem key=i}
+															{if $imagesItem eq ''}
+														
+															{else}
+																<input type="text" name="kichthuoc[]" value="{$imagesItem}" />
+															{/if}
+															{/foreach}
+														{/if}
+					</span>
+				{literal}
+					<script>
+						jQuery(document).ready(function() {		
+							jQuery("[name=btnThem_kich_thuoc]").click(function(){
+								jQuery("#kichthuoc").append("<input type='text' name='kichthuoc[]'> <br/>");
+							});
+						});
+					</script>
+					{/literal}
+				<input name="btnThem_kich_thuoc" themfile="1" value="Thêm" type="button" style=" width:100px; background-color:none"> 
+		  </p>
+		  </p>
+<p>
+          <div id="uploadortherimage">
+<label for="details">{$amessages.uploadimg}</label>
+<span>Upload những hình ảnh khác của sản phẩm</span>
+{if $listObject->getFile1()}
+{assign var=imagesItems value=$listObject->getFile(1)}
+<table width="100%" cellpadding="0" border="0" >
+<tr>
+{foreach from=$imagesItems item=imagesItem}
+
+<td><img src="{$ROOTPATH}/gallery/avatar_upload/products/avatar/{$imagesItem}" title="images" width="100" height="100" /></td>
+
+{/foreach}</tr><tr>
+ {foreach from=$imagesItems key =i item=value}
+<td><a href="{$script}?op=manage&amp;part=product&amp;act=edit&amp;searchStatus={$listObject->getStatus()}&amp;searchCategory={$listObject->getCategory()}&amp;oId={$listObject->getId()}&img={$i}&anchor=img_delete#img_delete" title="xóa images"><img src="templates/{$usertemplate}/images/delete-icon.png" title="Xóa hình" align="middle"/></a></td>
+{/foreach}</tr></table>
+{/if}
+<span id="listfiles"> 
+    	
+         <input name="files[]" type="file"> <br>
+          
+     </span>
+{literal}
+<script>
+	jQuery(document).ready(function() {		
+		jQuery("[name=btnThem]").click(function(){
+			jQuery("#listfiles").append("<input type='file' name='files[]'> <br/>");
+		});
+	});
+</script>
+{/literal}
+<input name="btnThem" themfile="1" value="Thêm" type="button" style=" width:100px; background-color:none"> 
+</div>
+</p>
+          <p class ="hidden">
+            <label for="en_name">Giá</label>            
+            <input type="text" name="price" id="price" value="{$listObject->getPrice()}" onblur="return CheckFormID()" />
+          </p>
+		  
+          <p class ="hidden">
+            <label for="en_name">Giá cũ</label>            
+            <input type="text" name="s_price" id="s_price" value="{$listObject->getSPrice()}" />
+          </p>
+          <p>
+            <label for="en_name">{$amessages.vn_sapo} *</label>            
+            <textarea name="vn_nsx" rows="20" cols="20" class="mceSimple">{$listObject->getNSX('vn')}</textarea>
+          </p>
+          <p>
+            <label for="en_name">{$amessages.en_sapo} *</label>
+            <textarea name="en_nsx" rows="5" cols="5" class="mceSimple">{$listObject->getNSX('en')}</textarea>
+          </p>
+          
+          <!--<p>
+            <label for="en_nhanhieu">{$amessages.en_nhanhieu} *</label>
+            <textarea name="en_nhanhieu" rows="5" cols="5" class="mceSimple">{$listObject->getNhanhieu('en')}</textarea>
+          </p>-->
+          <!--<p>
+<label for="vn_name">Thông số kỹ thuật *</label>
+<span>Nhập vào các thông số kỹ thuật của sản phẩm</span>
+<textarea name="en_details" rows="20" cols="5" class="mceAdvanced">{$listObject->getDetails('en')}</textarea>
+
+</p>
+-->
+          <p class ="hidden" id="img_delete">
+            <label for="vn_name">Mô tả sản phẩm *</label>
+            
+            <textarea name="vn_details" rows="40" cols="40" class="mceAdvanced">{$listObject->getDetails('vn')}</textarea>
+          </p>
+		  
+		   <p class ="hidden" id="img_delete">
+            <label for="vn_name">Hướng dẫn sử dụng *</label>
+            
+            <textarea name="en_details" rows="40" cols="40" class="mceAdvanced">{$listObject->getDetails('en')}</textarea>
+          </p>
+		  
+          <p style="display:none">
+            <label for="vn_nhanhieu">{$amessages.vn_nhanhieu} *</label>
+            <textarea name="vn_nhanhieu" rows="20" cols="5" class="mceAdvanced">{$listObject->getNhanhieu('vn')}</textarea>
+          </p>
+         
+          <!--<p>
+            <label for="company">Tình trạng sản phẩm</label>
+            <span>Chọn tình trạng của sản phẩm (còn hàng hay hết hàng)</span>
+            <input name="product_on" value="0" {if $product_on_old eq 0 }checked="checked"{/if} type="radio" style="width:20px; margin-left:30px">
+            Còn hàng
+            <input name="product_on" value="1" {if $product_on_old eq 1 }checked="checked"{/if} type="radio" style="width:20px; margin-left:30px">
+            Hết hàng </p>-->
+          <!--<p>
+            <label for="company">Thuế VAT</label>
+            <span>Lựa chọn option phù hợp với sản phẩm của bạn</span>
+            <input name="vat_on" value="0" {if $vat_on_old eq 0 }checked="checked"{/if} type="radio" style="width:20px; margin-left:30px">
+            Đã bao gồm thuế VAT
+            <input name="vat_on" value="1" {if $vat_on_old eq 1 }checked="checked"{/if} type="radio" style="width:20px; margin-left:30px">
+            Chưa bao gồm thuế VAT </p>-->
+          <!--<p>
+            <label for="frontpage">Lựa chọn sản phẩm</label>
+            <input type="radio" style="width:20px; margin-left:30px" name="hot" id="hot" {if $hot_old eq 0 }checked="checked"{/if} value="0" />Chọn là sản phẩm mới (icon mới)
+            <input type="radio" style="width:20px; margin-left:30px" name="hot" id="hot" {if $hot_old eq 1 }checked="checked"{/if} value="1" />Chọn là sản phẩm khuyến mãi (icon sale off)
+          </p>-->
+			<p>
+				<label for="company">Chọn sản phẩm còn phòng </label>
+				<input name="newhot" id="newhot"  value="1" type="checkbox" style="width:50px;" {if $listObject->getPayment() eq 1}checked="checked"{/if} /> </p>
+             <p>
+				<label for="company">Chọn sản phẩm này Hot</label>
+				<input name="spmoi" id="home"  value="1" type="checkbox" style="width:50px;" {if $listObject->getHome() eq 1}checked="checked"{/if} />
+			</p>           			
+          <p>
+<label for="en_name">Vị trí sản phẩm</label>
+<span>Nhập vào vị trí hiện thị của sản phẩm.</span>
+<input type="text" name="position" value="{$listObject->getPosition()}" />
+</p>
+<!--<p class="radioType">
+<input type="checkbox" name="setwatermark" id="setwatermark" checked="checked" value="1" />
+<label for="frontpage">Watermark </label>
+</p>
+-->
+          <p class="btnType">
+            <input type="hidden" name="op" value="{$op}" />
+            <input type="hidden" name="part" value="{$part}" />
+            <input type="hidden" name="act" value="{$act}" />
+            <input type="hidden" name="searchTerms" value="{$searchTerms}"/>
+            <input type="hidden" name="searchStatus" value="{$searchStatus}"/>
+            <input type="hidden" name="oId" value="{$listObject->getId()}"/>
+            <span>
+            <input type="reset" value="{$amessages.reset}" title="{$amessages.reset}" name="btnReset" />
+            </span> <span>
+            <input type="submit" value="{$amessages.save}" title="{$amessages.save}" name="btnSubmit" />
+            </span> </p>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+<div class="push"></div>
+</div>
+{include file="$usertemplate/footer.temp.html" title=footer} 

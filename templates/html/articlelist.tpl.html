@@ -1,0 +1,64 @@
+
+<section class="sub-bg">
+	  <div class="container">
+		{if $lang == 'vn'}
+			<div class="sub-head"> <a href="#"><i class="fa fa-home"></i> Trang chủ </a>
+
+					{foreach from=$pathParentItems key=i item=pathParentItem}
+								<h1><a title="{$pathParentItem->getName($lang)|strip_tags}" href="{$pathParentItem->getUrl($lang)}">{$pathParentItem->getName($lang)|strip_tags}</a></h1>
+							{/foreach} 
+			  
+			</div>
+		{else}
+			<div class="sub-head"> <a href="#"><i class="fa fa-home"></i> Home </a>
+				{foreach from=$pathParentItems key=i item=pathParentItem}
+								<h1><a title="{$pathParentItem->getName($lang)|strip_tags}" href="{$pathParentItem->getUrl($lang)}">{$pathParentItem->getName($lang)|strip_tags}</a></h1>
+							{/foreach} 
+		</div>
+		{/if}
+		
+	  </div>
+	</section>
+	
+	
+<section  id="tintuc" style="background:#EEE">
+  <div class="title" style="padding-top: 50px;"><a href="#" style="color:#005a02">{$pageName}</a></div>
+  <div class="container">
+    <div class="product-block list-product">
+      <ul>
+	  
+	  
+		{if $entriesItems}
+			{foreach from=$entriesItems item=entriesItem key=i}
+			
+				<li>
+				  <div class="news-slide">
+					<div class="pic-news"><a href="{$entriesItem->getUrl($lang)}" title ="{$entriesItem->getName($lang)}"><img alt="{$entriesItem->getName($lang)}" src="{$ROOTPATH}/gallery/avatar_upload/entry/thubnail/{$entriesItem->getAvatar()}" /></a></div>
+					<p>{$entriesItem->getDateCreated()|date_format:"%d.%m.%Y"}</p>
+					<h3><a href="#">{$entriesItem->getName($lang)}</a></h3>
+				  </div>
+				</li>
+
+			{/foreach}
+         	{/if}
+		
+        
+       
+      </ul>
+    </div>
+	
+	{if $pages>1}
+	
+		<div class="nav-page">
+			{$pager}
+		</div>
+	
+		{/if}  
+	
+
+ </div>
+</section>
+
+
+
+	

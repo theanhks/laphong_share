@@ -1,0 +1,90 @@
+<?php
+/*************************************************************************
+Class Cart Item
+----------------------------------------------------------------
+Derasoft CMS Project
+Last updated: 09/12/2009
+Name: Tran Thi Kim Que
+Author: Mai Minh (http://maiminh.vnweblogs.com)
+**************************************************************************/
+class CartItemInfo {
+	var $iId;			# Cart Item ID
+	var $sId;			# Session ID
+	var $pId;			# Product code (primary key)
+	var $slug;			# Slug
+	var $product_name;	# Size/Color
+	var $quantity;		# Quantity
+	var $price;			# Unit price
+	var $avatar;		# Avatar
+	var $time_stamp;	# Time stamp
+
+	# Constructor
+	function CartItemInfo($sId, $pId, $slug, $product_name, $quantity, $price, $avatar, $time_stamp, $iId = 0)
+	{
+		$this->iId = $iId;
+		$this->sId = $sId;
+		$this->pId = $pId;
+		$this->slug = $slug;
+		$this->product_name = $product_name;
+		$this->quantity = $quantity;
+		$this->price = $price;
+		$this->avatar = $avatar;
+		$this->time_stamp = $time_stamp;
+	}
+	function getId() {
+		return $this->iId;
+	}	
+	function setId($nValue) {
+		$this->iId=$nValue;
+	}
+	function getSId() {
+		return $this->sId;
+	}	
+	function setSId($nValue) {
+		$this->sId=$nValue;
+	}
+	
+	function getPId() {
+		return $this->pId;
+	}	
+	function setPId($nValue) {
+		$this->pId=$nValue;
+	}	
+	function getSlug() {
+		return $this->slug;
+	}	
+	function setSlug($nValue) {
+		$this->slug=$nValue;
+	}
+	function getProductName() {
+		return $this->product_name;		
+	}
+	function setProductName($nValue) {
+		$this->product_name=$nValue;
+	}
+	function getQuantity() {
+		return $this->quantity;		
+	}
+	function setQuantity($nValue) {
+		$this->quantity=$nValue;
+	}
+	function getTimeStamp() {
+		return $this->time_stamp;		
+	}
+	function setTimeStamp($nValue) {
+		$this->time_stamp=$nValue;
+	}
+	function getPrice() {
+		return $this->price;		
+	}
+	function setPrice($nValue) {
+		$this->price=$nValue;
+	}
+	function getAvatar() {
+		return $this->avatar;		
+	}
+	function setAvatar($nValue) {
+		$this->avatar=$nValue;
+	}
+}	
+?>

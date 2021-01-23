@@ -1,0 +1,106 @@
+{include file="$usertemplate/header.temp.html"}
+{include file="$usertemplate/left.temp.html" title=left}
+		<div id="contextual" class="open">
+			<div class="levBtn">
+				<p><a href="#"><img src="templates/{$usertemplate}/images/btn_arrow_02.gif" alt="" width="18" height="19" /></a></p>
+			</div>
+			<div class="contextType">
+				<form action="" method="post" name="form2">
+					<fieldset>
+					<p>
+						<label for="textbox">Textbox</label>
+						<input type="text" value="" name="textbox" id="textbox" />
+					</p>
+					<p>
+						<label for="textarea">Textarea</label>
+						<textarea name="textarea" id="textarea" rows="5" cols="5"></textarea>
+					</p>
+					<p>
+						<label for="combobox">Combobox</label>
+						<select name="combobox" id="combobox" >
+							<option selected="selected" value="">------------</option>
+						</select>
+					</p>
+					<p class="radioType">
+						<input type="radio" name="radio" id="radio" />
+						<label for="radio">radio 1</label>
+						<input type="radio" name="radio" id="radio2" />
+						<label for="radio2">radio 2</label>
+					</p>
+					<p class="radioType">
+						<input type="checkbox" name="checkbox" id="checkbox" />
+						<label for="checkbox">checkbox 1</label>
+					</p>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+		<div id="content">
+			<div class="highlight">
+				<h2>Tải tập tin mới [Chế độ quản lý]</h2>
+				<ul id="tablist">
+					<li class="current"><a href="#">Tải tập tin mới</a> </li>
+					<li><a href="#">Thêm album mới</a> </li>
+					<li><a href="#">Danh sách album</a> </li>
+					<li><a href="#">Duyệt album</a> </li>
+					<li><a href="#">Dọn rác</a> </li>
+				</ul>
+				<div class="formType">
+					<form action="" method="post" name="form1">
+						<fieldset>
+						<p>
+							<label for="files">Tập tin *</label>
+							<span>Chọn tập tin từ máy tính sẽ được tải lên thư viện. Các định dạng được hỗ trợ: jpg, bmp, gif, png, wma, wmv, mp3, mpg, mp4, mov, wav, doc, xls, ppt, txt, zip, rar.</span>
+							<input type="file" value="" id="files" name="files" size="50" class="box" />
+							<a href="#" title="Thêm Tập tin" class="add">Thêm Tập tin</a></p>
+						<p>
+							<label for="vn_description">Ghi chú (VN) *</label>
+							<span>Chú thích tiếng Việt cho tập tin này. Mã HTML sẽ được loại bỏ.</span>
+							<textarea name="vn_description" id="vn_description" rows="5" cols="5"></textarea>
+						</p>
+						<p>
+							<label for="en_description">Ghi chú (EN)</label>
+							<span>Chú thích tiếng Anh cho tập tin này. Mã HTML sẽ được loại bỏ.</span>
+							<textarea name="en_description" id="en_description" rows="5" cols="5"></textarea>
+						</p>
+						<p>
+							<label for="aId">Album</label>
+							<span>Chọn album chứa tập tin này.</span>
+							<select name="aId" id="aId">
+								<option selected="selected" value="0">/</option>
+								<option value="13">Hoạt động cộng đồng</option>
+								<option value="16">Chương trình Korea Life - Hội tụ yêu thương (01/06/2009)</option>
+								<option value="17">Chương trình Korea Life - Hiến máu tình nguyện (01/08/2009)</option>
+								<option value="22">Hỗ trợ Làng Thanh Xuân Hà Nội (10/08/2009)</option>
+								<option value="14">Trung tâm Download</option>
+								<option value="19">Tờ rơi sản phẩm</option>
+								<option value="20">Mẫu biểu liên quan đến hợp đồng</option>
+								<option value="21">Logo chuẩn</option>
+								<option value="15">Logos</option>
+								<option value="23">test</option>
+							</select>
+						</p>
+						<p class="radioType">
+							<input type="radio" name="radio3" id="radio3" />
+							<label for="radio3">radio 3</label>
+							<input type="radio" name="radio3" id="radio4" />
+							<label for="radio4">radio 4</label>
+						</p>
+						<p class="radioType">
+							<input type="checkbox" name="checkbox2" id="checkbox2" />
+							<label for="checkbox2">checkbox 2</label>
+						</p>
+						<p class="btnType"><span>
+							<input type="reset" value="NHẬP LẠI" title="NHẬP LẠI" name="btnReset" />
+							</span><span>
+							<input type="submit" value="TẢI LÊN" title="TẢI LÊN" name="btnSubmit" />
+							</span></p>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="push"></div>
+</div>
+{include file="$usertemplate/footer.temp.html" title=footer}
